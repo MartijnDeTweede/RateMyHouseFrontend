@@ -1,9 +1,25 @@
 import React from 'react'
 import UserContainer from '../containers/UserContainer';
+import HomeContainer from '../containers/HomeContainer'; 
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const App = () => (
   <div>
-    <UserContainer />
+    <Router>
+        <Switch>
+          <Route path="/user">
+          <UserContainer />
+          </Route>
+          <Route path="/">
+            <HomeContainer />
+          </Route>
+        </Switch>
+    </Router>
   </div>
 )
 export default App
