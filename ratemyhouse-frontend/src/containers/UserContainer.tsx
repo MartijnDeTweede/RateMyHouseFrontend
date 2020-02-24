@@ -25,7 +25,6 @@ const UserContainer: React.FC<{
 }
 
 const mapStateToProps = (state: UserState) => {
-  console.log('state: ', state);
   return {...state.user}
 }
 
