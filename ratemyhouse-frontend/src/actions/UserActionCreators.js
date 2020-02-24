@@ -6,9 +6,10 @@ export const USER_UPDATE_REQUESTED = "USER_UPDATE_REQUESTED";
 export const USER_UPDATE_SUCCEEDED = "USER_UPDATE_SUCCEEDED";
 export const USER_UPDATE_FAILED = "USER_UPDATE_FAILED";
 
-export const getUserRequestActionCreator = () => {
+export const getUserRequestActionCreator = (userName) => {
   return {
     type: USER_FETCH_REQUESTED,
+    userName,
     isFetching: true,
   };
 }
