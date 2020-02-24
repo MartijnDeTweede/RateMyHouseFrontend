@@ -12,8 +12,12 @@ const UserContainer: React.FC<{
   isFetching: boolean,
   getUser: Function,
 }> = ({user, isFetching, getUser}) => {
+
+  const { pathname } = window.location;
+  const userName = pathname.replace('/user/', '');
+
   useEffect(() => {
-    getUser()
+    getUser(userName)
   }, [])
   return(
     <div>
@@ -30,7 +34,7 @@ const mapStateToProps = (state: UserState) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getUser: () => dispatch(getUserRequestActionCreator())
+    getUser: (userName: string) => dispatch(getUserRequestActionCreator(userName))
   }
 }
 
