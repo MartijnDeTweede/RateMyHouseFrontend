@@ -1,4 +1,11 @@
-import { LOGIN_REQUESTED, LOGIN_SUCCEEDED, LOGIN_FAILED } from '../actions/AuthActionCreator';
+import {
+  LOGIN_REQUESTED,
+  LOGIN_SUCCEEDED,
+  LOGIN_FAILED,
+  LOGOUT_REQUESTED,
+  LOGOUT_SUCCEEDED,
+  LOGOUT_FAILED,
+} from '../actions/AuthActionCreator';
 
 const initialAuthState = {
   auth: {
@@ -15,6 +22,7 @@ const authReducer = (state=initialAuthState, action) => {
     case LOGIN_REQUESTED: {
       return {
         ...state,
+        message: undefined,
         isFetching: action.isFetching,
       };
     }
@@ -32,6 +40,32 @@ const authReducer = (state=initialAuthState, action) => {
         isFetching: action.isFetching,
       };
     }
+    case LOGOUT_REQUESTED: {
+      return {
+        ...state,
+        message: undefined,
+        isFetching: action.isFetching,
+      };
+    }
+    case LOGOUT_SUCCEEDED: {
+      console.log('here');
+      return {
+        ...state,
+        auth: {
+          isLoggedIn: false,
+          userName: undefined
+        },
+        isFetching: action.isFetching,
+      };
+    }
+    case LOGOUT_FAILED: {
+      return {
+        ...state,
+        message: action.message,
+        isFetching: action.isFetching,
+      };
+    }
+
     default:
       return state;
   }
