@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { getUserRequestActionCreator } from '../actions/UserActionCreators';
+import { User } from '../types/user.types';
 
 interface UserState {
-  user: any,
+  user: User,
   isFetching: boolean,
 }
 
 const UserContainer: React.FC<{
-  user: any,
+  user: User,
   isFetching: boolean,
   getUser: Function,
 }> = ({user, isFetching, getUser}) => {

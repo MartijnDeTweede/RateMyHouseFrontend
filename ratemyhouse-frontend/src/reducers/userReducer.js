@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { USER_FETCH_REQUESTED, USER_FETCH_SUCCEEDED, USER_FETCH_FAILED } from '../actions/UserActionCreators';
+// import initialAppState from './initialAppState';
 
 const initialUserState = {
   user: {},
@@ -11,20 +12,20 @@ const userReducer = (state=initialUserState, action) => {
     case USER_FETCH_REQUESTED: {
       return {
         ...state,
-        isFetching: action.isFetching,
+        isFetching: true,
       };
     }
     case USER_FETCH_SUCCEEDED: {
       return {
         ...state,
         user: action.user,
-        isFetching: action.isFetching,
+        isFetching: false,
       };
     }
     case USER_FETCH_FAILED: {
       return {
         ...state,
-        isFetching: action.isFetching,
+        isFetching: false,
       };
     }
     default:
