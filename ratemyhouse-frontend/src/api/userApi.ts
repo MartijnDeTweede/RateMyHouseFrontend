@@ -13,3 +13,21 @@ export const getUser = (userName: string) => {
   );
 return result;
 }
+
+export const getIsOwnPage = ({userName, token}: {userName: string, token: string}) => {
+  console.log('token: ', token);
+  console.log('userName: ', userName);
+  const url = `${baseUrl}/user/${userName}/isOwnPage`;
+  // set response header
+  const result =  fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    credentials: 'same-origin',
+    headers: {'auth-token': `${token}`}
+})
+.then(response => {
+  return response.json()
+}
+  );
+return result; 
+}
