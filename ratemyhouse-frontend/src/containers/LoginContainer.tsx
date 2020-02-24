@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { LoginCredentials } from '../types/auth.types';
 import { Auth } from '../types/auth.types';
 
-interface LoginState {
+interface LoginContainerState {
   auth: Auth,
   isFetching: boolean,
 }
@@ -20,12 +20,12 @@ const LoginForm: React.FC<{login: Function}> = ({login}) => {
         <input name="email" id="email" onBlur={(event) => setEmail(event.target.value)}></input>
       </div>
       <div>
-      <label htmlFor="password">password</label>
-      <input name="password" id="password"onBlur={(event) => setPassWord(event.target.value)}></input>
+        <label htmlFor="password">password</label>
+        <input name="password" id="password"onBlur={(event) => setPassWord(event.target.value)}></input>
       </div>
       <input type="submit" value="Submit" onClick={() => { 
         login({email, password})}} />
-  </div>
+    </div>
   )
 }
 
@@ -53,8 +53,7 @@ const LoginContainer: React.FC<{
   )
 }
 
-const mapStateToProps = (state: LoginState) => {
-  console.log('state: ', state);
+const mapStateToProps = (state: LoginContainerState) => {
   return {...state.auth}
 }
 

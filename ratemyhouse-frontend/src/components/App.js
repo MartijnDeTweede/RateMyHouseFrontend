@@ -2,6 +2,7 @@ import React from 'react'
 import UserContainer from '../containers/UserContainer';
 import HomeContainer from '../containers/HomeContainer'; 
 import LoginContainer from '../containers/LoginContainer';
+import SignUpContainer from '../containers/SignupContainer';
 
 import {
   BrowserRouter as Router,
@@ -14,10 +15,13 @@ const App = () => (
     <Router>
         <Switch>
           <Route path="/user">
-          <UserContainer />
+            <UserContainer />
           </Route>
           <Route path="/login">
-          <LoginContainer />
+            <LoginContainer />
+          </Route>
+          <Route path="/signup">
+            <SignUpContainer />
           </Route>
           <Route path="/">
             <HomeContainer />

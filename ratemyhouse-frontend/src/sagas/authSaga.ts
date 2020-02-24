@@ -6,8 +6,11 @@ import {
   LOGOUT_REQUESTED,
   logoutFailureActionCreator,
   logoutSuccessActionCreator,
+  SIGNUP_REQUESTED,
+  signupSuccessActionCreator,
+  signupFailureActionCreator,
 } from '../actions/AuthActionCreator'
-import { login, logout } from '../api/authApi';
+import { login, logout, signup } from '../api/authApi';
 
 export function* loginSaga(action: any) : any {
   try {
@@ -25,7 +28,6 @@ export function* loginSaga(action: any) : any {
 export function* logoutSaga() : any {
   try {
     const response = yield call(logout);
-    console.log('response: ', response);
     if(response.message) {
       yield put(logoutFailureActionCreator(response.message))
     } else{ 
@@ -36,10 +38,24 @@ export function* logoutSaga() : any {
   }
 }
 
+export function* signupSaga(action: any) : any {
+  try {
+    const response = yield call(signup, action.signupCredentials);
+    if(response.message) {
+      yield put(signupFailureActionCreator(response.message))
+    } else{ 
+      yield put(signupSuccessActionCreator(response))
+    }
+  } catch(e) {
+    yield put(signupFailureActionCreator());
+  }
+}
+
 export function* authSaga() {
   yield all([
     takeEvery(LOGIN_REQUESTED, loginSaga),
     takeEvery(LOGOUT_REQUESTED, logoutSaga),
+    takeEvery(SIGNUP_REQUESTED, signupSaga),
   ]);
 }
 

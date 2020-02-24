@@ -6,6 +6,10 @@ export const LOGOUT_REQUESTED = 'LOGOUT_REQUESTED';
 export const LOGOUT_SUCCEEDED = 'LOGOUT_SUCCEEDED';
 export const LOGOUT_FAILED = 'LOGOUT_FAILED';
 
+export const SIGNUP_REQUESTED = 'SIGNUP_REQUESTED';
+export const SIGNUP_SUCCEEDED = 'SIGNUP_SUCCEEDED';
+export const SIGNUP_FAILED = 'SIGNUP_FAILED';
+
 export const loginRequestActionCreator = (loginCredentials) => {
   return {
     type: LOGIN_REQUESTED,
@@ -29,6 +33,7 @@ export const loginFailureActionCreator = (message) => {
     isFetching: false,
   };
 }
+
 export const logoutRequestActionCreator = () => {
   return {
     type: LOGOUT_REQUESTED,
@@ -46,6 +51,30 @@ export const logoutSuccessActionCreator = () => {
 export const logoutFailureActionCreator = (message) => {
   return {
     type: LOGOUT_FAILED,
+    message,
+    isFetching: false,
+  };
+}
+
+export const signupRequestActionCreator = (signupCredentials) => {
+  return {
+    type: SIGNUP_REQUESTED,
+    signupCredentials,
+    isFetching: true,
+  };
+}
+
+export const signupSuccessActionCreator = (auth) => {
+  return {
+    type: SIGNUP_SUCCEEDED,
+    auth,
+    isFetching: false,
+  };
+}
+
+export const signupFailureActionCreator = (message) => {
+  return {
+    type: SIGNUP_FAILED,
     message,
     isFetching: false,
   };

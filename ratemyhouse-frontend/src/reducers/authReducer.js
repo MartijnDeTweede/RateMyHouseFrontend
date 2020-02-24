@@ -5,6 +5,9 @@ import {
   LOGOUT_REQUESTED,
   LOGOUT_SUCCEEDED,
   LOGOUT_FAILED,
+  SIGNUP_REQUESTED,
+  SIGNUP_SUCCEEDED,
+  SIGNUP_FAILED,
 } from '../actions/AuthActionCreator';
 
 const initialAuthState = {
@@ -48,7 +51,6 @@ const authReducer = (state=initialAuthState, action) => {
       };
     }
     case LOGOUT_SUCCEEDED: {
-      console.log('here');
       return {
         ...state,
         auth: {
@@ -65,7 +67,27 @@ const authReducer = (state=initialAuthState, action) => {
         isFetching: action.isFetching,
       };
     }
-
+    case SIGNUP_REQUESTED: {
+      return {
+        ...state,
+        message: undefined,
+        isFetching: action.isFetching,
+      };
+    }
+    case SIGNUP_SUCCEEDED: {
+      return {
+        ...state,
+        auth: action.auth,
+        isFetching: action.isFetching,
+      };
+    }
+    case SIGNUP_FAILED: {
+      return {
+        ...state,
+        message: action.message,
+        isFetching: action.isFetching,
+      };
+    }
     default:
       return state;
   }

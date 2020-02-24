@@ -1,6 +1,10 @@
 export interface LoginCredentials {
   email: string;
-  password: string
+  password: string;
+}
+
+export interface SignupCredentials extends LoginCredentials {
+  username: string;
 }
 
 export interface Auth {
