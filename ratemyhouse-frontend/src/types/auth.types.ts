@@ -11,4 +11,5 @@ export interface Auth {
   isLoggedIn: boolean,
   userName: string,
   message?: string,
+  token: string;
 }

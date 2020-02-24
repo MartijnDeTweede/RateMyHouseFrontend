@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUserRequestActionCreator } from '../actions/UserActionCreators';
+import { getUserRequestActionCreator, getIsOwnPageRequestActionCreator } from '../actions/UserActionCreators';
 import { User } from '../types/user.types';
 
 interface UserState {
@@ -12,13 +12,22 @@ const UserContainer: React.FC<{
   user: User,
   isFetching: boolean,
   getUser: Function,
-}> = ({user, isFetching, getUser}) => {
-
+  getIsOwnPage: Function,
+}> = ({
+  user,
+  isFetching,
+  getUser,
+  getIsOwnPage
+}) => {
   const { pathname } = window.location;
   const userName = pathname.replace('/user/', '');
+  const sessionStorageData = sessionStorage.getItem("rateMyHouseAuth");
+  
+  const token = sessionStorageData ? JSON.parse(sessionStorageData).token : '';
 
   useEffect(() => {
-    getUser(userName)
+    getUser(userName);
+    getIsOwnPage({userName: userName,token: token})
   }, [])
   return(
     <div>
@@ -35,7 +44,8 @@ const mapStateToProps = (state: UserState) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getUser: (userName: string) => dispatch(getUserRequestActionCreator(userName))
+    getUser: (userName: string) => dispatch(getUserRequestActionCreator(userName)),
+    getIsOwnPage: (payload: {userName: string, token: string}) => dispatch(getIsOwnPageRequestActionCreator(payload))
   }
 }
 

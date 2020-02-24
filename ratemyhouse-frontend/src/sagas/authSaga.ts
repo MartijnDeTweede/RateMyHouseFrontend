@@ -12,12 +12,17 @@ import {
 } from '../actions/AuthActionCreator'
 import { login, logout, signup } from '../api/authApi';
 
+const writeCredentialsToSessionStorage = (credentials: {token: string, userName: string}) => {
+  sessionStorage.setItem('rateMyHouseAuth', JSON.stringify(credentials));
+}
+
 export function* loginSaga(action: any) : any {
   try {
     const response = yield call(login, action.loginCredentials);
     if(response.message) {
       yield put(loginFailureActionCreator(response.message))
-    } else{ 
+    } else{
+      writeCredentialsToSessionStorage(response); 
       yield put(loginSuccessActionCreator(response))
     }
   } catch(e) {
@@ -43,7 +48,8 @@ export function* signupSaga(action: any) : any {
     const response = yield call(signup, action.signupCredentials);
     if(response.message) {
       yield put(signupFailureActionCreator(response.message))
-    } else{ 
+    } else{
+      writeCredentialsToSessionStorage(response);  
       yield put(signupSuccessActionCreator(response))
     }
   } catch(e) {

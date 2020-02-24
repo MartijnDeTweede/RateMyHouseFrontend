@@ -14,7 +14,8 @@ const initialAuthState = {
   auth: {
     isFetching: false,
     isLoggedIn: false,
-    userName: undefined
+    userName: undefined,
+    token: undefined,
   },
   isFetching: false,
   message: undefined,
@@ -55,7 +56,8 @@ const authReducer = (state=initialAuthState, action) => {
         ...state,
         auth: {
           isLoggedIn: false,
-          userName: undefined
+          userName: undefined,
+          token: undefined,
         },
         isFetching: action.isFetching,
       };
