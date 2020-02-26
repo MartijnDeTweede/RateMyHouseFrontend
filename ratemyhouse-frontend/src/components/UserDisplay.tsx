@@ -1,5 +1,6 @@
 import React from 'react';
 import { User } from '../types/user.types';
+import UserInfoSection from './UserInfoSection';
 
 const UserDisplay: React.FC<{
   user: User;
@@ -24,7 +25,7 @@ const UserDisplay: React.FC<{
 
 
   return(
-    <div>
+    <UserInfoSection>
       <div>{userName}</div>
       <div>{email}</div>
       <div>{phoneNumber}</div>
@@ -34,7 +35,7 @@ const UserDisplay: React.FC<{
       <div>{city}</div>
       <div>{county}</div>
       <div>{objectForSale ? 'For sale' : 'Not for sale'}</div>
-    </div>
+    </UserInfoSection>
   )
 };
 

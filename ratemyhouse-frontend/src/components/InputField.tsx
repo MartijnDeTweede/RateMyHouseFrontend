@@ -1,4 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledLabel = styled.label`
+min-width: 130px;
+display: inline-block;
+`
 
 const InputField: React.FC<{
   fieldName: string;
@@ -15,7 +21,7 @@ const InputField: React.FC<{
 }) => {
   return(
     <div>
-    <label htmlFor={fieldName}>{labelText}</label>
+    <StyledLabel htmlFor={fieldName}>{labelText}</StyledLabel>
     <input defaultValue={defaultValue} type={type} name={fieldName} id={fieldName} onBlur={(event) => onBlur(event)}></input>
   </div>
   )

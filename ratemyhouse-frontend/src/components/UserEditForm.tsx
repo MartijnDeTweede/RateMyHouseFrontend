@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { User } from '../types/user.types';
 import InputField from './InputField';
+import UserInfoSection from './UserInfoSection';
 
 const UserEditForm: React.FC<{
   user: User;
@@ -22,7 +23,7 @@ const UserEditForm: React.FC<{
   const [houseNumberAddition, setHouseNumberAddition] = useState<string|undefined>(user.location.houseNumberAddition);
 
   return(
-    <div>
+    <UserInfoSection>
       <InputField 
         fieldName="userName"
         labelText="User name"
@@ -39,7 +40,7 @@ const UserEditForm: React.FC<{
       />
       <InputField 
         fieldName="phoneNumber"
-        labelText="Phone number"
+        labelText="Phone nr."
         onBlur={(event: any) => setPhoneNumber(event.target.value)}
         type="text"
         defaultValue={phoneNumber}
@@ -74,14 +75,14 @@ const UserEditForm: React.FC<{
       />
       <InputField 
         fieldName="houseNumber"
-        labelText="House number"
+        labelText="House nr."
         onBlur={(event: any) => setHouseNumber(event.target.value)}
         type="number"
         defaultValue={houseNumber}
       />
       <InputField 
         fieldName="houseNumberAddition"
-        labelText="House number extention"
+        labelText="House nr. ext."
         onBlur={(event: any) => setHouseNumberAddition(event.target.value)}
         type="string"
         defaultValue={houseNumberAddition}
@@ -107,7 +108,7 @@ const UserEditForm: React.FC<{
           }
         )
       }}> Update</button>
-    </div>
+    </UserInfoSection>
   )}
 
 export default UserEditForm;

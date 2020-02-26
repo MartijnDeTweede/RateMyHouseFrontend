@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getIsOwnPageRequestActionCreator } from '../actions/UserPageActionCreators';
 import VideoContainer from '../containers/VideoContainer';
+import FlexWrapper from '../components/FlexWrapper';
 
 const UserPage = ({
   isOwnPage,
@@ -16,10 +17,10 @@ const UserPage = ({
   }, [])
 
   return(
-    <div>
+    <FlexWrapper>
       <UserContainer isOwnPage={isOwnPage} userName={userName} />
       <VideoContainer isOwnPage={isOwnPage} userName={userName} />
-    </div>
+    </FlexWrapper>
   )
 }
 
