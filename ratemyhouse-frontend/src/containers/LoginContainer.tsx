@@ -3,6 +3,7 @@ import { loginRequestActionCreator, logoutRequestActionCreator } from '../action
 import { connect } from 'react-redux';
 import { LoginCredentials } from '../types/auth.types';
 import { Auth } from '../types/auth.types';
+import InputField from '../components/InputField';
 
 interface LoginContainerState {
   auth: Auth,
@@ -15,14 +16,18 @@ const LoginForm: React.FC<{login: Function}> = ({login}) => {
 
   return(
     <div>
-      <div>
-        <label htmlFor="email">email</label>
-        <input name="email" id="email" onBlur={(event) => setEmail(event.target.value)}></input>
-      </div>
-      <div>
-        <label htmlFor="password">password</label>
-        <input name="password" id="password"onBlur={(event) => setPassWord(event.target.value)}></input>
-      </div>
+      <InputField 
+        fieldName="email"
+        labelText="E-mail"
+        onBlur={(event: any) => setEmail(event.target.value)}
+        type="email"
+      />
+      <InputField 
+        fieldName="password"
+        labelText="Password"
+        onBlur={(event: any) => setPassWord(event.target.value)}
+        type="password"
+      />
       <input type="submit" value="Submit" onClick={() => { 
         login({email, password})}} />
     </div>

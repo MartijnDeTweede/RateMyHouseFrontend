@@ -43,7 +43,6 @@ return result;
 }
 
 export const signup = (payload: {email:string, userName: string, password: string}) => {
-  console.log('payload: ', payload);
   const url = `${baseUrl}/auth/signup`;
 
   const result =  fetch(url, {

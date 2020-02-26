@@ -33,10 +33,10 @@ export const getUserFailureActionCreator = () => {
   };
 }
 
-export const getIsOwnPageRequestActionCreator = (payload) => {
+export const getIsOwnPageRequestActionCreator = (userName) => {
   return {
     type: USER_ISOWNPAGE_REQUESTED,
-    payload,
+    userName,
     isFetching: true,
   };
 }
@@ -52,6 +52,29 @@ export const getIsOwnPageSuccessActionCreator = (isOwnPage) => {
 export const getIsOwnPageFailureActionCreator = () => {
   return {
     type: USER_ISOWNPAGE_FAILED,
+    isFetching: false,
+  };
+}
+
+export const updateUserRequestActionCreator = (user) => {
+  return {
+    type: USER_UPDATE_REQUESTED,
+    user,
+    isFetching: true,
+  };
+}
+
+export const updateUserSuccessActionCreator = (user) => {
+  return {
+    type: USER_UPDATE_SUCCEEDED,
+    user,
+    isFetching: false,
+  };
+}
+
+export const updateUserFailureActionCreator = () => {
+  return {
+    type: USER_UPDATE_FAILED,
     isFetching: false,
   };
 }

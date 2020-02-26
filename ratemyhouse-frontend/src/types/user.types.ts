@@ -12,5 +12,6 @@ export interface User {
     county: string;
     street: string;
     houseNumber: number;
+    houseNumberAddition: string;
   }
 }
