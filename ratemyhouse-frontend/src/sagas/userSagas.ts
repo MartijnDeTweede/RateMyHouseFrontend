@@ -3,20 +3,12 @@ import {
   USER_FETCH_REQUESTED,
   getUserSuccessActionCreator,
   getUserFailureActionCreator,
-  USER_ISOWNPAGE_REQUESTED,
-  getIsOwnPageSuccessActionCreator,
-  getIsOwnPageFailureActionCreator,
   USER_UPDATE_REQUESTED,
   updateUserFailureActionCreator,
   updateUserSuccessActionCreator,
 } from '../actions/UserActionCreators';
 import { getUser, getIsOwnPage, updateUser } from '../api/userApi';
-
-const getToken = () => {
-  const sessionStorageData = sessionStorage.getItem("rateMyHouseAuth");
-  const token = sessionStorageData ? JSON.parse(sessionStorageData).token : '';
-  return token;
-};
+import { getToken } from '../helpers/tokenhelpers';
 
 export function* getUserSaga(action: any) : any {
   try {
@@ -43,25 +35,10 @@ export function* updateUserSaga(action: any) : any {
   }
 }
 
-export function* getisOwnPageSage(action: any) : any {
-  try {
-    const token = getToken();
-    const payload = {
-      userName: action.userName,
-      token,
-    }
-    const response = yield call(getIsOwnPage, payload);
-    yield put(getIsOwnPageSuccessActionCreator(response.isOwnPage))
-  } catch(e) {
-    yield put(getIsOwnPageFailureActionCreator());
-  }
-}
-
 export function* userSaga() {
   yield all([
     takeEvery(USER_FETCH_REQUESTED, getUserSaga),
     takeEvery(USER_UPDATE_REQUESTED, updateUserSaga),
-    takeEvery(USER_ISOWNPAGE_REQUESTED, getisOwnPageSage),
   ]);
 }
 

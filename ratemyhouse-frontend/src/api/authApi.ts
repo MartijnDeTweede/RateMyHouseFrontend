@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:4000';
+import { baseUrl } from "./apiConfig";
 
 export const login = (payload: {email:string, password: string}) => {
   const url = `${baseUrl}/auth/login`;

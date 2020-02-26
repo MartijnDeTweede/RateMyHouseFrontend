@@ -1,8 +1,9 @@
 import React from 'react'
-import UserContainer from '../containers/UserContainer';
 import HomeContainer from '../containers/HomeContainer'; 
 import LoginContainer from '../containers/LoginContainer';
 import SignUpContainer from '../containers/SignupContainer';
+
+import UserPage from '../pages/UserPage';
 
 import {
   BrowserRouter as Router,
@@ -15,7 +16,7 @@ const App = () => (
     <Router>
         <Switch>
           <Route path="/user">
-            <UserContainer />
+            <UserPage />
           </Route>
           <Route path="/login">
             <LoginContainer />

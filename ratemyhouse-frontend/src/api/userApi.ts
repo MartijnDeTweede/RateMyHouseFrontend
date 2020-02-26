@@ -1,6 +1,6 @@
 import { User } from "../types/user.types";
+import { baseUrl } from "./apiConfig";
 
-const baseUrl = 'http://localhost:4000';
 
 export const getUser = (userName: string) => {
   const url = `${baseUrl}/user/${userName}`;

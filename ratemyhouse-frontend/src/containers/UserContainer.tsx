@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUserRequestActionCreator, getIsOwnPageRequestActionCreator, updateUserRequestActionCreator } from '../actions/UserActionCreators';
+import { getUserRequestActionCreator, updateUserRequestActionCreator } from '../actions/UserActionCreators';
 import { User } from '../types/user.types';
 import UserDisplay from '../components/UserDisplay';
 import UserEditForm from '../components/UserEditForm';
 
-interface UserState {
+export interface UserState {
   user: User,
   isFetching: boolean,
 }
@@ -28,24 +28,22 @@ const UserContainer: React.FC<{
   user: User,
   isFetching: boolean,
   getUser: Function,
-  getIsOwnPage: Function,
   isOwnPage: boolean,
+  userName: string,
   updateUser: Function,
 }> = ({
   user,
   isFetching,
   getUser,
-  getIsOwnPage,
   isOwnPage,
+  userName,
   updateUser,
 }) => {
-  const { pathname } = window.location;
-  const userName = pathname.replace('/user/', '');
   
   useEffect(() => {
     getUser(userName);
-    getIsOwnPage(userName)
-  }, [])
+  }, []);
+
   return(
     <div>
       {
@@ -62,7 +60,6 @@ const mapStateToProps = (state: UserState) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     getUser: (userName: string) => dispatch(getUserRequestActionCreator(userName)),
-    getIsOwnPage: (userName: string) => dispatch(getIsOwnPageRequestActionCreator(userName)),
     updateUser: (user: User) => dispatch(updateUserRequestActionCreator(user)),
   }
 }
