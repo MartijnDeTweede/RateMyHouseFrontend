@@ -33,15 +33,18 @@ export function* addVideosSaga(action: any) : any {
     const token = getToken();
 
     const fileUplaodResponse = yield call(addVideoFile, {file: action.payload.file, token});
-    console.log('fileUplaodResponse: ', fileUplaodResponse);
 
     const videoPayload = {
-      video: action.payload.video,
+      video: { 
+        ...action.payload.video,
+        src: fileUplaodResponse.location,
+        videoKey: fileUplaodResponse.key,
+      } ,
       userName: action.payload.userName,
       token,
     };
-    // const response = yield call(addVideo, videoPayload);
-    // yield put(addVideosSuccessActionCreator(response))
+    const response = yield call(addVideo, videoPayload);
+    yield put(addVideosSuccessActionCreator(response))
   } catch(e) {
     yield put(addVideosFailureActionCreator());
   }

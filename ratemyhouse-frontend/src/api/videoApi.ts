@@ -60,11 +60,9 @@ return result;
 }
 
 export const addVideoFile = ({file, token} : {file: File,  token: string}) => {
-  console.log('file: ', file);
-  
   const url = `${baseUrl}/video/uploadVideoFile`;
   let formData = new FormData();
-  formData.append('productImage', file, 'productImage')
+  formData.append('video', file, file.name);
   const result =  fetch(url, {
     method: 'POST',
     mode: 'cors',

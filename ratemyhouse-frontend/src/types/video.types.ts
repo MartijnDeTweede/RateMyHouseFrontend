@@ -6,6 +6,7 @@ export interface Video {
   ratingPoints?: number;
   nrOfRates?:number;
   _id?: string;
+  videoKey?: string;
 }
 
 
