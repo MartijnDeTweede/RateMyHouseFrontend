@@ -4,6 +4,7 @@ import { VideoContainerState, Video } from '../types/video.types';
 import { getVideosRequestActionCreator, updateVideoRequestActionCreator, addVideosRequestActionCreator, deleteVideoRequestActionCreator } from '../actions/VideoActionCreator';
 import VideoDisplay from '../components/VideoDisplay';
 import VideoEditor from '../components/VideoEditor';
+import VideoDisplayCaroucel from '../components/VideoDisplayCaroucel';
 
 const VideoHolder: React.FC<{
   isOwnPage: boolean;
@@ -24,10 +25,7 @@ const VideoHolder: React.FC<{
           deleteVideo={deleteVideo}
           userName={userName}
         /> :
-        <div>{
-          videos.map((video: Video) => (
-            <VideoDisplay video={video} />
-          ))}</div>
+        <VideoDisplayCaroucel videos={videos} />
       }
     </div>
   )
