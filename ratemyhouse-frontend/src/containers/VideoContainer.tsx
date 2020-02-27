@@ -1,57 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { VideoContainerState, Video } from '../types/video.types';
-import { getVideosRequestActionCreator } from '../actions/VideoActionCreator';
-import VideoEditForm from '../components/VideoEditForm';
+import { getVideosRequestActionCreator, updateVideoRequestActionCreator } from '../actions/VideoActionCreator';
 import VideoDisplay from '../components/VideoDisplay';
-
-const VideoEditor: React.FC<{
-  videos: Video[];
-  updateVideo: Function;
-  addVideo: Function;
-  deleteVideo: Function;
-  userName: string;
-}> = ({
-  videos,
-  updateVideo,
-  addVideo,
-  deleteVideo,
-  userName,
-}) => {
-
-  const videosToRender = videos.map((video) => ({
-    video: video,
-    sendform: updateVideo,
-    deleteVideo: deleteVideo,
-    sendFormButtonText: 'Update video'
-  }))
-
-  if(videosToRender.length < 4) {
-    videosToRender.push(
-      {video: {
-        owner: userName,
-      },
-      sendform: addVideo,
-      deleteVideo: deleteVideo,
-      sendFormButtonText: 'Add video'
-    })
-  }
-
-  return(
-    <div>
-      {
-        videosToRender.map(videoToRender => (
-          <VideoEditForm
-          video={videoToRender.video}
-          sendForm={videoToRender.sendform}
-          sendFormButtonText={videoToRender.sendFormButtonText}
-          deleteVideo={videoToRender.deleteVideo}
-          /> 
-        ))
-      }
-    </div>
-  )
-}
+import VideoEditor from '../components/VideoEditor';
 
 const VideoHolder: React.FC<{
   isOwnPage: boolean;
@@ -123,6 +75,7 @@ const mapStateToProps = (state: VideoContainerState) => ({ ...state.videos });
 
 const mapDispatchToProps = (dispatch : any) => ({
   getVideos: (userName: string) => dispatch(getVideosRequestActionCreator(userName)),
+  updateVideo: (video: Video) => dispatch(updateVideoRequestActionCreator(video)),
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(VideoContainer);

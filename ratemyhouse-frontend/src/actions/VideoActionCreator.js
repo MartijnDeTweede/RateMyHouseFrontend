@@ -28,3 +28,26 @@ export const getVideosFailureActionCreator = () => {
     isFetching: false,
   };
 }
+
+export const updateVideoRequestActionCreator = (video) => {
+  return {
+    type: VIDEOS_UPDATE_REQUESTED,
+    video,
+    isFetching: true,
+  };
+}
+
+export const updateVideoSuccessActionCreator = (videos) => {
+  return {
+    type: VIDEOS_UPDATE_SUCCEEDED,
+    videos,
+    isFetching: false,
+  };
+}
+
+export const updateVideoFailureActionCreator = () => {
+  return {
+    type: VIDEOS_UPDATE_FAILED,
+    isFetching: false,
+  };
+}

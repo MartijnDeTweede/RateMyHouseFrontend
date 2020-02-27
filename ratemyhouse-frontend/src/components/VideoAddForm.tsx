@@ -5,14 +5,12 @@ import UserInfoSection from './UserInfoSection';
 import VideoPlayerWrapper from './VideoPlayerWrapper';
 import FlexWrapper from './FlexWrapper';
 
-const VideoEditForm: React.FC<{
+const VideoAddForm: React.FC<{
   video: Video,
-  updateVideo: Function
-  deleteVideo: Function
+  addVideo: Function
   }> = ({
     video,
-    updateVideo,
-    deleteVideo,
+    addVideo,
   }) => {
   const [room, setRoom] = useState<string|undefined>(video.room);
   const [title, setTitle] = useState<string|undefined>(video.title);
@@ -21,7 +19,7 @@ const VideoEditForm: React.FC<{
     <UserInfoSection>
       <FlexWrapper>
         <VideoPlayerWrapper>
-        Here we do the whole player thing.
+            Here we do the whole upload thing.
         </VideoPlayerWrapper>
         <UserInfoSection>
           <InputField 
@@ -38,11 +36,11 @@ const VideoEditForm: React.FC<{
             type="text"
             defaultValue={title}
           />
-          <button onClick={() => updateVideo({
+          <button onClick={() => addVideo({
             ...video,
             title,
             room,
-          })}>Update video</button>
+          })}>Add video</button>
           
       </UserInfoSection>
       </FlexWrapper>
@@ -50,4 +48,4 @@ const VideoEditForm: React.FC<{
   )
 };
 
-export default VideoEditForm;
+export default VideoAddForm;
