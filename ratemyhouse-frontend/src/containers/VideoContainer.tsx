@@ -74,7 +74,7 @@ const mapStateToProps = (state: VideoContainerState) => ({ ...state.videos });
 const mapDispatchToProps = (dispatch : any) => ({
   getVideos: (userName: string) => dispatch(getVideosRequestActionCreator(userName)),
   updateVideo: (video: Video) => dispatch(updateVideoRequestActionCreator(video)),
-  addVideo: ({video, userName}: {video: Video, userName: string}) => dispatch(addVideosRequestActionCreator({video, userName})),
+  addVideo: ({video, userName, file}: {video: Video, userName: string, file: File}) => dispatch(addVideosRequestActionCreator({video, userName, file})),
   deleteVideo: (video: Video) => dispatch(deleteVideoRequestActionCreator(video)),
 })
 

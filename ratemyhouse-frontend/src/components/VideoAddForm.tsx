@@ -15,11 +15,13 @@ const VideoAddForm: React.FC<{
   const [room, setRoom] = useState<string|undefined>(undefined);
   const [title, setTitle] = useState<string|undefined>(undefined);
 
+  const [file, setFile] = useState<File|null>(null);
+
   return(
     <UserInfoSection>
       <FlexWrapper>
         <VideoPlayerWrapper>
-            Here we do the whole upload thing.
+            <input type="file" name="productImage" onChange={(event) => event.target.files && setFile(event.target.files[0])} />
         </VideoPlayerWrapper>
         <UserInfoSection>
           <InputField 
@@ -42,8 +44,8 @@ const VideoAddForm: React.FC<{
               owner: userName,
               title,
               room,
-              src: 'test'
-            }
+            },
+            file: file
           })}>Add video</button>
           
       </UserInfoSection>

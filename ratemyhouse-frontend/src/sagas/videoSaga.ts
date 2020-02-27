@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import { VIDEOS_FETCH_REQUESTED, getVideosSuccessActionCreator, getVideosFailureActionCreator, VIDEOS_UPDATE_REQUESTED, updateVideoSuccessActionCreator, updateVideoFailureActionCreator, addVideosSuccessActionCreator, addVideosFailureActionCreator, VIDEOS_ADD_REQUESTED, VIDEOS_DELETE_REQUESTED, deleteVideoSuccessActionCreator, deleteVideoFailureActionCreator } from '../actions/VideoActionCreator';
-import { getVideos, updateVideo, addVideo, deleteVideo } from '../api/videoApi';
+import { getVideos, updateVideo, addVideo, deleteVideo, addVideoFile } from '../api/videoApi';
 import { getToken } from '../helpers/tokenhelpers';
 
 export function* getVideosSaga(action: any) : any {
@@ -31,13 +31,17 @@ export function* updateVideosSaga(action: any) : any {
 export function* addVideosSaga(action: any) : any {
   try {
     const token = getToken();
-    const payload = {
+
+    const fileUplaodResponse = yield call(addVideoFile, {file: action.payload.file, token});
+    console.log('fileUplaodResponse: ', fileUplaodResponse);
+
+    const videoPayload = {
       video: action.payload.video,
       userName: action.payload.userName,
       token,
     };
-    const response = yield call(addVideo, payload);
-    yield put(addVideosSuccessActionCreator(response))
+    // const response = yield call(addVideo, videoPayload);
+    // yield put(addVideosSuccessActionCreator(response))
   } catch(e) {
     yield put(addVideosFailureActionCreator());
   }

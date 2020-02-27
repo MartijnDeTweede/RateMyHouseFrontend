@@ -59,6 +59,29 @@ export const addVideo = ({video, userName, token} : {video: Video, userName: str
 return result;
 }
 
+export const addVideoFile = ({file, token} : {file: File,  token: string}) => {
+  console.log('file: ', file);
+  
+  const url = `${baseUrl}/video/uploadVideoFile`;
+  let formData = new FormData();
+  formData.append('productImage', file, 'productImage')
+  const result =  fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'auth-token': `${token}`
+    },
+    body: formData
+})
+.then(response => { return response.json()});
+return result;
+}
+
 export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
   
   const url = `${baseUrl}/video/${video._id}/deleteVideo`;
