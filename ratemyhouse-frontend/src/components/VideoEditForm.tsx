@@ -44,6 +44,10 @@ const VideoEditForm: React.FC<{
             room,
           })}>Update video</button>
           
+          <button onClick={() => deleteVideo(video)}
+          >Delete video</button>
+          
+
       </UserInfoSection>
       </FlexWrapper>
     </UserInfoSection>

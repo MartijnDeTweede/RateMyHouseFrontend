@@ -36,3 +36,47 @@ export const updateVideo = ({video, token} : {video: Video, token: string}) => {
 .then(response => { return response.json()});
 return result;
 }
+
+export const addVideo = ({video, userName, token} : {video: Video, userName: string, token: string}) => {
+  
+  const url = `${baseUrl}/user/${userName}/addVideo`;
+
+  const result =  fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'auth-token': `${token}`
+    },
+    body: JSON.stringify({...video})
+})
+.then(response => { return response.json()});
+return result;
+}
+
+export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
+  
+  const url = `${baseUrl}/video/${video._id}/deleteVideo`;
+
+  const result =  fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'auth-token': `${token}`
+    },
+    body: JSON.stringify({...video})
+})
+.then(response => { return response.json()});
+return result;
+}

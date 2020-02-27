@@ -54,7 +54,7 @@ const VideoEditor: React.FC<{
         (videos.length < 4) && 
           <VideoAddForm
             addVideo={addVideo}
-            video={{owner: userName}}
+            userName={userName}
           />
         
       }

@@ -6,14 +6,14 @@ import VideoPlayerWrapper from './VideoPlayerWrapper';
 import FlexWrapper from './FlexWrapper';
 
 const VideoAddForm: React.FC<{
-  video: Video,
+  userName: string,
   addVideo: Function
   }> = ({
-    video,
+    userName,
     addVideo,
   }) => {
-  const [room, setRoom] = useState<string|undefined>(video.room);
-  const [title, setTitle] = useState<string|undefined>(video.title);
+  const [room, setRoom] = useState<string|undefined>(undefined);
+  const [title, setTitle] = useState<string|undefined>(undefined);
 
   return(
     <UserInfoSection>
@@ -37,9 +37,13 @@ const VideoAddForm: React.FC<{
             defaultValue={title}
           />
           <button onClick={() => addVideo({
-            ...video,
-            title,
-            room,
+            userName: userName,
+            video: {
+              owner: userName,
+              title,
+              room,
+              src: 'test'
+            }
           })}>Add video</button>
           
       </UserInfoSection>

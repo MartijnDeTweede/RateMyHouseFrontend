@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { VideoContainerState, Video } from '../types/video.types';
-import { getVideosRequestActionCreator, updateVideoRequestActionCreator } from '../actions/VideoActionCreator';
+import { getVideosRequestActionCreator, updateVideoRequestActionCreator, addVideosRequestActionCreator, deleteVideoRequestActionCreator } from '../actions/VideoActionCreator';
 import VideoDisplay from '../components/VideoDisplay';
 import VideoEditor from '../components/VideoEditor';
 
@@ -76,6 +76,8 @@ const mapStateToProps = (state: VideoContainerState) => ({ ...state.videos });
 const mapDispatchToProps = (dispatch : any) => ({
   getVideos: (userName: string) => dispatch(getVideosRequestActionCreator(userName)),
   updateVideo: (video: Video) => dispatch(updateVideoRequestActionCreator(video)),
+  addVideo: ({video, userName}: {video: Video, userName: string}) => dispatch(addVideosRequestActionCreator({video, userName})),
+  deleteVideo: (video: Video) => dispatch(deleteVideoRequestActionCreator(video)),
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(VideoContainer);
