@@ -8,6 +8,7 @@ import ConfirmButton from './ConfirmButton';
 import FlexWrapper from './FlexWrapper';
 import VideoStyled from './VideoStyled';
 import FlexBoxColumn from './FlexBoxColumn';
+import VideoPlayer from './VideoPlayer';
 
 const VideoEditForm: React.FC<{
   video: Video,
@@ -21,12 +22,12 @@ const VideoEditForm: React.FC<{
   const [room, setRoom] = useState<string|undefined>(video.room);
   const [title, setTitle] = useState<string|undefined>(video.title);
 
+    const { src } = video;
+
   return(
     <VideoFormCart>
       <VideoPlayerWrapper>
-          <VideoStyled width="568" height="320" controls>
-            <source src="mov_bbb.mp4" type="video/mp4" />
-          </VideoStyled>
+      { src && < VideoPlayer src={src} />} 
       </VideoPlayerWrapper>
         <UserInfoSection>
           <FlexBoxColumn >

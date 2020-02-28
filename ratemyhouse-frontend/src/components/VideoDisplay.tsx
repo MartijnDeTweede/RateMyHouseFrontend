@@ -3,6 +3,10 @@ import { Video } from '../types/video.types';
 import UserInfoSection from './UserInfoSection';
 import FlexWrapper from './FlexWrapper';
 import VideoPlayerWrapper from './VideoPlayerWrapper';
+import VideoFormCart from './VideoFormCart';
+import VideoStyled from './VideoStyled';
+import DisplayField from './DisplayField';
+import VideoPlayer from './VideoPlayer';
 
 const VideoDisplay: React.FC<{video: Video}> = ({video}) => {
   const {
@@ -11,23 +15,21 @@ const VideoDisplay: React.FC<{video: Video}> = ({video}) => {
     ratingPoints,
     nrOfRates,
     _id,
+    src,
   } = video;
 
   return(
-    <UserInfoSection>
+    <VideoFormCart>
     <FlexWrapper>
-      <VideoPlayerWrapper>
-      Here we do the whole player thing.
-      </VideoPlayerWrapper>
+      { src && < VideoPlayer src={src} />} 
       <UserInfoSection>
-      <div>{_id}</div>
-      <div>{room}</div>
-      <div>{title}</div>
+        {room && <DisplayField label="Room" fieldValue={room} />}
+        {title && <DisplayField label="Title" fieldValue={title} />}
       <div>{ratingPoints}</div>
       <div>{nrOfRates}</div>
     </UserInfoSection>
     </FlexWrapper>
-  </UserInfoSection>
+  </VideoFormCart>
   )
 }
 
