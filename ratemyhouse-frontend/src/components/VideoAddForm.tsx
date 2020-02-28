@@ -6,9 +6,11 @@ import ConfirmButton from './ConfirmButton';
 import styled from 'styled-components';
 import FlexWrapper from './FlexWrapper';
 
-const StyledFileInput = styled.input`
+const StyledFileInput = styled.input.attrs({ type: 'file' })`
 padding: 10px 15px;
-margin: 10px;`
+margin: 10px;
+size: 60px;
+`
 
 const VideoAddForm: React.FC<{
   userName: string,
@@ -25,7 +27,7 @@ const VideoAddForm: React.FC<{
   return(
     <VideoFormCart>
       <UserInfoSection>
-        <StyledFileInput type="file" name="video" onChange={(event) => event.target.files && setFile(event.target.files[0])} />
+        <StyledFileInput  id="inputFile" name="video" onChange={(event) => event.target.files && setFile(event.target.files[0])} />
       </UserInfoSection>
       <UserInfoSection>
         <InputField 
