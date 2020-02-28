@@ -1,8 +1,13 @@
 import FlexWrapper from './FlexWrapper';
 import styled from 'styled-components';
+import { device } from '../helpers/devices';
 
 
 const FloatLeftWrapper = styled.section`
-float: left`
+  @media ${device.laptop} {
+    float: left
+  }
+
+`
 
 export default FloatLeftWrapper;

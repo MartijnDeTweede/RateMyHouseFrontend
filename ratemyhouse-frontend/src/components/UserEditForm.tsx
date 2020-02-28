@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { User } from '../types/user.types';
 import InputField from './InputField';
 import UserInfoSection from './UserInfoSection';
+import ConfirmButton from './ConfirmButton';
+import FlexWrapper from './FlexWrapper';
 
 const UserEditForm: React.FC<{
   user: User;
@@ -33,7 +35,7 @@ const UserEditForm: React.FC<{
       />
       <InputField 
         fieldName="email"
-        labelText="email"
+        labelText="Email"
         onBlur={(event: any) => setEmail(event.target.value)}
         type="email"
         defaultValue={email}
@@ -87,7 +89,8 @@ const UserEditForm: React.FC<{
         type="string"
         defaultValue={houseNumberAddition}
       />
-      <button onClick={() => {
+      <FlexWrapper>
+      <ConfirmButton onClick={() => {
         sendForm(
           {
             userName,
@@ -107,7 +110,9 @@ const UserEditForm: React.FC<{
             _id: user._id
           }
         )
-      }}> Update</button>
+      }}> Update</ConfirmButton>
+
+      </FlexWrapper>
     </UserInfoSection>
   )}
 

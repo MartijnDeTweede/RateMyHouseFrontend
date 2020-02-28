@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { Video } from '../types/video.types';
 import InputField from './InputField';
 import UserInfoSection from './UserInfoSection';
+import VideoFormCart from './VideoFormCart';
 import VideoPlayerWrapper from './VideoPlayerWrapper';
+import ConfirmButton from './ConfirmButton';
 import FlexWrapper from './FlexWrapper';
+import VideoStyled from './VideoStyled';
 
 const VideoEditForm: React.FC<{
   video: Video,
@@ -18,15 +21,16 @@ const VideoEditForm: React.FC<{
   const [title, setTitle] = useState<string|undefined>(video.title);
 
   return(
-    <UserInfoSection>
-      <FlexWrapper>
-        <VideoPlayerWrapper>
-        Here we do the whole player thing.
-        </VideoPlayerWrapper>
+    <VideoFormCart>
+      <VideoPlayerWrapper>
+          <VideoStyled width="568" height="320" controls>
+            <source src="mov_bbb.mp4" type="video/mp4" />
+          </VideoStyled>
+      </VideoPlayerWrapper>
         <UserInfoSection>
           <InputField 
             fieldName="room"
-            labelText="room"
+            labelText="Room"
             onBlur={(event: any) => setRoom(event.target.value)}
             type="text"
             defaultValue={room}
@@ -38,19 +42,21 @@ const VideoEditForm: React.FC<{
             type="text"
             defaultValue={title}
           />
-          <button onClick={() => updateVideo({
-            ...video,
-            title,
-            room,
-          })}>Update video</button>
-          
-          <button onClick={() => deleteVideo(video)}
-          >Delete video</button>
+            <FlexWrapper>
+              <ConfirmButton onClick={() => updateVideo({
+                ...video,
+                title,
+                room,
+              })}>Update video</ConfirmButton>
+              
+              <ConfirmButton onClick={() => deleteVideo(video)}
+              >Delete video</ConfirmButton>
+            
+            </FlexWrapper>
           
 
       </UserInfoSection>
-      </FlexWrapper>
-    </UserInfoSection>
+    </VideoFormCart>
   )
 };
 

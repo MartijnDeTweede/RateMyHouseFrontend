@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Video } from '../types/video.types';
 import InputField from './InputField';
 import UserInfoSection from './UserInfoSection';
-import VideoPlayerWrapper from './VideoPlayerWrapper';
-import FlexWrapper from './FlexWrapper';
+import VideoFormCart from './VideoFormCart';
+import ConfirmButton from './ConfirmButton';
 
 const VideoAddForm: React.FC<{
   userName: string,
@@ -18,39 +17,36 @@ const VideoAddForm: React.FC<{
   const [file, setFile] = useState<File|null>(null);
 
   return(
-    <UserInfoSection>
-      <FlexWrapper>
-        <VideoPlayerWrapper>
-            <input type="file" name="productImage" onChange={(event) => event.target.files && setFile(event.target.files[0])} />
-        </VideoPlayerWrapper>
-        <UserInfoSection>
-          <InputField 
-            fieldName="room"
-            labelText="room"
-            onBlur={(event: any) => setRoom(event.target.value)}
-            type="text"
-            defaultValue={room}
-          />
-          <InputField 
-            fieldName="title"
-            labelText="Title"
-            onBlur={(event: any) => setTitle(event.target.value)}
-            type="text"
-            defaultValue={title}
-          />
-          <button onClick={() => addVideo({
-            userName: userName,
-            video: {
-              owner: userName,
-              title,
-              room,
-            },
-            file: file
-          })}>Add video</button>
-          
+    <VideoFormCart>
+      <UserInfoSection>
+        <input type="file" name="video" onChange={(event) => event.target.files && setFile(event.target.files[0])} />
       </UserInfoSection>
-      </FlexWrapper>
+      <UserInfoSection>
+        <InputField 
+          fieldName="room"
+          labelText="Room"
+          onBlur={(event: any) => setRoom(event.target.value)}
+          type="text"
+          defaultValue={room}
+        />
+        <InputField 
+          fieldName="title"
+          labelText="Title"
+          onBlur={(event: any) => setTitle(event.target.value)}
+          type="text"
+          defaultValue={title}
+        />
+        <ConfirmButton onClick={() => addVideo({
+          userName: userName,
+          video: {
+            owner: userName,
+            title,
+            room,
+          },
+          file: file
+        })}>Add video</ConfirmButton>       
     </UserInfoSection>
+    </VideoFormCart>
   )
 };
 
