@@ -11,7 +11,7 @@ margin-bottom: 10px;
 }
 
 @media ${device.laptop} {
-  margin-left: 100px;
+  margin-left: 180px;
 }
 
 

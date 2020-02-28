@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import FlexBoxColumn from './FlexBoxColumn';
 
 const StyledLabel = styled.label`
 min-width: 130px;
@@ -28,10 +29,10 @@ const InputField: React.FC<{
   defaultValue
 }) => {
   return(
-    <div>
+    <FlexBoxColumn>
     <StyledLabel htmlFor={fieldName}>{labelText}</StyledLabel>
     <StyledInput defaultValue={defaultValue} type={type} name={fieldName} id={fieldName} onBlur={(event) => onBlur(event)}></StyledInput>
-  </div>
+  </FlexBoxColumn>
   )
 }
 

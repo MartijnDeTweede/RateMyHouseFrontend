@@ -1,4 +1,3 @@
-import FlexWrapper from './FlexWrapper';
 import styled from 'styled-components';
 import { device } from '../helpers/devices';
 

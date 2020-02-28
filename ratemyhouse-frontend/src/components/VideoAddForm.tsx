@@ -3,6 +3,12 @@ import InputField from './InputField';
 import UserInfoSection from './UserInfoSection';
 import VideoFormCart from './VideoFormCart';
 import ConfirmButton from './ConfirmButton';
+import styled from 'styled-components';
+import FlexWrapper from './FlexWrapper';
+
+const StyledFileInput = styled.input`
+padding: 10px 15px;
+margin: 10px;`
 
 const VideoAddForm: React.FC<{
   userName: string,
@@ -19,7 +25,7 @@ const VideoAddForm: React.FC<{
   return(
     <VideoFormCart>
       <UserInfoSection>
-        <input type="file" name="video" onChange={(event) => event.target.files && setFile(event.target.files[0])} />
+        <StyledFileInput type="file" name="video" onChange={(event) => event.target.files && setFile(event.target.files[0])} />
       </UserInfoSection>
       <UserInfoSection>
         <InputField 
@@ -36,15 +42,17 @@ const VideoAddForm: React.FC<{
           type="text"
           defaultValue={title}
         />
-        <ConfirmButton onClick={() => addVideo({
-          userName: userName,
-          video: {
-            owner: userName,
-            title,
-            room,
-          },
-          file: file
-        })}>Add video</ConfirmButton>       
+        <FlexWrapper>
+          <ConfirmButton onClick={() => addVideo({
+            userName: userName,
+            video: {
+              owner: userName,
+              title,
+              room,
+            },
+            file: file
+          })}>Add video</ConfirmButton>       
+        </FlexWrapper>
     </UserInfoSection>
     </VideoFormCart>
   )

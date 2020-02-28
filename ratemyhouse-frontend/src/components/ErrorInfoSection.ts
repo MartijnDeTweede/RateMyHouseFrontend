@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { device } from '../helpers/devices';
 
-const UserInfoSection = styled.section`
+const ErrorInfoSection = styled.section`
 margin: 10px;
 padding: 15px;
-border:1px solid #cccccc;
+border:1px solid red;
 border-radius: 5px;
 width: 82vw;
 
@@ -20,4 +20,4 @@ width: 82vw;
 
 `
 
-export default UserInfoSection;
+export default ErrorInfoSection;

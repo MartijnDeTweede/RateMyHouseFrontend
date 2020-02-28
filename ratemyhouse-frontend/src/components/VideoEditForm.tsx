@@ -7,6 +7,7 @@ import VideoPlayerWrapper from './VideoPlayerWrapper';
 import ConfirmButton from './ConfirmButton';
 import FlexWrapper from './FlexWrapper';
 import VideoStyled from './VideoStyled';
+import FlexBoxColumn from './FlexBoxColumn';
 
 const VideoEditForm: React.FC<{
   video: Video,
@@ -28,20 +29,23 @@ const VideoEditForm: React.FC<{
           </VideoStyled>
       </VideoPlayerWrapper>
         <UserInfoSection>
-          <InputField 
-            fieldName="room"
-            labelText="Room"
-            onBlur={(event: any) => setRoom(event.target.value)}
-            type="text"
-            defaultValue={room}
-          />
-          <InputField 
-            fieldName="title"
-            labelText="Title"
-            onBlur={(event: any) => setTitle(event.target.value)}
-            type="text"
-            defaultValue={title}
-          />
+          <FlexBoxColumn >
+            <InputField 
+              fieldName="room"
+              labelText="Room"
+              onBlur={(event: any) => setRoom(event.target.value)}
+              type="text"
+              defaultValue={room}
+            />
+            <InputField 
+              fieldName="title"
+              labelText="Title"
+              onBlur={(event: any) => setTitle(event.target.value)}
+              type="text"
+              defaultValue={title}
+            />            
+          </FlexBoxColumn>
+
             <FlexWrapper>
               <ConfirmButton onClick={() => updateVideo({
                 ...video,
