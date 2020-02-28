@@ -2,11 +2,16 @@ import React from 'react';
 import { Video } from '../types/video.types';
 import UserInfoSection from './UserInfoSection';
 import FlexWrapper from './FlexWrapper';
-import VideoPlayerWrapper from './VideoPlayerWrapper';
 import VideoFormCart from './VideoFormCart';
-import VideoStyled from './VideoStyled';
-import DisplayField from './DisplayField';
 import VideoPlayer from './VideoPlayer';
+import Title from './Title';
+import SubTitle from './SubTitle';
+import TextBlock from './Text';
+import RatingSection from './RatingSection';
+import StarRatingComponent from 'react-star-rating-component';
+import FlexBoxColumn from './FlexBoxColumn';
+import VideoPlayerWrapper from './VideoPlayerWrapper';
+import DisplaySpacerTop from './DisplaySpacerTop';
 
 const VideoDisplay: React.FC<{video: Video}> = ({video}) => {
   const {
@@ -14,21 +19,42 @@ const VideoDisplay: React.FC<{video: Video}> = ({video}) => {
     title,
     ratingPoints,
     nrOfRates,
-    _id,
+    owner,
     src,
   } = video;
 
   return(
     <VideoFormCart>
-    <FlexWrapper>
-      { src && < VideoPlayer src={src} />} 
+      <VideoPlayerWrapper>
+        {src && < VideoPlayer src={src} />} 
+      </VideoPlayerWrapper>
       <UserInfoSection>
-        {room && <DisplayField label="Room" fieldValue={room} />}
-        {title && <DisplayField label="Title" fieldValue={title} />}
-      <div>{ratingPoints}</div>
-      <div>{nrOfRates}</div>
+      <FlexWrapper>
+        <SubTitle>{title}</SubTitle>
+      </FlexWrapper>
+      <FlexBoxColumn>
+        <DisplaySpacerTop>
+          <FlexWrapper>
+            <TextBlock>{room}</TextBlock>
+        </FlexWrapper>
+        <FlexWrapper>
+          <RatingSection>
+            {
+                typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' && <StarRatingComponent 
+                name={`rate_${title}`}
+                editing={false}
+                starCount={5}
+                value={nrOfRates > 0 ? ratingPoints/nrOfRates : 0}
+              />
+              }
+              <RatingSection>
+                {nrOfRates} Ratings
+              </RatingSection>
+          </RatingSection>
+          </FlexWrapper>
+        </DisplaySpacerTop>
+      </FlexBoxColumn>
     </UserInfoSection>
-    </FlexWrapper>
   </VideoFormCart>
   )
 }

@@ -6,9 +6,10 @@ import VideoFormCart from './VideoFormCart';
 import VideoPlayerWrapper from './VideoPlayerWrapper';
 import ConfirmButton from './ConfirmButton';
 import FlexWrapper from './FlexWrapper';
-import VideoStyled from './VideoStyled';
+import StarRatingComponent from 'react-star-rating-component';
 import FlexBoxColumn from './FlexBoxColumn';
 import VideoPlayer from './VideoPlayer';
+import RatingSection from './RatingSection';
 
 const VideoEditForm: React.FC<{
   video: Video,
@@ -22,7 +23,7 @@ const VideoEditForm: React.FC<{
   const [room, setRoom] = useState<string|undefined>(video.room);
   const [title, setTitle] = useState<string|undefined>(video.title);
 
-    const { src } = video;
+    const { src, ratingPoints, nrOfRates } = video;
 
   return(
     <VideoFormCart>
@@ -46,18 +47,31 @@ const VideoEditForm: React.FC<{
               defaultValue={title}
             />            
           </FlexBoxColumn>
-
-            <FlexWrapper>
-              <ConfirmButton onClick={() => updateVideo({
-                ...video,
-                title,
-                room,
-              })}>Update video</ConfirmButton>
-              
-              <ConfirmButton onClick={() => deleteVideo(video)}
-              >Delete video</ConfirmButton>
+          <FlexWrapper>
+            <RatingSection>
+              {
+                  typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' && <StarRatingComponent 
+                  name={`rate_${title}`}
+                  editing={false}
+                  starCount={5}
+                  value={nrOfRates > 0 ? ratingPoints/nrOfRates : 0}
+                />
+                }
+                <div>
+                  {nrOfRates} Ratings
+                </div>
+            </RatingSection>
+          </FlexWrapper>
+          <FlexWrapper>
+            <ConfirmButton onClick={() => updateVideo({
+              ...video,
+              title,
+              room,
+            })}>Update video</ConfirmButton>
             
-            </FlexWrapper>
+            <ConfirmButton onClick={() => deleteVideo(video)}
+            >Delete video</ConfirmButton>
+          </FlexWrapper>
           
 
       </UserInfoSection>

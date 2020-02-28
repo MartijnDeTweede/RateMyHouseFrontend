@@ -5,14 +5,14 @@ import FlexBoxColumn from './FlexBoxColumn';
 const StyledLabel = styled.label`
 min-width: 130px;
 display: inline-block;
-color: #292929;
+color: #32a852;
 `
 const StyledInput = styled.input`
   margin-top: 5px;
   padding: 5px;
   background-color: #f5f7f6;
-  border:1px solid #cccccc;
-  color: #292929;
+  border:1px solid #32a852;
+  color: #32a852;
 `
 
 const InputField: React.FC<{
