@@ -7,6 +7,19 @@ background-color: white;
 color: #32a852;
 font-weight: bold;
 border: 1px solid #32a852;
+font-size: calc(10px + 2vmin);
+transition: 3s ease-in;
+animation: Header-fade-in 1 0.5s linear;
+
+@keyframes Header-fade-in {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 `;
 
 export default StyledHeader;

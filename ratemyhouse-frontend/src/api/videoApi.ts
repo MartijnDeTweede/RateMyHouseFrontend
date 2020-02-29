@@ -15,6 +15,20 @@ export const getVideos = (userName: string) => {
 return result;
 }
 
+export const getFeaturedVideos = () => {
+  const url = `${baseUrl}/video/getFeaturedVideos`;
+  const result =  fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    credentials: 'same-origin',
+})
+.then(response => {
+  return response.json()
+}
+  );
+return result;
+}
+
 export const updateVideo = ({video, token} : {video: Video, token: string}) => {
 
   const url = `${baseUrl}/video/${video._id}/updateVideo`;
@@ -102,9 +116,7 @@ export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
 return result;
 }
 
-export const rateVideo = ({videoId, token, rating} : {videoId: String, token: string, rating: number}) => {
-  console.log('videoId: ', videoId);
-  
+export const rateVideo = ({videoId, token, rating} : {videoId: String, token: string, rating: number}) => {  
   const url = `${baseUrl}/video/${videoId}/rateVideo`;
 
   const result =  fetch(url, {

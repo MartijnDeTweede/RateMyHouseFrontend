@@ -1,7 +1,8 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import { VIDEOS_FETCH_REQUESTED, getVideosSuccessActionCreator, getVideosFailureActionCreator, VIDEOS_UPDATE_REQUESTED, updateVideoSuccessActionCreator, updateVideoFailureActionCreator, addVideosSuccessActionCreator, addVideosFailureActionCreator, VIDEOS_ADD_REQUESTED, VIDEOS_DELETE_REQUESTED, deleteVideoSuccessActionCreator, deleteVideoFailureActionCreator, rateVideoSuccessActionCreator, rateVideoFailureActionCreator, RATE_VIDEO_REQUESTED } from '../actions/VideoActionCreator';
-import { getVideos, updateVideo, addVideo, deleteVideo, addVideoFile, rateVideo } from '../api/videoApi';
+import { getVideos, updateVideo, addVideo, deleteVideo, addVideoFile, rateVideo, getFeaturedVideos } from '../api/videoApi';
 import { getToken } from '../helpers/tokenhelpers';
+import { FEATURED_VIDEOS_FETCH_REQUESTED, getFeatureVideosSuccessActionCreator, getFeatureVideosFailureActionCreator } from '../actions/FeaturedVideosActionCreators';
 
 export function* getVideosSaga(action: any) : any {
   try {
@@ -75,8 +76,17 @@ export function* rateVideosSaga(action: any) : any {
     const response = yield call(rateVideo, payload);
     yield put(rateVideoSuccessActionCreator(response))
   } catch(e) {
-    console.log('e: ', e);
     yield put(rateVideoFailureActionCreator());
+  }
+}
+
+export function* getFeaturedVideosSaga(action: any) : any {
+  try {
+    const userName = action.userName;
+    const response = yield call(getFeaturedVideos);
+    yield put(getFeatureVideosSuccessActionCreator(response))
+  } catch(e) {
+    yield put(getFeatureVideosFailureActionCreator());
   }
 }
 
@@ -87,5 +97,6 @@ export function* videoSaga() {
     takeEvery(VIDEOS_ADD_REQUESTED, addVideosSaga),
     takeEvery(VIDEOS_DELETE_REQUESTED, deleteVideosSaga),
     takeEvery(RATE_VIDEO_REQUESTED, rateVideosSaga),
+    takeEvery(FEATURED_VIDEOS_FETCH_REQUESTED, getFeaturedVideosSaga),
   ]);
 }
