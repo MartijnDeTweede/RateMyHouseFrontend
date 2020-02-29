@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from '../helpers/devices';
 
 const UserInfoSection = styled.section`
-margin: 10px;
+margin: 20px 10px;
 padding: 15px;
 border:1px solid #32a852;
 border-radius: 5px;

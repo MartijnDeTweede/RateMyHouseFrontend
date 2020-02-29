@@ -66,7 +66,6 @@ export function* deleteVideosSaga(action: any) : any {
 
 export function* rateVideosSaga(action: any) : any {
   try {
-    console.log('action: ', action);
     const token = getToken();
     const payload = {
       videoId: action.payload.videoId,
@@ -74,7 +73,6 @@ export function* rateVideosSaga(action: any) : any {
       token,
     };
     const response = yield call(rateVideo, payload);
-    console.log('response: ', response);
     yield put(rateVideoSuccessActionCreator(response))
   } catch(e) {
     console.log('e: ', e);
