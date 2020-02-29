@@ -4,7 +4,7 @@ import { device } from '../helpers/devices';
 const UserInfoSection = styled.section`
 margin: 20px 10px;
 padding: 15px;
-border:1px solid #32a852;
+border:2px solid #32a852;
 border-radius: 5px;
 width: 82vw;
 background-color: white;

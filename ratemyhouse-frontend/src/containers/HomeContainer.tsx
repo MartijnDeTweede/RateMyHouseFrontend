@@ -4,6 +4,17 @@ import { connect } from 'react-redux';
 import { FeaturedVideosState } from '../types/featuredVideos.types';
 import { getFeatureVideosRequestActionCreator } from '../actions/FeaturedVideosActionCreators';
 import { Video } from '../types/video.types';
+import HomePageVideoBlock from '../components/HomePageVideoBlock';
+import styled from 'styled-components';
+
+
+const Wrapper = styled.section`
+display: flex;
+flex-wrap: wrap ;
+justify-content: center;
+align-items: flex-start;
+align-content: stretch;
+`
 
 const HomeContainer: React.FC<{
   getFeaturedVideos: Function,
@@ -16,7 +27,13 @@ const HomeContainer: React.FC<{
   useEffect(() => {
     getFeaturedVideos();
   }, []);
-  return(<div>Homeconainer</div>)
+  return(
+      <Wrapper>
+        {featuredVideos.map((video) => (
+          <HomePageVideoBlock video={video} />
+        ))}
+      </Wrapper>
+      )
 } 
 
 const mapStateToProps = (state: FeaturedVideosState) => (

@@ -6,7 +6,7 @@ height: 50px;
 background-color: white;
 color: #32a852;
 font-weight: bold;
-border: 1px solid #32a852;
+border: 2px solid #32a852;
 font-size: calc(10px + 2vmin);
 transition: 3s ease-in;
 animation: Header-fade-in 1 0.5s linear;

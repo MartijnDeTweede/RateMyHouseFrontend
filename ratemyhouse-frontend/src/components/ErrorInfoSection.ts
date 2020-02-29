@@ -4,7 +4,7 @@ import { device } from '../helpers/devices';
 const ErrorInfoSection = styled.section`
 margin: 10px;
 padding: 15px;
-border:1px solid red;
+border:2px solid red;
 border-radius: 5px;
 width: 82vw;
 
