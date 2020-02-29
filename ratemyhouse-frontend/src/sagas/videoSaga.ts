@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
-import { VIDEOS_FETCH_REQUESTED, getVideosSuccessActionCreator, getVideosFailureActionCreator, VIDEOS_UPDATE_REQUESTED, updateVideoSuccessActionCreator, updateVideoFailureActionCreator, addVideosSuccessActionCreator, addVideosFailureActionCreator, VIDEOS_ADD_REQUESTED, VIDEOS_DELETE_REQUESTED, deleteVideoSuccessActionCreator, deleteVideoFailureActionCreator } from '../actions/VideoActionCreator';
-import { getVideos, updateVideo, addVideo, deleteVideo, addVideoFile } from '../api/videoApi';
+import { VIDEOS_FETCH_REQUESTED, getVideosSuccessActionCreator, getVideosFailureActionCreator, VIDEOS_UPDATE_REQUESTED, updateVideoSuccessActionCreator, updateVideoFailureActionCreator, addVideosSuccessActionCreator, addVideosFailureActionCreator, VIDEOS_ADD_REQUESTED, VIDEOS_DELETE_REQUESTED, deleteVideoSuccessActionCreator, deleteVideoFailureActionCreator, rateVideoSuccessActionCreator, rateVideoFailureActionCreator, RATE_VIDEO_REQUESTED } from '../actions/VideoActionCreator';
+import { getVideos, updateVideo, addVideo, deleteVideo, addVideoFile, rateVideo } from '../api/videoApi';
 import { getToken } from '../helpers/tokenhelpers';
 
 export function* getVideosSaga(action: any) : any {
@@ -64,11 +64,30 @@ export function* deleteVideosSaga(action: any) : any {
   }
 }
 
+export function* rateVideosSaga(action: any) : any {
+  try {
+    console.log('action: ', action);
+    const token = getToken();
+    const payload = {
+      videoId: action.payload.videoId,
+      rating: action.payload.rating,
+      token,
+    };
+    const response = yield call(rateVideo, payload);
+    console.log('response: ', response);
+    yield put(rateVideoSuccessActionCreator(response))
+  } catch(e) {
+    console.log('e: ', e);
+    yield put(rateVideoFailureActionCreator());
+  }
+}
+
 export function* videoSaga() {
   yield all([
     takeEvery(VIDEOS_FETCH_REQUESTED, getVideosSaga),
     takeEvery(VIDEOS_UPDATE_REQUESTED, updateVideosSaga),
     takeEvery(VIDEOS_ADD_REQUESTED, addVideosSaga),
     takeEvery(VIDEOS_DELETE_REQUESTED, deleteVideosSaga),
+    takeEvery(RATE_VIDEO_REQUESTED, rateVideosSaga),
   ]);
 }

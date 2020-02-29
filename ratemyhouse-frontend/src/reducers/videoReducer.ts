@@ -1,5 +1,5 @@
 import { VideoContainerState } from "../types/video.types";
-import { VIDEOS_FETCH_REQUESTED, VIDEOS_FETCH_SUCCEEDED, VIDEOS_FETCH_FAILED, VIDEOS_UPDATE_REQUESTED, VIDEOS_UPDATE_SUCCEEDED, VIDEOS_UPDATE_FAILED, VIDEOS_ADD_REQUESTED, VIDEOS_ADD_SUCCEEDED, VIDEOS_ADD_FAILED, VIDEOS_DELETE_REQUESTED, VIDEOS_DELETE_SUCCEEDED, VIDEOS_DELETE_FAILED } from "../actions/VideoActionCreator";
+import { VIDEOS_FETCH_REQUESTED, VIDEOS_FETCH_SUCCEEDED, VIDEOS_FETCH_FAILED, VIDEOS_UPDATE_REQUESTED, VIDEOS_UPDATE_SUCCEEDED, VIDEOS_UPDATE_FAILED, VIDEOS_ADD_REQUESTED, VIDEOS_ADD_SUCCEEDED, VIDEOS_ADD_FAILED, VIDEOS_DELETE_REQUESTED, VIDEOS_DELETE_SUCCEEDED, VIDEOS_DELETE_FAILED, RATE_VIDEO_FAILED, RATE_VIDEO_SUCCEEDED, RATE_VIDEO_REQUESTED } from "../actions/VideoActionCreator";
 
 const intialVideosstate: VideoContainerState = {
 videos: [],
@@ -24,6 +24,7 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     case VIDEOS_FETCH_FAILED: {
       return {
         ...state,
+        videos: [],
         isFetching: false,
       };
     }
@@ -43,6 +44,7 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     case VIDEOS_UPDATE_FAILED: {
       return {
         ...state,
+        videos: [],
         isFetching: false,
       };
     }
@@ -62,6 +64,7 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     case VIDEOS_ADD_FAILED: {
       return {
         ...state,
+        videos: [],
         isFetching: false,
       };
     }
@@ -81,6 +84,28 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     case VIDEOS_DELETE_FAILED: {
       return {
         ...state,
+        videos: [],
+        isFetching: false,
+      };
+    }
+    // here
+    case RATE_VIDEO_REQUESTED : {
+      return {
+        ...state,
+        isFetching: true,
+      };
+    }
+    case RATE_VIDEO_SUCCEEDED: {
+      return {
+        ...state,
+        videos: action.videos,
+        isFetching: false,
+      };
+    }
+    case RATE_VIDEO_FAILED: {
+      return {
+        ...state,
+        videos: [],
         isFetching: false,
       };
     }

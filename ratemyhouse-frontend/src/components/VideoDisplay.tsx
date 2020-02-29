@@ -13,13 +13,13 @@ import FlexBoxColumn from './FlexBoxColumn';
 import VideoPlayerWrapper from './VideoPlayerWrapper';
 import DisplaySpacerTop from './DisplaySpacerTop';
 
-const VideoDisplay: React.FC<{video: Video}> = ({video}) => {
+const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rateVideo}) => {
   const {
     room,
     title,
     ratingPoints,
     nrOfRates,
-    owner,
+    _id,
     src,
   } = video;
 
@@ -40,11 +40,13 @@ const VideoDisplay: React.FC<{video: Video}> = ({video}) => {
         <FlexWrapper>
           <RatingSection>
             {
-                typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' && <StarRatingComponent 
+                typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' &&
+                <StarRatingComponent 
                 name={`rate_${title}`}
-                editing={false}
                 starCount={5}
-                value={nrOfRates > 0 ? ratingPoints/nrOfRates : 0}
+                value={nrOfRates > 0 ? ratingPoints/nrOfRates : 1}
+                onStarClick={(value) => {
+                  rateVideo(_id,value)}}
               />
               }
               <RatingSection>

@@ -14,6 +14,10 @@ export const VIDEOS_DELETE_REQUESTED = "VIDEOS_DELETE_REQUESTED";
 export const VIDEOS_DELETE_SUCCEEDED = "VIDEOS_DELETE_SUCCEEDED";
 export const VIDEOS_DELETE_FAILED = "VIDEOS_DELETE_FAILED";
 
+export const RATE_VIDEO_REQUESTED = "RATE_VIDEO_REQUESTED";
+export const RATE_VIDEO_SUCCEEDED = "RATE_VIDEO_SUCCEEDED";
+export const RATE_VIDEO_FAILED = "RATE_VIDEO_FAILED";
+
 export const getVideosRequestActionCreator = (userName) => {
   return {
     type: VIDEOS_FETCH_REQUESTED,
@@ -74,7 +78,6 @@ export const addVideosFailureActionCreator = () => {
     isFetching: false,
   };
 }
-
 export const deleteVideoRequestActionCreator = (video) => {
   return {
     type: VIDEOS_DELETE_REQUESTED,
@@ -92,6 +95,27 @@ export const deleteVideoSuccessActionCreator = (videos) => {
 export const deleteVideoFailureActionCreator = () => {
   return {
     type: VIDEOS_DELETE_FAILED,
+    isFetching: false,
+  };
+}
+
+export const rateVideoRequestActionCreator = (payload) => {
+  return {
+    type: RATE_VIDEO_REQUESTED,
+    payload,
+    isFetching: true,
+  };
+}
+export const rateVideoSuccessActionCreator = (videos) => {
+  return {
+    type: RATE_VIDEO_SUCCEEDED,
+    videos,
+    isFetching: false,
+  };
+}
+export const rateVideoFailureActionCreator = () => {
+  return {
+    type: RATE_VIDEO_FAILED,
     isFetching: false,
   };
 }

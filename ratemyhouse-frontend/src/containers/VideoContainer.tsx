@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { VideoContainerState, Video } from '../types/video.types';
-import { getVideosRequestActionCreator, updateVideoRequestActionCreator, addVideosRequestActionCreator, deleteVideoRequestActionCreator } from '../actions/VideoActionCreator';
+import { getVideosRequestActionCreator, updateVideoRequestActionCreator, addVideosRequestActionCreator, deleteVideoRequestActionCreator, rateVideoRequestActionCreator } from '../actions/VideoActionCreator';
 import VideoDisplay from '../components/VideoDisplay';
 import VideoEditor from '../components/VideoEditor';
 import VideoDisplayCaroucel from '../components/VideoDisplayCaroucel';
@@ -12,8 +12,17 @@ const VideoHolder: React.FC<{
   updateVideo: Function;
   addVideo: Function;
   deleteVideo: Function;
+  rateVideo: Function;
   userName: string;
-}> = ({isOwnPage, videos, updateVideo, addVideo, deleteVideo, userName}) => {
+}> = ({
+  isOwnPage,
+  videos,
+  updateVideo,
+  addVideo,
+  deleteVideo,
+  userName,
+  rateVideo,
+}) => {
   return(
     <div>
       {
@@ -25,7 +34,7 @@ const VideoHolder: React.FC<{
           deleteVideo={deleteVideo}
           userName={userName}
         /> :
-        <VideoDisplayCaroucel videos={videos} />
+        <VideoDisplayCaroucel videos={videos} rateVideo={rateVideo} />
       }
     </div>
   )
@@ -40,6 +49,7 @@ const VideoContainer: React.FC<{
   addVideo: Function;
   deleteVideo: Function;
   videos: Video [];
+  rateVideo: Function;
 }> = ({
   getVideos,
   userName,
@@ -48,6 +58,7 @@ const VideoContainer: React.FC<{
   updateVideo,
   addVideo,
   deleteVideo,
+  rateVideo,
   isFetching,
 }) => {
   useEffect(()=> {
@@ -64,6 +75,7 @@ const VideoContainer: React.FC<{
         addVideo={addVideo}
         deleteVideo={deleteVideo}
         userName={userName}
+        rateVideo={rateVideo}
       />}
     </div>
   )
@@ -76,6 +88,7 @@ const mapDispatchToProps = (dispatch : any) => ({
   updateVideo: (video: Video) => dispatch(updateVideoRequestActionCreator(video)),
   addVideo: ({video, userName, file}: {video: Video, userName: string, file: File}) => dispatch(addVideosRequestActionCreator({video, userName, file})),
   deleteVideo: (video: Video) => dispatch(deleteVideoRequestActionCreator(video)),
+  rateVideo:(videoId: string, rating: number) => dispatch(rateVideoRequestActionCreator({ videoId, rating })),
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(VideoContainer);

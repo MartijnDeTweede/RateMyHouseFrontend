@@ -4,7 +4,11 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import VideoDisplay from './VideoDisplay';
 
-const VideoDisplayCaroucel: React.FC<{videos: Video []}> = ({videos}) => {
+const VideoDisplayCaroucel: React.FC<{
+  videos: Video [],
+  rateVideo: Function,
+}> = ({videos = [], rateVideo}) => {
+  console.log('videos: ', videos);
 
   const responsive = {
     superLargeDesktop: {
@@ -35,7 +39,7 @@ const VideoDisplayCaroucel: React.FC<{videos: Video []}> = ({videos}) => {
     showDots>
     {
       videos.map((video: Video) => (
-        <VideoDisplay video={video} />
+        <VideoDisplay video={video} rateVideo={rateVideo} />
       ))}
     </Carousel>
   )

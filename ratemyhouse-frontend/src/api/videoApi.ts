@@ -101,3 +101,34 @@ export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
 .then(response => { return response.json()});
 return result;
 }
+
+export const rateVideo = ({videoId, token, rating} : {videoId: String, token: string, rating: number}) => {
+  console.log('videoId: ', videoId);
+  
+  const url = `${baseUrl}/video/${videoId}/rateVideo`;
+
+  const result =  fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'auth-token': `${token}`
+    },
+    body: JSON.stringify({rating: rating})
+})
+.then(response => { 
+  
+if(response.status != 200) {
+  throw({});
+}
+  
+  return response.json()
+
+});
+return result;
+}
