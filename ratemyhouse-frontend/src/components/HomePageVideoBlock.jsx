@@ -3,22 +3,23 @@ import styled from 'styled-components';
 import { device } from '../helpers/devices';;
 
 const StyledBlock = styled.section`
-margin: ${(props) => props.margin};
-padding: ${(props) => props.padding};
+margin: 10px 10px;
+padding: 5px};
 border:2px solid #32a852;
-border: ${(props) => `2px solid ${props.inputColor}`};
 align-self: center;
 border-radius: 5px;
 background-color: white;
-color: ${(props) => props.inputColor};
-animation: Block-fade-in  1 0.5s;
-animation-delay: ${(props) => props.delay}; 
-@keyframes Block-fade-in {
+color: #32a852;
+
+transition: 3s ease-in;
+animation: ${(props) => props.animation};
+
+@keyframes Scale-fade-in {
   from {
-    transform: scale(0);
+    transform: Scale(1)
   }
   to {
-    transform: scale(1);
+    transform: Scale(1.1)
   }
 }
 `
@@ -29,15 +30,16 @@ height: 50vw;
 border-radius: 5px;
 
 @media ${device.laptop} {
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  width: 280px;
+  height: 160px;
 }
 `
 const UserLink = styled.a`
 text-decoration: none;
-color: ${(props) => props.inputColor};
+color: #32a852;
 font-size: calc(10px + 2vmin);
-margin: 10px;
+font-weight: bold;
+margin: 5px 0 5px 10px;
 
 &:hover {
   text-decoration: none;
@@ -56,35 +58,10 @@ const  getRandomInt = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-const generateRandomColor = (nrOfInts) => {
-  const index = getRandomInt(nrOfInts);
-  const colours = ["#32a852", "#b52419", "#3b19b5"];
-  return colours[index];
+const randomAnimation = (nr) => {
+  const index = getRandomInt(nr);
+  return index === 0 ? "Scale-fade-in 1 0.5s linear" : '';
 }
-
-const getRandomDimentions = (nrOfInts) => {
-  const index = getRandomInt(nrOfInts);
-  const dimentions = [{height: '157px', width:'280px'}, {height: '157px', width:'280px'}, {height: '240px', width:'420px'} ];
-  return dimentions[index];
-}
-
-const generateRandomPadding = (nrOfInts) => {
-  const top = getRandomInt(nrOfInts) * 5;
-  const bottom = getRandomInt(nrOfInts) * 5;
-  
-  return `${top}px 5px ${bottom}px 5px`
-}
-
-const generateRandomMargin = (nrOfInts) => {
-  const right = getRandomInt(nrOfInts) * 10;
-  const left = getRandomInt(nrOfInts) * 10;
-  
-  return ` 20px ${right}px 20px ${left}px`
-}
-
-const generateRandomDelay = (nrOfInts) => (
-  `${(getRandomInt(nrOfInts)/10)}s`
-)
 
 class HomePageVideoBlock extends React.Component {
 
@@ -97,24 +74,21 @@ class HomePageVideoBlock extends React.Component {
       }
   
     } = this.props;
-  
-    const inputColor = generateRandomColor(3);
 
-    const dimentions = getRandomDimentions(1);
-
-    const padding = generateRandomPadding(3);
-    const margin = generateRandomMargin(3);
-    const delay = generateRandomDelay(10);
+    const animation = randomAnimation(6);
 
     return(
-      <StyledBlock inputColor={inputColor} padding={padding} margin={margin} delay={delay}>
-          <LinkWrapper>
-                <UserLink inputColor={inputColor} href={`/user/${owner}`}>{title}</UserLink>
-            </LinkWrapper>
-            <VideoStyled width={dimentions.width} height={dimentions.height} controls preload="metadata">
-              <source src={`${src}#t=1`} type="video/mp4" />
-            </VideoStyled>
+      <div>
+      <LinkWrapper>
+        <UserLink href={`/user/${owner}`}>{title}</UserLink>
+      </LinkWrapper>
+
+      <StyledBlock animation={animation}>
+        <VideoStyled controls preload="metadata">
+          <source src={`${src}#t=1`} type="video/mp4" />
+        </VideoStyled>
       </StyledBlock>
+      </div>
     )
   }
  

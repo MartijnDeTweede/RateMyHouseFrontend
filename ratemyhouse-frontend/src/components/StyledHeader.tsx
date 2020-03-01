@@ -8,6 +8,7 @@ color: #32a852;
 font-weight: bold;
 border: 2px solid #32a852;
 font-size: calc(10px + 2vmin);
+margin-bottom: 10px;
 transition: 3s ease-in;
 animation: Header-fade-in 1 0.5s linear;
 
