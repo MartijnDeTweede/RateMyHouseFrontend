@@ -8,7 +8,6 @@ const VideoDisplayCaroucel: React.FC<{
   videos: Video [],
   rateVideo: Function,
 }> = ({videos = [], rateVideo}) => {
-  console.log('videos: ', videos);
 
   const responsive = {
     superLargeDesktop: {

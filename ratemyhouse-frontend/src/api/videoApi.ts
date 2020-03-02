@@ -73,10 +73,10 @@ export const addVideo = ({video, userName, token} : {video: Video, userName: str
 return result;
 }
 
-export const addVideoFile = ({videofile, token} : {videofile: File,  token: string}) => {
+export const addVideoFile = ({videoFile, token} : {videoFile: File,  token: string}) => {
   const url = `${baseUrl}/video/uploadVideoFile`;
   let formData = new FormData();
-  formData.append('video', videofile, videofile.name);
+  formData.append('video', videoFile, videoFile.name);
   const result =  fetch(url, {
     method: 'POST',
     mode: 'cors',
@@ -94,11 +94,11 @@ export const addVideoFile = ({videofile, token} : {videofile: File,  token: stri
 return result;
 }
 
-export const addThumbnailFile = ({thumbnailfile, token} : {thumbnailfile: File,  token: string}) => {
-  console.log("here");
+export const addThumbnailFile = ({thumbnailFile, token} : {thumbnailFile: File,  token: string}) => {
+  console.log('thumbnailfile: ', thumbnailFile);
   const url = `${baseUrl}/video/uploadThumbnailFile`;
   let formData = new FormData();
-  formData.append('thumbnail', thumbnailfile, thumbnailfile.name);
+  formData.append('thumbnail', thumbnailFile, thumbnailFile.name);
   const result =  fetch(url, {
     method: 'POST',
     mode: 'cors',

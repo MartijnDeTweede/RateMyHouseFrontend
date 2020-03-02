@@ -20,13 +20,13 @@ const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rat
     ratingPoints,
     nrOfRates,
     _id,
-    src,
+    videoSrc,
   } = video;
 
   return(
     <VideoFormCart>
       <VideoPlayerWrapper>
-        {src && < VideoPlayer src={src} />} 
+        {videoSrc && < VideoPlayer src={videoSrc} />} 
       </VideoPlayerWrapper>
       <UserInfoSection>
       <FlexWrapper>

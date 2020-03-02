@@ -1,12 +1,14 @@
 export interface Video {
   room?: string;
   title?: string;
-  src?: string;
+  videoSrc?: string;
   owner: string;
   ratingPoints?: number;
   nrOfRates?:number;
   _id?: string;
   videoKey?: string;
+  thumbNailSrc?: string;
+  thumbNailKey?: string;
 }
 
 

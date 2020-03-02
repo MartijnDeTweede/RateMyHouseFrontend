@@ -33,9 +33,10 @@ export function* addVideosSaga(action: any) : any {
   try {
     const token = getToken();
 
-    const videoFileResponse = yield call(addVideoFile, {videofile: action.payload.videofile, token});
+    console.log('action.payload: ', action.payload);
+    const videoFileResponse = yield call(addVideoFile, {videoFile: action.payload.videoFile, token});
 
-    const thumbNailFileResponse = yield call(addThumbnailFile, {thumbnailfile: action.payload.thumbnailfile, token});
+    const thumbNailFileResponse = yield call(addThumbnailFile, {thumbnailFile: action.payload.thumbnailFile, token});
 
     const videoPayload = {
       video: { 

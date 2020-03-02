@@ -68,7 +68,7 @@ class HomePageVideoBlock extends React.Component {
   render() {
     const {
       video: {
-        src,
+        videoSrc,
         title,
         owner,
       }
@@ -85,7 +85,7 @@ class HomePageVideoBlock extends React.Component {
 
       <StyledBlock animation={animation}>
         <VideoStyled controls preload="metadata">
-          <source src={`${src}#t=1`} type="video/mp4" />
+          <source src={`${videoSrc}#t=1`} type="video/mp4" />
         </VideoStyled>
       </StyledBlock>
       </div>

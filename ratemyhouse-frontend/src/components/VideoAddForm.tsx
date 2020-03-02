@@ -79,7 +79,7 @@ const VideoAddForm: React.FC<{
               title,
               room,
             },
-            videofile: videoFile,
+            videoFile: videoFile,
             thumbnailFile: thumbnailFile,
           })}>Add video</ConfirmButton>       
         </FlexWrapper>

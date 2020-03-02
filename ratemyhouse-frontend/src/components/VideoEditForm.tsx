@@ -25,12 +25,12 @@ const VideoEditForm: React.FC<{
   const [room, setRoom] = useState<string|undefined>(video.room);
   const [title, setTitle] = useState<string|undefined>(video.title);
 
-    const { src, ratingPoints, nrOfRates } = video;
+    const { videoSrc, ratingPoints, nrOfRates } = video;
 
   return(
     <VideoFormCart>
       <VideoPlayerWrapper>
-      { src && < VideoPlayer src={src} />} 
+      { videoSrc && < VideoPlayer src={videoSrc} />} 
       </VideoPlayerWrapper>
         <UserInfoSection>
           <FlexBoxColumn >
