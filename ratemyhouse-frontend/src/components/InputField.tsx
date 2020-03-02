@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import FlexBoxColumn from './FlexBoxColumn';
+import StyledLabel from './StyledLabel';
 
-const StyledLabel = styled.label`
-min-width: 130px;
-display: inline-block;
-color: #32a852;
-`
 const StyledInput = styled.input`
   margin-top: 5px;
   padding: 5px;

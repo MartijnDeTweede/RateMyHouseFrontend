@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import { VIDEOS_FETCH_REQUESTED, getVideosSuccessActionCreator, getVideosFailureActionCreator, VIDEOS_UPDATE_REQUESTED, updateVideoSuccessActionCreator, updateVideoFailureActionCreator, addVideosSuccessActionCreator, addVideosFailureActionCreator, VIDEOS_ADD_REQUESTED, VIDEOS_DELETE_REQUESTED, deleteVideoSuccessActionCreator, deleteVideoFailureActionCreator, rateVideoSuccessActionCreator, rateVideoFailureActionCreator, RATE_VIDEO_REQUESTED } from '../actions/VideoActionCreator';
-import { getVideos, updateVideo, addVideo, deleteVideo, addVideoFile, rateVideo, getFeaturedVideos } from '../api/videoApi';
+import { getVideos, updateVideo, addVideo, deleteVideo, addVideoFile, rateVideo, getFeaturedVideos, addThumbnailFile } from '../api/videoApi';
 import { getToken } from '../helpers/tokenhelpers';
 import { FEATURED_VIDEOS_FETCH_REQUESTED, getFeatureVideosSuccessActionCreator, getFeatureVideosFailureActionCreator } from '../actions/FeaturedVideosActionCreators';
 
@@ -33,14 +33,18 @@ export function* addVideosSaga(action: any) : any {
   try {
     const token = getToken();
 
-    const fileUplaodResponse = yield call(addVideoFile, {file: action.payload.file, token});
+    const videoFileResponse = yield call(addVideoFile, {videofile: action.payload.videofile, token});
+
+    const thumbNailFileResponse = yield call(addThumbnailFile, {thumbnailfile: action.payload.thumbnailfile, token});
 
     const videoPayload = {
       video: { 
         ...action.payload.video,
-        src: fileUplaodResponse.location,
-        videoKey: fileUplaodResponse.key,
-      } ,
+        videoSrc: videoFileResponse.location,
+        videoKey: videoFileResponse.key,
+        thumbNailSrc: thumbNailFileResponse.location,
+        thumbNailKey: thumbNailFileResponse.key,
+      },
       userName: action.payload.userName,
       token,
     };

@@ -5,12 +5,19 @@ import VideoFormCart from './VideoFormCart';
 import ConfirmButton from './ConfirmButton';
 import styled from 'styled-components';
 import FlexWrapper from './FlexWrapper';
+import SelectField from './SelectField';
+import StyledOption from './Option';
+import StyledLabel from './StyledLabel';
+import FlexBoxColumn from './FlexBoxColumn';
 
 const StyledFileInput = styled.input.attrs({ type: 'file' })`
 padding: 10px 15px;
-margin: 10px;
 size: 60px;
 `
+
+const ExtendedStyleslabel = styled(StyledLabel)`
+margin-left: 10px;`
+
 
 const VideoAddForm: React.FC<{
   userName: string,
@@ -22,21 +29,41 @@ const VideoAddForm: React.FC<{
   const [room, setRoom] = useState<string|undefined>(undefined);
   const [title, setTitle] = useState<string|undefined>(undefined);
 
-  const [file, setFile] = useState<File|null>(null);
+  const [videoFile, setvideoFile] = useState<File|null>(null);
+
+  const [thumbnailFile, setThumbnailFile] = useState<File|null>(null);
 
   return(
     <VideoFormCart>
       <UserInfoSection>
-        <StyledFileInput  id="inputFile" name="video" onChange={(event) => event.target.files && setFile(event.target.files[0])} />
+        <FlexBoxColumn>
+          <ExtendedStyleslabel>Upload Video</ExtendedStyleslabel>
+          <StyledFileInput  id="inputFile" name="video" onChange={(event) => event.target.files && setvideoFile(event.target.files[0])}/>
+
+          <ExtendedStyleslabel>Upload Thumbnail</ExtendedStyleslabel>
+          <StyledFileInput  id="inputFile" name="video" onChange={(event) => event.target.files && setThumbnailFile(event.target.files[0])} />
+ 
+        </FlexBoxColumn>
       </UserInfoSection>
       <UserInfoSection>
-        <InputField 
+        <SelectField
           fieldName="room"
           labelText="Room"
-          onBlur={(event: any) => setRoom(event.target.value)}
-          type="text"
-          defaultValue={room}
-        />
+          onBlur={(event: any) => {
+            setRoom(event.target.value);
+          } }
+        >
+          <StyledOption value="enterance">Enterance</StyledOption>
+          <StyledOption value="kitchen">Kitchen</StyledOption>
+          <StyledOption value="bathroom">Bathroom</StyledOption>
+          <StyledOption value="bedroom">Bedroom</StyledOption>
+          <StyledOption value="livingroom">Livingroom</StyledOption>
+          <StyledOption value="addic">Addic</StyledOption>
+          <StyledOption value="basement">Basement</StyledOption>
+          <StyledOption value="nursery">Nursery</StyledOption>
+          <StyledOption value="garden">Garden</StyledOption>
+          <StyledOption value="Terrace">Terrace</StyledOption>
+        </SelectField>
         <InputField 
           fieldName="title"
           labelText="Title"
@@ -52,7 +79,8 @@ const VideoAddForm: React.FC<{
               title,
               room,
             },
-            file: file
+            videofile: videoFile,
+            thumbnailFile: thumbnailFile,
           })}>Add video</ConfirmButton>       
         </FlexWrapper>
     </UserInfoSection>

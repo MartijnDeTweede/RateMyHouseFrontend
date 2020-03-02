@@ -10,6 +10,8 @@ import StarRatingComponent from 'react-star-rating-component';
 import FlexBoxColumn from './FlexBoxColumn';
 import VideoPlayer from './VideoPlayer';
 import RatingSection from './RatingSection';
+import SelectField from './SelectField';
+import StyledOption from './Option';
 
 const VideoEditForm: React.FC<{
   video: Video,
@@ -32,13 +34,23 @@ const VideoEditForm: React.FC<{
       </VideoPlayerWrapper>
         <UserInfoSection>
           <FlexBoxColumn >
-            <InputField 
-              fieldName="room"
-              labelText="Room"
-              onBlur={(event: any) => setRoom(event.target.value)}
-              type="text"
-              defaultValue={room}
-            />
+        <SelectField
+          fieldName="room"
+          labelText="Room"
+          onBlur={(event: any) => setRoom(event.target.value)}
+        >
+          <StyledOption value="enterance">Enterance</StyledOption>
+          <StyledOption value="kitchen">Kitchen</StyledOption>
+          <StyledOption value="bathroom">Bathroom</StyledOption>
+          <StyledOption value="bedroom">Bedroom</StyledOption>
+          <StyledOption value="livingroom">Livingroom</StyledOption>
+          <StyledOption value="addic">Addic</StyledOption>
+          <StyledOption value="basement">Basement</StyledOption>
+          <StyledOption value="nursery">Nursery</StyledOption>
+          <StyledOption value="garden">Garden</StyledOption>
+          <StyledOption value="Terrace">Terrace</StyledOption>
+        </SelectField>
+
             <InputField 
               fieldName="title"
               labelText="Title"
