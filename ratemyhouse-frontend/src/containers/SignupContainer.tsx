@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import { Auth, SignupCredentials } from '../types/auth.types'
 import { signupRequestActionCreator } from '../actions/AuthActionCreator';
 import { connect } from 'react-redux';
+import InputField from '../components/InputField';
+import FlexWrapper from '../components/FlexWrapper';
+import UserInfoSection from '../components/UserInfoSection';
+import FlexBoxColumn from '../components/FlexBoxColumn';
+import ConfirmButton from '../components/ConfirmButton';
 
 interface signupContainerState {
   auth: Auth,
@@ -14,20 +19,33 @@ const SignupForm: React.FC<{signup: Function}> = ({signup}) => {
   const [password, setPassWord] = useState<string|undefined>(undefined);
   return (
     <div>
-    <div>
-      <label htmlFor="email">email</label>
-      <input name="email" id="email" onBlur={(event) => setEmail(event.target.value)}></input>
-    </div>
-    <div>
-      <label htmlFor="email">username</label>
-      <input name="email" id="email" onBlur={(event) => setUserName(event.target.value)}></input>
-    </div>
-    <div>
-      <label htmlFor="password">password</label>
-      <input name="password" id="password"onBlur={(event) => setPassWord(event.target.value)}></input>
-    </div>
-    <input type="submit" value="Submit" onClick={() => { 
-      signup({email, userName, password})}} />
+      <FlexWrapper>
+        <UserInfoSection>
+          <FlexBoxColumn>
+            <InputField 
+              fieldName="email"
+              labelText="E-mail"
+              onBlur={(event: any) => setEmail(event.target.value)}
+              type="email"
+            />
+            <InputField 
+              fieldName="username"
+              labelText="Username"
+              onBlur={(event: any) => setUserName(event.target.value)}
+              type="text"
+            />
+            <InputField 
+              fieldName="password"
+              labelText="Password"
+              onBlur={(event: any) => setPassWord(event.target.value)}
+              type="password"
+            />
+            <ConfirmButton type="submit" value="Submit" onClick={() => { 
+              signup({email, userName, password})}}> Sign up
+              </ConfirmButton>
+          </FlexBoxColumn>
+        </UserInfoSection>
+      </FlexWrapper>
   </div>
   )
 }

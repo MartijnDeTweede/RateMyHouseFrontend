@@ -3,11 +3,12 @@ import {
   USER_FETCH_REQUESTED,
   getUserSuccessActionCreator,
   getUserFailureActionCreator,
-  USER_ISOWNPAGE_REQUESTED,
-  getIsOwnPageSuccessActionCreator,
-  getIsOwnPageFailureActionCreator,
+  USER_UPDATE_REQUESTED,
+  updateUserFailureActionCreator,
+  updateUserSuccessActionCreator,
 } from '../actions/UserActionCreators';
-import { getUser, getIsOwnPage } from '../api/userApi';
+import { getUser, getIsOwnPage, updateUser } from '../api/userApi';
+import { getToken } from '../helpers/tokenhelpers';
 
 export function* getUserSaga(action: any) : any {
   try {
@@ -19,19 +20,25 @@ export function* getUserSaga(action: any) : any {
   }
 }
 
-export function* getisOwnPageSage(action: any) : any {
+export function* updateUserSaga(action: any) : any {
   try {
-    const response = yield call(getIsOwnPage, action.payload);
-    yield put(getIsOwnPageSuccessActionCreator(response.isOwnPage))
+    const token = getToken();
+    const payload = {
+      user: action.user,
+      token,
+    }
+
+    const response = yield call(updateUser, payload);
+    yield put(updateUserSuccessActionCreator(response))
   } catch(e) {
-    yield put(getIsOwnPageFailureActionCreator());
+    yield put(updateUserFailureActionCreator());
   }
 }
 
 export function* userSaga() {
   yield all([
     takeEvery(USER_FETCH_REQUESTED, getUserSaga),
-    takeEvery(USER_ISOWNPAGE_REQUESTED, getisOwnPageSage),
+    takeEvery(USER_UPDATE_REQUESTED, updateUserSaga),
   ]);
 }
 

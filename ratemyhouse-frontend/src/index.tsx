@@ -2,11 +2,15 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 import React from 'react'
+import Header from './components/Header';
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
 import createSagaMiddleware from 'redux-saga';
+
+
+import AppWrapper from './components/AppWrapper';
 
 import rootSaga from './sagas/rootsaga';
 
@@ -16,7 +20,12 @@ sagaMiddleware.run(rootSaga)
 
 render(
   <Provider store={store}>
-    <App />
+        <Header>
+      Text
+    </Header>
+    <AppWrapper>
+      <App />
+    </AppWrapper>
   </Provider>,
   document.getElementById('root')
 )
