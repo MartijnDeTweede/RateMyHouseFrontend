@@ -9,19 +9,9 @@ import {
   SIGNUP_SUCCEEDED,
   SIGNUP_FAILED,
 } from '../actions/AuthActionCreator';
+import { initialAuthState } from '../static/initialAuthState';
 
-const initialAuthState = {
-  auth: {
-    isFetching: false,
-    isLoggedIn: false,
-    userName: undefined,
-    token: undefined,
-  },
-  isFetching: false,
-  message: undefined,
-}
-
-const authReducer = (state=initialAuthState, action) => {
+const authReducer = (state=initialAuthState, action: any) => {
   switch(action.type) {
     case LOGIN_REQUESTED: {
       return {
@@ -39,9 +29,7 @@ const authReducer = (state=initialAuthState, action) => {
     }
     case LOGIN_FAILED: {
       return {
-        ...state,
-        message: action.message,
-        isFetching: action.isFetching,
+        ...initialAuthState,
       };
     }
     case LOGOUT_REQUESTED: {
@@ -64,9 +52,7 @@ const authReducer = (state=initialAuthState, action) => {
     }
     case LOGOUT_FAILED: {
       return {
-        ...state,
-        message: action.message,
-        isFetching: action.isFetching,
+        ...initialAuthState,
       };
     }
     case SIGNUP_REQUESTED: {
@@ -85,9 +71,7 @@ const authReducer = (state=initialAuthState, action) => {
     }
     case SIGNUP_FAILED: {
       return {
-        ...state,
-        message: action.message,
-        isFetching: action.isFetching,
+        ...initialAuthState,
       };
     }
     default:

@@ -20,5 +20,6 @@ export const getFeatureVideosFailureActionCreator = () => {
   return {
     type: FEATURED_VIDEOS_FETCH_FAILED,
     isFetching: false,
+    videos: [],
   };
 }

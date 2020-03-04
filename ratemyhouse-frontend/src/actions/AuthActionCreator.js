@@ -30,6 +30,7 @@ export const loginFailureActionCreator = (message) => {
   return {
     type: LOGIN_FAILED,
     message,
+    auth: {},
     isFetching: false,
   };
 }
@@ -51,6 +52,7 @@ export const logoutSuccessActionCreator = () => {
 export const logoutFailureActionCreator = (message) => {
   return {
     type: LOGOUT_FAILED,
+    auth: {},
     message,
     isFetching: false,
   };
@@ -75,6 +77,7 @@ export const signupSuccessActionCreator = (auth) => {
 export const signupFailureActionCreator = (message) => {
   return {
     type: SIGNUP_FAILED,
+    auth: {},
     message,
     isFetching: false,
   };

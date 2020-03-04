@@ -1,12 +1,24 @@
 import { VideoContainerState } from "../types/video.types";
-import { VIDEOS_FETCH_REQUESTED, VIDEOS_FETCH_SUCCEEDED, VIDEOS_FETCH_FAILED, VIDEOS_UPDATE_REQUESTED, VIDEOS_UPDATE_SUCCEEDED, VIDEOS_UPDATE_FAILED, VIDEOS_ADD_REQUESTED, VIDEOS_ADD_SUCCEEDED, VIDEOS_ADD_FAILED, VIDEOS_DELETE_REQUESTED, VIDEOS_DELETE_SUCCEEDED, VIDEOS_DELETE_FAILED, RATE_VIDEO_FAILED, RATE_VIDEO_SUCCEEDED, RATE_VIDEO_REQUESTED } from "../actions/VideoActionCreator";
+import { 
+  VIDEOS_FETCH_REQUESTED,
+  VIDEOS_FETCH_SUCCEEDED,
+  VIDEOS_FETCH_FAILED,
+  VIDEOS_UPDATE_REQUESTED,
+  VIDEOS_UPDATE_SUCCEEDED,
+  VIDEOS_UPDATE_FAILED,
+  VIDEOS_ADD_REQUESTED,
+  VIDEOS_ADD_SUCCEEDED,
+  VIDEOS_ADD_FAILED,
+  VIDEOS_DELETE_REQUESTED,
+  VIDEOS_DELETE_SUCCEEDED,
+  VIDEOS_DELETE_FAILED,
+  RATE_VIDEO_FAILED,
+  RATE_VIDEO_SUCCEEDED,
+  RATE_VIDEO_REQUESTED,
+} from "../actions/VideoActionCreator";
+import { intialVideosstate } from "../static/initalVideoState";
 
-const intialVideosstate: VideoContainerState = {
-videos: [],
-isFetching: false,
-}
-
-const videoReducer = (state=intialVideosstate, action: any) => {
+const videoReducer = (state: VideoContainerState =intialVideosstate, action: any) => {
   switch(action.type) {
     case VIDEOS_FETCH_REQUESTED : {
       return {
@@ -23,9 +35,7 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     }
     case VIDEOS_FETCH_FAILED: {
       return {
-        ...state,
-        videos: [],
-        isFetching: false,
+        ...intialVideosstate,
       };
     }
     case VIDEOS_UPDATE_REQUESTED : {
@@ -43,9 +53,7 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     }
     case VIDEOS_UPDATE_FAILED: {
       return {
-        ...state,
-        videos: [],
-        isFetching: false,
+        ...intialVideosstate,
       };
     }
     case VIDEOS_ADD_REQUESTED : {
@@ -63,9 +71,7 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     }
     case VIDEOS_ADD_FAILED: {
       return {
-        ...state,
-        videos: [],
-        isFetching: false,
+        ...intialVideosstate,
       };
     }
     case VIDEOS_DELETE_REQUESTED : {
@@ -83,12 +89,9 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     }
     case VIDEOS_DELETE_FAILED: {
       return {
-        ...state,
-        videos: [],
-        isFetching: false,
+        ...intialVideosstate,
       };
     }
-    // here
     case RATE_VIDEO_REQUESTED : {
       return {
         ...state,
@@ -104,9 +107,7 @@ const videoReducer = (state=intialVideosstate, action: any) => {
     }
     case RATE_VIDEO_FAILED: {
       return {
-        ...state,
-        videos: [],
-        isFetching: false,
+        ...intialVideosstate,
       };
     }
     default:

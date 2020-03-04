@@ -6,29 +6,7 @@ import {
   USER_UPDATE_SUCCEEDED,
   USER_UPDATE_FAILED,
 } from '../actions/UserActionCreators';
-import { UserState } from '../containers/UserContainer';
-
-
-const initialUserState: UserState = {
-  user: {
-    userName: '',
-    objectForSale: false,
-    _id: '',
-    contactInfo: {
-      email: '',
-      phoneNumber: '',
-    },
-    location: {
-      street: '',
-      city: '',
-      houseNumber: 0,
-      houseNumberAddition: '',
-      county: '',
-      postalCode: '',
-    }
-  },
-  isFetching: false,
-};
+import { initialUserState } from '../static/initialUserState';
 
 const userReducer = (state=initialUserState, action: any) => {
   switch(action.type) {
@@ -47,8 +25,7 @@ const userReducer = (state=initialUserState, action: any) => {
     }
     case USER_FETCH_FAILED: {
       return {
-        ...state,
-        isFetching: false,
+        ...initialUserState,
       };
     }
     case USER_UPDATE_REQUESTED: {
@@ -66,8 +43,7 @@ const userReducer = (state=initialUserState, action: any) => {
     }
     case USER_UPDATE_FAILED: {
       return {
-        ...state,
-        isFetching: false,
+        ...initialUserState,
       };
     }
     default:
