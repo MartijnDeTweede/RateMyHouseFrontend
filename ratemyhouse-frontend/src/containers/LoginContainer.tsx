@@ -18,7 +18,6 @@ interface LoginContainerState {
 const LoginForm: React.FC<{login: Function}> = ({login}) => {
   const [email, setEmail] = useState<string|undefined>(undefined);
   const [password, setPassWord] = useState<string|undefined>(undefined);
-
   return(
     <FlexBoxRow>
       <BlockWrapper>
@@ -42,7 +41,6 @@ const LoginForm: React.FC<{login: Function}> = ({login}) => {
         </FlexBoxColumn>
       </BlockWrapper>      
     </FlexBoxRow>
-
   )
 }
 

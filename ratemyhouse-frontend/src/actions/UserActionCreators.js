@@ -24,10 +24,11 @@ export const getUserSuccessActionCreator = (user) => {
   };
 }
 
-export const getUserFailureActionCreator = () => {
+export const getUserFailureActionCreator = (message) => {
   return {
     type: USER_FETCH_FAILED,
     user: initialUserState,
+    message: message,
     isFetching: false,
   };
 }
@@ -48,10 +49,11 @@ export const updateUserSuccessActionCreator = (user) => {
   };
 }
 
-export const updateUserFailureActionCreator = () => {
+export const updateUserFailureActionCreator = (message) => {
   return {
     type: USER_UPDATE_FAILED,
     user: initialUserState,
+    message: message,
     isFetching: false,
   };
 }

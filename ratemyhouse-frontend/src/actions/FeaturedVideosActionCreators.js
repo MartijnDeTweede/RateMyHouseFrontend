@@ -16,10 +16,11 @@ export const getFeatureVideosSuccessActionCreator = (videos) => {
     isFetching: false,
   };
 }
-export const getFeatureVideosFailureActionCreator = () => {
+export const getFeatureVideosFailureActionCreator = (message) => {
   return {
     type: FEATURED_VIDEOS_FETCH_FAILED,
     isFetching: false,
+    message: message,
     videos: [],
   };
 }

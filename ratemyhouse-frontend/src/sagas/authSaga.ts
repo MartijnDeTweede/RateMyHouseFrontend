@@ -11,10 +11,7 @@ import {
   signupFailureActionCreator,
 } from '../actions/AuthActionCreator'
 import { login, logout, signup } from '../api/authApi';
-
-const writeCredentialsToSessionStorage = (credentials: {token: string, userName: string}) => {
-  sessionStorage.setItem('rateMyHouseAuth', JSON.stringify(credentials));
-}
+import { writeCredentialsToSessionStorage } from '../helpers/localStorageHelpers';
 
 export function* loginSaga(action: any) : any {
   try {
@@ -26,7 +23,7 @@ export function* loginSaga(action: any) : any {
       yield put(loginSuccessActionCreator(response))
     }
   } catch(e) {
-    yield put(loginFailureActionCreator());
+    yield put(loginFailureActionCreator(e.message));
   }
 }
 
@@ -39,7 +36,7 @@ export function* logoutSaga() : any {
       yield put(logoutSuccessActionCreator())
     }
   } catch(e) {
-    yield put(logoutFailureActionCreator());
+    yield put(logoutFailureActionCreator(e.message));
   }
 }
 
@@ -53,7 +50,7 @@ export function* signupSaga(action: any) : any {
       yield put(signupSuccessActionCreator(response))
     }
   } catch(e) {
-    yield put(signupFailureActionCreator());
+    yield put(signupFailureActionCreator(e.message));
   }
 }
 

@@ -5,16 +5,7 @@ import { FeaturedVideosState } from '../types/featuredVideos.types';
 import { getFeatureVideosRequestActionCreator } from '../actions/FeaturedVideosActionCreators';
 import { Video } from '../types/video.types';
 import HomePageVideoBlock from '../components/HomePageVideoBlock';
-import styled from 'styled-components';
-
-
-const Wrapper = styled.section`
-display: flex;
-flex-wrap: wrap ;
-justify-content: center;
-align-items: flex-start;
-align-content: stretch;
-`
+import SmallVideoBlockWrapper from '../components/SmallVideoBlockWrapper';
 
 const HomeContainer: React.FC<{
   getFeaturedVideos: Function,
@@ -23,16 +14,15 @@ const HomeContainer: React.FC<{
   getFeaturedVideos,
   featuredVideos,
 }) => {
-
   useEffect(() => {
     getFeaturedVideos();
   }, []);
   return(
-      <Wrapper>
+      <SmallVideoBlockWrapper>
         {featuredVideos.map((video) => (
           <HomePageVideoBlock video={video} />
         ))}
-      </Wrapper>
+      </SmallVideoBlockWrapper>
       )
 } 
 

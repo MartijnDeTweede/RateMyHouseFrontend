@@ -32,10 +32,11 @@ export const getVideosSuccessActionCreator = (videos) => {
     isFetching: false,
   };
 }
-export const getVideosFailureActionCreator = () => {
+export const getVideosFailureActionCreator = (message) => {
   return {
     type: VIDEOS_FETCH_FAILED,
     isFetching: false,
+    message: message,
   };
 }
 export const updateVideoRequestActionCreator = (video) => {
@@ -52,10 +53,11 @@ export const updateVideoSuccessActionCreator = (videos) => {
     isFetching: false,
   };
 }
-export const updateVideoFailureActionCreator = () => {
+export const updateVideoFailureActionCreator = (message) => {
   return {
     type: VIDEOS_UPDATE_FAILED,
     isFetching: false,
+    message: message,
   };
 }
 export const addVideosRequestActionCreator = (payload) => {
@@ -72,10 +74,11 @@ export const addVideosSuccessActionCreator = (videos) => {
     isFetching: false,
   };
 }
-export const addVideosFailureActionCreator = () => {
+export const addVideosFailureActionCreator = (message) => {
   return {
     type: VIDEOS_ADD_FAILED,
     isFetching: false,
+    message: message,
   };
 }
 export const deleteVideoRequestActionCreator = (video) => {
@@ -92,10 +95,11 @@ export const deleteVideoSuccessActionCreator = (videos) => {
     isFetching: false,
   };
 }
-export const deleteVideoFailureActionCreator = () => {
+export const deleteVideoFailureActionCreator = (message) => {
   return {
     type: VIDEOS_DELETE_FAILED,
     isFetching: false,
+    message: message,
   };
 }
 
@@ -113,9 +117,10 @@ export const rateVideoSuccessActionCreator = (videos) => {
     isFetching: false,
   };
 }
-export const rateVideoFailureActionCreator = () => {
+export const rateVideoFailureActionCreator = (message) => {
   return {
     type: RATE_VIDEO_FAILED,
     isFetching: false,
+    message: message,
   };
 }
