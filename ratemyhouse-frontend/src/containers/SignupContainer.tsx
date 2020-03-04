@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { Auth, SignupCredentials } from '../types/auth.types'
 import { signupRequestActionCreator } from '../actions/AuthActionCreator';
 import { connect } from 'react-redux';
-import InputField from '../components/InputField';
-import FlexBoxRow from '../components/FlexBoxRow';
-import BlockWrapper from '../components/BlockWrapper';
-import FlexBoxColumn from '../components/FlexBoxColumn';
-import ConfirmButton from '../components/ConfirmButton';
+import InputField from '../components/userInterActionComponents/InputField';
+import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
+import InformationBlock from '../components/stylers/InformationBlock';
+import FlexBoxColumnHolder from '../components/stylers/FlexBoxColumnHolder';
+import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
 
 interface signupContainerState {
   auth: Auth,
@@ -19,9 +19,9 @@ const SignupForm: React.FC<{signup: Function}> = ({signup}) => {
   const [password, setPassWord] = useState<string|undefined>(undefined);
   return (
     <div>
-      <FlexBoxRow>
-        <BlockWrapper>
-          <FlexBoxColumn>
+      <FlexBoxRowHolder>
+        <InformationBlock>
+          <FlexBoxColumnHolder>
             <InputField 
               fieldName="email"
               labelText="E-mail"
@@ -43,9 +43,9 @@ const SignupForm: React.FC<{signup: Function}> = ({signup}) => {
             <ConfirmButton type="submit" value="Submit" onClick={() => { 
               signup({email, userName, password})}}> Sign up
               </ConfirmButton>
-          </FlexBoxColumn>
-        </BlockWrapper>
-      </FlexBoxRow>
+          </FlexBoxColumnHolder>
+        </InformationBlock>
+      </FlexBoxRowHolder>
   </div>
   )
 }

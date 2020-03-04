@@ -1,6 +1,6 @@
 import React, { ReactChild } from 'react';
-import FlexBoxColumn from './FlexBoxColumn';
-import Label from './Label';
+import FlexBoxColumnHolder from '../stylers/FlexBoxColumnHolder';
+import Label from '../displayComponents/Label';
 import Select from './Select';
 
 const SelectField: React.FC<{
@@ -15,10 +15,10 @@ const SelectField: React.FC<{
   children,
 }) => {
   return(
-    <FlexBoxColumn>
+    <FlexBoxColumnHolder>
     <Label htmlFor={fieldName}>{labelText}</Label>
     <Select name={fieldName} id={fieldName} onBlur={(event) => onBlur(event)}>{children}</Select>
-  </FlexBoxColumn>
+  </FlexBoxColumnHolder>
   );
 }
 

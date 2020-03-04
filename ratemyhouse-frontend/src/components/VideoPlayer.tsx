@@ -1,13 +1,13 @@
 import React from 'react';
-import VideoPlayerWrapper from './VideoPlayerWrapper';
-import VideoStyled from './VideoStyled';
+import VideoPlayerHolder from './stylers/VideoPlayerHolder';
+import VideoLarge from './userInterActionComponents/VideoLarge';
 
 const VideoPlayer: React.FC<{videoSrc: string, thumbNailSrc: string}> = ({videoSrc, thumbNailSrc}) => (
-  <VideoPlayerWrapper>
-    <VideoStyled width="568" height="320" controls preload="none" poster={thumbNailSrc}>
+  <VideoPlayerHolder>
+    <VideoLarge width="568" height="320" controls preload="none" poster={thumbNailSrc}>
       <source src={videoSrc} type="video/mp4" />
-    </VideoStyled>
-  </VideoPlayerWrapper>
+    </VideoLarge>
+  </VideoPlayerHolder>
 );
 
 export default VideoPlayer;

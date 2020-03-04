@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getIsOwnPageRequestActionCreator } from '../actions/UserPageActionCreators';
 import VideoContainer from '../containers/VideoContainer';
-import FloatLeftWrapper from '../components/FloatLeftWrapper';
+import FloatLeftHolder from '../components/stylers/FloatLeftHolder';
 
 const UserPage = ({
   isOwnPage,
@@ -19,9 +19,9 @@ const UserPage = ({
   return(
     <div>
       <div>
-      <FloatLeftWrapper>
+      <FloatLeftHolder>
           <UserContainer isOwnPage={isOwnPage} userName={userName} />
-        </FloatLeftWrapper>
+        </FloatLeftHolder>
         <VideoContainer isOwnPage={isOwnPage} userName={userName} />
       </div>
 

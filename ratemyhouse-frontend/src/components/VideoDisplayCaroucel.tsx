@@ -2,7 +2,7 @@ import React  from 'react';
 import { Video } from '../types/video.types';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import VideoDisplay from './VideoDisplay';
+import VideoDisplay from './displayComponents/VideoDisplay';
 import caroucelConfig from '../static/caroucelConfig';
 
 const VideoDisplayCaroucel: React.FC<{

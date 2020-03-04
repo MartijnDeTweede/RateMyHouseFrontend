@@ -1,6 +1,6 @@
 import React from 'react';
-import FlexBoxColumn from './FlexBoxColumn';
-import Label from './Label';
+import FlexBoxColumnHolder from '../stylers/FlexBoxColumnHolder';
+import Label from '../displayComponents/Label';
 import Input from './Input';
 
 const InputField: React.FC<{
@@ -17,7 +17,7 @@ const InputField: React.FC<{
   defaultValue
 }) => {
   return(
-    <FlexBoxColumn>
+    <FlexBoxColumnHolder>
     <Label htmlFor={fieldName}>{labelText}</Label>
     <Input
       defaultValue={defaultValue}
@@ -25,7 +25,7 @@ const InputField: React.FC<{
       id={fieldName}
       onBlur={(event) => onBlur(event)}>
     </Input>
-  </FlexBoxColumn>
+  </FlexBoxColumnHolder>
   )
 }
 

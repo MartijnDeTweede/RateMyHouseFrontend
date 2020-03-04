@@ -9,8 +9,7 @@ import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
 import createSagaMiddleware from 'redux-saga';
 
-
-import AppWrapper from './components/AppWrapper';
+import AppWrapper from './components/stylers/AppHolder';
 
 import rootSaga from './sagas/rootsaga';
 
@@ -20,9 +19,7 @@ sagaMiddleware.run(rootSaga)
 
 render(
   <Provider store={store}>
-        <Header>
-      Text
-    </Header>
+    <Header />
     <AppWrapper>
       <App />
     </AppWrapper>

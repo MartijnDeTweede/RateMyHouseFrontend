@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getUserRequestActionCreator, updateUserRequestActionCreator } from '../actions/UserActionCreators';
 import { User } from '../types/user.types';
-import UserDisplay from '../components/UserDisplay';
-import UserEditForm from '../components/UserEditForm';
-import FlexBoxRow from '../components/FlexBoxRow';
+import UserDisplay from '../components/displayComponents/UserDisplay';
+import UserEditForm from '../components/forms/UserEditForm';
+import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
 
 export interface UserState {
   user: User,
@@ -17,7 +17,7 @@ const UserHolder: React.FC<{
     updateUser: Function
   }> = ({user, isOwnPage, updateUser}) => {
   return (
-    <FlexBoxRow>
+    <FlexBoxRowHolder>
       {
           isOwnPage && user ? 
             <UserEditForm user={user} sendForm={(updatedUserInfo: User) => {
@@ -25,7 +25,7 @@ const UserHolder: React.FC<{
             }} /> :
             <UserDisplay user={user} />
       }
-    </FlexBoxRow>
+    </FlexBoxRowHolder>
   )
 }
 

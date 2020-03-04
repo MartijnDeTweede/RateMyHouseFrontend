@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { device } from '../static/devices';
+import { device } from '../../static/devices';
 
-const BlockWrapper = styled.section`
+const InformationBlock = styled.section`
 margin: 20px 10px;
 padding: 15px;
 border:2px solid #32a852;
@@ -21,4 +21,4 @@ color: #292929;
   max-width: 50vw;
 }`;
 
-export default BlockWrapper;
+export default InformationBlock;

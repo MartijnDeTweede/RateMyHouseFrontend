@@ -1,7 +1,7 @@
 import React  from 'react';
 import { Video } from '../types/video.types';
-import VideoAddForm from './VideoAddForm';
-import VideoEditForm from './VideoEditForm';
+import VideoAddForm from './forms/VideoAddForm';
+import VideoEditForm from './forms/VideoEditForm';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import caroucelConfig from '../static/caroucelConfig';

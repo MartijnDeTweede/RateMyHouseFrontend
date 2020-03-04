@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { device } from '../static/devices';
+import { device } from '../../static/devices';
 
-const VideoFormCart = styled.section`
+const VideoFormHolder = styled.section`
 display: flex;
 flex-wrap: wrap;
 margin-bottom: 10px;
@@ -14,4 +14,4 @@ margin-bottom: 10px;
   margin-left: 140px;
 }`;
 
-export default VideoFormCart;
+export default VideoFormHolder;

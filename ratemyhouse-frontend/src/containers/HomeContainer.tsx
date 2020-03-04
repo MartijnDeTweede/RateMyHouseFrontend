@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { FeaturedVideosState } from '../types/featuredVideos.types';
 import { getFeatureVideosRequestActionCreator } from '../actions/FeaturedVideosActionCreators';
 import { Video } from '../types/video.types';
-import HomePageVideoBlock from '../components/HomePageVideoBlock';
-import SmallVideoBlockWrapper from '../components/SmallVideoBlockWrapper';
+import HomePageVideoHolder from '../components/stylers/HomePageVideoHolder';
+import SmallVideoBlockHolder from '../components/stylers/SmallVideoBlockHolder';
 
 const HomeContainer: React.FC<{
   getFeaturedVideos: Function,
@@ -18,11 +18,11 @@ const HomeContainer: React.FC<{
     getFeaturedVideos();
   }, []);
   return(
-      <SmallVideoBlockWrapper>
+      <SmallVideoBlockHolder>
         {featuredVideos.map((video) => (
-          <HomePageVideoBlock video={video} />
+          <HomePageVideoHolder video={video} />
         ))}
-      </SmallVideoBlockWrapper>
+      </SmallVideoBlockHolder>
       )
 } 
 

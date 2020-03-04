@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const AppWrapper = styled.section`
+const AppHolder = styled.section`
   color: white;
   height: 100vh;
 `;
 
-export default AppWrapper;
+export default AppHolder;

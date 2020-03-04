@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import { device } from '../static/devices';
+import { device } from '../../static/devices';
 
 const HeaderLink = styled.a`
 margin-top: 10px;

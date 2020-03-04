@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FlexBoxColumn = styled.section`
+const FlexBoxColumnHolder = styled.section`
 display: flex;
 flex-wrap: "wrap"}
 align-content: center;
@@ -9,4 +9,4 @@ flex-direction: column;
 margin-top: 5px;
 `
 
-export default FlexBoxColumn;
+export default FlexBoxColumnHolder;

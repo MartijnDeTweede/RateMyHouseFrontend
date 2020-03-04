@@ -3,11 +3,11 @@ import { loginRequestActionCreator, logoutRequestActionCreator } from '../action
 import { connect } from 'react-redux';
 import { LoginCredentials } from '../types/auth.types';
 import { Auth } from '../types/auth.types';
-import InputField from '../components/InputField';
-import ConfirmButton from '../components/ConfirmButton';
-import BlockWrapper from '../components/BlockWrapper';
-import FlexBoxRow from '../components/FlexBoxRow';
-import FlexBoxColumn from '../components/FlexBoxColumn';
+import InputField from '../components/userInterActionComponents/InputField';
+import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
+import InformationBlock from '../components/stylers/InformationBlock';
+import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
+import FlexBoxColumn from '../components/stylers/FlexBoxColumnHolder';
 import Message from '../components/Message';
 
 interface LoginContainerState {
@@ -19,8 +19,8 @@ const LoginForm: React.FC<{login: Function}> = ({login}) => {
   const [email, setEmail] = useState<string|undefined>(undefined);
   const [password, setPassWord] = useState<string|undefined>(undefined);
   return(
-    <FlexBoxRow>
-      <BlockWrapper>
+    <FlexBoxRowHolder>
+      <InformationBlock>
         <FlexBoxColumn>
           <div>
           <InputField 
@@ -39,8 +39,8 @@ const LoginForm: React.FC<{login: Function}> = ({login}) => {
         <ConfirmButton type="submit" value="Submit" onClick={() => { 
           login({email, password})}}>Log in</ConfirmButton>
         </FlexBoxColumn>
-      </BlockWrapper>      
-    </FlexBoxRow>
+      </InformationBlock>      
+    </FlexBoxRowHolder>
   )
 }
 
@@ -52,15 +52,15 @@ const LogoutForm: React.FC<{
   logout
 }) => {
   return(
-    <FlexBoxRow>
-    <BlockWrapper>
+    <FlexBoxRowHolder>
+    <InformationBlock>
       <FlexBoxColumn>
         <div> Welkom {userName}</div>
       <ConfirmButton type="submit" value="Submit" onClick={() => { 
         logout()}}>Log out</ConfirmButton>
       </FlexBoxColumn>
-    </BlockWrapper>      
-  </FlexBoxRow>
+    </InformationBlock>      
+  </FlexBoxRowHolder>
   )
 }
 

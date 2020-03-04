@@ -1,7 +1,7 @@
 import React from 'react';
-import FlexBoxRow from './FlexBoxRow';
-import FlexBoxColumn from './FlexBoxColumn';
-import ErrorInfoSection from './ErrorInfoSection';
+import FlexBoxRowHolder from './stylers/FlexBoxRowHolder';
+import FlexBoxColumnHolder from './stylers/FlexBoxColumnHolder';
+import ErrorInfo from './stylers/ErrorInfo';
 
 const Message: React.FC<{
   message: string;
@@ -9,13 +9,13 @@ const Message: React.FC<{
   message,
 }) => {
   return(
-    <FlexBoxRow>
-    <ErrorInfoSection>
-      <FlexBoxColumn>
+  <FlexBoxRowHolder>
+    <ErrorInfo>
+      <FlexBoxColumnHolder>
       <article>{message}</article>
-      </FlexBoxColumn>
-    </ErrorInfoSection>      
-  </FlexBoxRow>
+      </FlexBoxColumnHolder>
+    </ErrorInfo>      
+  </FlexBoxRowHolder>
   )
 }
 

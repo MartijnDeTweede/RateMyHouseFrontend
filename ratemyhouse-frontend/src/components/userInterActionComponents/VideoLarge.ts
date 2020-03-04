@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { device } from '../static/devices';
+import { device } from '../../static/devices';
 
-const VideoStyled = styled.video`
+const VideoLarge = styled.video`
 width: 90vw;
 height: 50vw;
 border-radius: 5px;
@@ -11,4 +11,4 @@ border-radius: 5px;
   height: 320px;
 }`;
 
-export default VideoStyled;
+export default VideoLarge;

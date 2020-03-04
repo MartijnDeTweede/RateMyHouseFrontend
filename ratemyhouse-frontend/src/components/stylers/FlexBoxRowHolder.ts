@@ -8,5 +8,4 @@ justify-content: center;
 flex-direction: row;
 `
 
-
 export default FlexBoxRow;

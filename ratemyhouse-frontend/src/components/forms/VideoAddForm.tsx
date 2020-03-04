@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import InputField from './InputField';
-import BlockWrapper from './BlockWrapper';
-import VideoFormCart from './VideoFormCart';
-import ConfirmButton from './ConfirmButton';
+import InputField from '../userInterActionComponents/InputField';
+import InformationBlock from '../stylers/InformationBlock';
+import VideoFormHolder from '../stylers/VideoFormHolder';
+import ConfirmButton from '../userInterActionComponents/ConfirmButton';
 import styled from 'styled-components';
-import FlexBoxRow from './FlexBoxRow';
-import SelectField from './SelectField';
-import Label from './Label';
-import FlexBoxColumn from './FlexBoxColumn';
-import roomOptions from '../static/roomOptions';
+import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
+import SelectField from '../userInterActionComponents/SelectField';
+import Label from '../displayComponents/Label';
+import FlexBoxColumnHolder from '../stylers/FlexBoxColumnHolder';
+import roomOptions from '../../static/roomOptions';
 
 const ExtendedStyleslabel = styled(Label)`
 margin: 10px 0 0 10px;`;
@@ -25,18 +25,18 @@ const VideoAddForm: React.FC<{
   const [videoFile, setvideoFile] = useState<File|null>(null);
   const [thumbnailFile, setThumbnailFile] = useState<File|null>(null);
   return(
-    <VideoFormCart>
-      <BlockWrapper>
-        <FlexBoxColumn>
+    <VideoFormHolder>
+      <InformationBlock>
+        <FlexBoxColumnHolder>
           <ExtendedStyleslabel>Upload Video</ExtendedStyleslabel>
           <input type="file" id="inputFile_video" name="video" onChange={(event) => event.target.files && setvideoFile(event.target.files[0])}/>
 
           <ExtendedStyleslabel>Upload Thumbnail</ExtendedStyleslabel>
           <input type="file" id="inputFile_thumbail" name="video" onChange={(event) => event.target.files && setThumbnailFile(event.target.files[0])} />
  
-        </FlexBoxColumn>
-      </BlockWrapper>
-      <BlockWrapper>
+        </FlexBoxColumnHolder>
+      </InformationBlock>
+      <InformationBlock>
         <SelectField
           fieldName="room"
           labelText="Room"
@@ -57,7 +57,7 @@ const VideoAddForm: React.FC<{
           type="text"
           defaultValue={title}
         />
-        <FlexBoxRow>
+        <FlexBoxRowHolder>
           <ConfirmButton onClick={() => addVideo({
             userName: userName,
             video: {
@@ -68,9 +68,9 @@ const VideoAddForm: React.FC<{
             videoFile: videoFile,
             thumbnailFile: thumbnailFile,
           })}>Add video</ConfirmButton>       
-        </FlexBoxRow>
-    </BlockWrapper>
-    </VideoFormCart>
+        </FlexBoxRowHolder>
+    </InformationBlock>
+    </VideoFormHolder>
   )
 };
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const HeaderWrapper = styled.header`
+const HeaderHolder = styled.header`
 width: 100%;
 height: 50px;
 background-color: white;
@@ -21,4 +21,4 @@ animation: Header-fade-in 1 0.5s linear;
   }
 }`;
 
-export default HeaderWrapper;
+export default HeaderHolder;

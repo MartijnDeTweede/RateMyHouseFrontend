@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Video } from '../types/video.types';
-import InputField from './InputField';
-import BlockWrapper from './BlockWrapper';
-import VideoFormCart from './VideoFormCart';
-import VideoPlayerWrapper from './VideoPlayerWrapper';
-import ConfirmButton from './ConfirmButton';
-import FlexBoxRow from './FlexBoxRow';
+import { Video } from '../../types/video.types';
+import InputField from '../userInterActionComponents/InputField';
+import InformationBlock from '../stylers/InformationBlock';
+import VideoFormHolder from '../stylers/VideoFormHolder';
+import VideoPlayerHolder from '../stylers/VideoPlayerHolder';
+import ConfirmButton from '../userInterActionComponents/ConfirmButton';
+import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
 import StarRatingComponent from 'react-star-rating-component';
-import FlexBoxColumn from './FlexBoxColumn';
-import VideoPlayer from './VideoPlayer';
-import RatingSection from './RatingSection';
-import SelectField from './SelectField';
-import roomOptions from '../static/roomOptions';
+import FlexBoxColumnHolder from '../stylers/FlexBoxColumnHolder';
+import VideoPlayer from '../VideoPlayer';
+import RatingHolder from '../stylers/RatingHolder';
+import SelectField from '../userInterActionComponents/SelectField';
+import roomOptions from '../../static/roomOptions';
 
 const VideoEditForm: React.FC<{
   video: Video,
@@ -28,12 +28,12 @@ const VideoEditForm: React.FC<{
     const { videoSrc, ratingPoints, nrOfRates, thumbNailSrc } = video;
 
   return(
-    <VideoFormCart>
-      <VideoPlayerWrapper>
+    <VideoFormHolder>
+      <VideoPlayerHolder>
       { videoSrc && thumbNailSrc && < VideoPlayer videoSrc={videoSrc} thumbNailSrc={thumbNailSrc} />} 
-      </VideoPlayerWrapper>
-        <BlockWrapper>
-          <FlexBoxColumn >
+      </VideoPlayerHolder>
+        <InformationBlock>
+          <FlexBoxColumnHolder >
             <SelectField
               fieldName="room"
               labelText="Room"
@@ -52,9 +52,9 @@ const VideoEditForm: React.FC<{
               type="text"
               defaultValue={title}
             />            
-          </FlexBoxColumn>
-          <FlexBoxRow>
-            <RatingSection>
+          </FlexBoxColumnHolder>
+          <FlexBoxRowHolder>
+            <RatingHolder>
               {
                 typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' &&
                 <StarRatingComponent 
@@ -67,18 +67,18 @@ const VideoEditForm: React.FC<{
               <article>
                 {nrOfRates} Ratings
               </article>
-            </RatingSection>
-          </FlexBoxRow>
-          <FlexBoxRow>
+            </RatingHolder>
+          </FlexBoxRowHolder>
+          <FlexBoxRowHolder>
             <ConfirmButton onClick={() => updateVideo({
               ...video,
               title,
               room,
             })}>Update video</ConfirmButton>
             <ConfirmButton onClick={() => deleteVideo(video)}>Delete video</ConfirmButton>
-          </FlexBoxRow>
-      </BlockWrapper>
-    </VideoFormCart>
+          </FlexBoxRowHolder>
+      </InformationBlock>
+    </VideoFormHolder>
   )
 };
 
