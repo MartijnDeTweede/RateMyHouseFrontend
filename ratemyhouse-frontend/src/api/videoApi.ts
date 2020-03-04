@@ -30,7 +30,6 @@ return result;
 }
 
 export const updateVideo = ({video, token} : {video: Video, token: string}) => {
-
   const url = `${baseUrl}/video/${video._id}/updateVideo`;
 
   const result =  fetch(url, {
@@ -52,7 +51,6 @@ return result;
 }
 
 export const addVideo = ({video, userName, token} : {video: Video, userName: string, token: string}) => {
-  
   const url = `${baseUrl}/user/${userName}/addVideo`;
 
   const result =  fetch(url, {
@@ -75,7 +73,7 @@ return result;
 
 export const addVideoFile = ({videoFile, token} : {videoFile: File,  token: string}) => {
   const url = `${baseUrl}/video/uploadVideoFile`;
-  let formData = new FormData();
+  const formData = new FormData();
   formData.append('video', videoFile, videoFile.name);
   const result =  fetch(url, {
     method: 'POST',
@@ -95,9 +93,8 @@ return result;
 }
 
 export const addThumbnailFile = ({thumbnailFile, token} : {thumbnailFile: File,  token: string}) => {
-  console.log('thumbnailfile: ', thumbnailFile);
   const url = `${baseUrl}/video/uploadThumbnailFile`;
-  let formData = new FormData();
+  const formData = new FormData();
   formData.append('thumbnail', thumbnailFile, thumbnailFile.name);
   const result =  fetch(url, {
     method: 'POST',
@@ -117,7 +114,6 @@ return result;
 }
 
 export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
-  
   const url = `${baseUrl}/video/${video._id}/deleteVideo`;
 
   const result =  fetch(url, {
@@ -158,10 +154,11 @@ export const rateVideo = ({videoId, token, rating} : {videoId: String, token: st
 .then(response => { 
   
 if(response.status !== 200) {
-  throw({});
+  const parsedContent = response.json();
+  throw({ message: parsedContent});
 }
   
-  return response.json()
+  return response.json();
 
 });
 return result;
