@@ -7,7 +7,7 @@ import {
   updateUserFailureActionCreator,
   updateUserSuccessActionCreator,
 } from '../actions/UserActionCreators';
-import { getUser, getIsOwnPage, updateUser } from '../api/userApi';
+import { getUser, updateUser } from '../api/userApi';
 import { getToken } from '../helpers/tokenhelpers';
 
 export function* getUserSaga(action: any) : any {

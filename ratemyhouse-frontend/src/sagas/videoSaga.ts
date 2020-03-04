@@ -32,10 +32,7 @@ export function* updateVideosSaga(action: any) : any {
 export function* addVideosSaga(action: any) : any {
   try {
     const token = getToken();
-
-    console.log('action.payload: ', action.payload);
     const videoFileResponse = yield call(addVideoFile, {videoFile: action.payload.videoFile, token});
-
     const thumbNailFileResponse = yield call(addThumbnailFile, {thumbnailFile: action.payload.thumbnailFile, token});
 
     const videoPayload = {
@@ -87,7 +84,6 @@ export function* rateVideosSaga(action: any) : any {
 
 export function* getFeaturedVideosSaga(action: any) : any {
   try {
-    const userName = action.userName;
     const response = yield call(getFeaturedVideos);
     yield put(getFeatureVideosSuccessActionCreator(response))
   } catch(e) {

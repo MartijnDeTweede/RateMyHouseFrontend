@@ -2,10 +2,10 @@ import React from 'react';
 import VideoPlayerWrapper from './VideoPlayerWrapper';
 import VideoStyled from './VideoStyled';
 
-const VideoPlayer: React.FC<{src: string}> = ({src}) => (
+const VideoPlayer: React.FC<{videoSrc: string, thumbNailSrc: string}> = ({videoSrc, thumbNailSrc}) => (
   <VideoPlayerWrapper>
-    <VideoStyled width="568" height="320" controls preload="metadata">
-      <source src={`${src}#t=1`} type="video/mp4" />
+    <VideoStyled width="568" height="320" controls preload="none" poster={thumbNailSrc}>
+      <source src={videoSrc} type="video/mp4" />
     </VideoStyled>
   </VideoPlayerWrapper>
 );

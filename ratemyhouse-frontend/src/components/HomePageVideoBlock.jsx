@@ -71,6 +71,7 @@ class HomePageVideoBlock extends React.Component {
         videoSrc,
         title,
         owner,
+        thumbNailSrc,
       }
   
     } = this.props;
@@ -84,8 +85,8 @@ class HomePageVideoBlock extends React.Component {
       </LinkWrapper>
 
       <StyledBlock animation={animation}>
-        <VideoStyled controls preload="metadata">
-          <source src={`${videoSrc}#t=1`} type="video/mp4" />
+        <VideoStyled controls preload="none" poster={thumbNailSrc}>
+          <source src={videoSrc} type="video/mp4" />
         </VideoStyled>
       </StyledBlock>
       </div>

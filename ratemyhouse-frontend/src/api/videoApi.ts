@@ -157,7 +157,7 @@ export const rateVideo = ({videoId, token, rating} : {videoId: String, token: st
 })
 .then(response => { 
   
-if(response.status != 200) {
+if(response.status !== 200) {
   throw({});
 }
   

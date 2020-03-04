@@ -4,7 +4,6 @@ import UserInfoSection from './UserInfoSection';
 import FlexWrapper from './FlexWrapper';
 import VideoFormCart from './VideoFormCart';
 import VideoPlayer from './VideoPlayer';
-import Title from './Title';
 import SubTitle from './SubTitle';
 import TextBlock from './Text';
 import RatingSection from './RatingSection';
@@ -21,12 +20,13 @@ const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rat
     nrOfRates,
     _id,
     videoSrc,
+    thumbNailSrc,
   } = video;
 
   return(
     <VideoFormCart>
       <VideoPlayerWrapper>
-        {videoSrc && < VideoPlayer src={videoSrc} />} 
+        {videoSrc && thumbNailSrc && < VideoPlayer videoSrc={videoSrc} thumbNailSrc={thumbNailSrc} />} 
       </VideoPlayerWrapper>
       <UserInfoSection>
       <FlexWrapper>

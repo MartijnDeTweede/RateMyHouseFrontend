@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { VideoContainerState, Video } from '../types/video.types';
 import { getVideosRequestActionCreator, updateVideoRequestActionCreator, addVideosRequestActionCreator, deleteVideoRequestActionCreator, rateVideoRequestActionCreator } from '../actions/VideoActionCreator';
-import VideoDisplay from '../components/VideoDisplay';
 import VideoEditor from '../components/VideoEditor';
 import VideoDisplayCaroucel from '../components/VideoDisplayCaroucel';
 
