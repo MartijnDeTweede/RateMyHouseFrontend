@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '../../static/devices';
 
-const ErrorInfo = styled.section`
+const ErrorInfoBlock = styled.section`
 margin: 10px;
 padding: 15px;
 border:2px solid red;
@@ -18,4 +18,4 @@ width: 82vw;
   max-width: 50vw;
 }`
 
-export default ErrorInfo;
+export default ErrorInfoBlock;

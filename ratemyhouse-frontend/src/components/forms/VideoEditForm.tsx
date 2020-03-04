@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Video } from '../../types/video.types';
 import InputField from '../userInterActionComponents/InputField';
-import InformationBlock from '../stylers/InformationBlock';
+import InformationBlock from '../blocks/InformationBlock';
 import VideoFormHolder from '../stylers/VideoFormHolder';
-import VideoPlayerHolder from '../stylers/VideoPlayerHolder';
 import ConfirmButton from '../userInterActionComponents/ConfirmButton';
 import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
 import StarRatingComponent from 'react-star-rating-component';
 import FlexBoxColumnHolder from '../stylers/FlexBoxColumnHolder';
 import VideoPlayer from '../VideoPlayer';
-import RatingHolder from '../stylers/RatingHolder';
+import MargintTop10 from '../stylers/MargintTop10';
 import SelectField from '../userInterActionComponents/SelectField';
 import roomOptions from '../../static/roomOptions';
 
@@ -29,9 +28,7 @@ const VideoEditForm: React.FC<{
 
   return(
     <VideoFormHolder>
-      <VideoPlayerHolder>
-      { videoSrc && thumbNailSrc && < VideoPlayer videoSrc={videoSrc} thumbNailSrc={thumbNailSrc} />} 
-      </VideoPlayerHolder>
+        { videoSrc && thumbNailSrc && < VideoPlayer videoSrc={videoSrc} thumbNailSrc={thumbNailSrc} />}
         <InformationBlock>
           <FlexBoxColumnHolder >
             <SelectField
@@ -54,7 +51,7 @@ const VideoEditForm: React.FC<{
             />            
           </FlexBoxColumnHolder>
           <FlexBoxRowHolder>
-            <RatingHolder>
+            <MargintTop10>
               {
                 typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' &&
                 <StarRatingComponent 
@@ -67,7 +64,7 @@ const VideoEditForm: React.FC<{
               <article>
                 {nrOfRates} Ratings
               </article>
-            </RatingHolder>
+            </MargintTop10>
           </FlexBoxRowHolder>
           <FlexBoxRowHolder>
             <ConfirmButton onClick={() => updateVideo({

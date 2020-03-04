@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const RatingHolder = styled.section`
+const MargintTop10 = styled.section`
   margin-top: 10px;
 `;
 
-export default RatingHolder;
+export default MargintTop10;

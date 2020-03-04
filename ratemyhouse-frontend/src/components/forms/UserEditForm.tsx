@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { User } from '../../types/user.types';
 import InputField from '../userInterActionComponents/InputField';
-import InformationBlock from '../stylers/InformationBlock';
+import InformationBlock from '../blocks/InformationBlock';
 import ConfirmButton from '../userInterActionComponents/ConfirmButton';
 import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
 

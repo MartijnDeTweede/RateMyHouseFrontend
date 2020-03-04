@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { device } from '../../static/devices';
 
-const DisplaySpacerTopHolder = styled.section`
+const MarginTop50Laptop = styled.section`
   @media ${device.laptop} {
     margin-top: 50px;
   }
 `
 
-export default DisplaySpacerTopHolder;
+export default MarginTop50Laptop;

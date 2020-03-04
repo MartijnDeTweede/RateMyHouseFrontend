@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import InputField from '../userInterActionComponents/InputField';
-import InformationBlock from '../stylers/InformationBlock';
+import InformationBlock from '../blocks/InformationBlock';
 import VideoFormHolder from '../stylers/VideoFormHolder';
 import ConfirmButton from '../userInterActionComponents/ConfirmButton';
 import styled from 'styled-components';

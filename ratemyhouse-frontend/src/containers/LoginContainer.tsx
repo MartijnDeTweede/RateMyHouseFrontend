@@ -5,7 +5,7 @@ import { LoginCredentials } from '../types/auth.types';
 import { Auth } from '../types/auth.types';
 import InputField from '../components/userInterActionComponents/InputField';
 import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
-import InformationBlock from '../components/stylers/InformationBlock';
+import InformationBlock from '../components/blocks/InformationBlock';
 import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
 import FlexBoxColumn from '../components/stylers/FlexBoxColumnHolder';
 import Message from '../components/Message';

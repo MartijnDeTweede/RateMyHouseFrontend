@@ -1,6 +1,10 @@
 import React from 'react';
-import VideoPlayerHolder from './stylers/VideoPlayerHolder';
 import VideoLarge from './userInterActionComponents/VideoLarge';
+import styled from 'styled-components';
+
+const VideoPlayerHolder = styled.section`
+margin: 10px;`;
+
 
 const VideoPlayer: React.FC<{videoSrc: string, thumbNailSrc: string}> = ({videoSrc, thumbNailSrc}) => (
   <VideoPlayerHolder>

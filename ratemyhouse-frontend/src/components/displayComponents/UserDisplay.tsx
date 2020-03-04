@@ -1,6 +1,6 @@
 import React from 'react';
 import { User } from '../../types/user.types';
-import InformationBlock from '../stylers/InformationBlock';
+import InformationBlock from '../blocks/InformationBlock';
 import DisplayField from './DisplayField';
 import SubTitle from './SubTitle';
 

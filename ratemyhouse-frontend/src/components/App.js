@@ -11,8 +11,15 @@ import {
   Route,
 } from "react-router-dom";
 
+import styled from 'styled-components';
+
+const AppHolder = styled.section`
+  color: white;
+  height: 100vh;
+`;
+
 const App = () => (
-  <div>
+  <AppHolder>
     <Router>
         <Switch>
           <Route path="/user">
@@ -29,6 +36,6 @@ const App = () => (
           </Route>
         </Switch>
     </Router>
-  </div>
+  </AppHolder>
 )
 export default App

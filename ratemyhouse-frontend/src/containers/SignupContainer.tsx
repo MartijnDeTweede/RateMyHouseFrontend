@@ -4,7 +4,7 @@ import { signupRequestActionCreator } from '../actions/AuthActionCreator';
 import { connect } from 'react-redux';
 import InputField from '../components/userInterActionComponents/InputField';
 import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
-import InformationBlock from '../components/stylers/InformationBlock';
+import InformationBlock from '../components/blocks/InformationBlock';
 import FlexBoxColumnHolder from '../components/stylers/FlexBoxColumnHolder';
 import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
 

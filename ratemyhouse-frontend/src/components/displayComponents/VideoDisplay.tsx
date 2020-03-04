@@ -1,16 +1,15 @@
 import React from 'react';
 import { Video } from '../../types/video.types';
-import InformationBlock from '../stylers/InformationBlock';
+import InformationBlock from '../blocks/InformationBlock';
 import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
 import VideoFormHolder from '../stylers/VideoFormHolder';
 import VideoPlayer from '../VideoPlayer';
 import SubTitle from './SubTitle';
 import TextBlock from './Text';
-import RatingHolder from '../stylers/RatingHolder';
+import MargintTop10 from '../stylers/MargintTop10';
 import StarRatingComponent from 'react-star-rating-component';
 import FlexBoxColumnHolder from '../stylers/FlexBoxColumnHolder';
-import VideoPlayerHolder from '../stylers/VideoPlayerHolder';
-import DisplaySpacerTopHolder from '../stylers/DisplaySpacerTopHolder';
+import DisplaySpacerTopHolder from '../stylers/MarginTop50Laptop';
 
 const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rateVideo}) => {
   const {
@@ -25,9 +24,7 @@ const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rat
 
   return(
     <VideoFormHolder>
-      <VideoPlayerHolder>
-        {videoSrc && thumbNailSrc && < VideoPlayer videoSrc={videoSrc} thumbNailSrc={thumbNailSrc} />} 
-      </VideoPlayerHolder>
+      {videoSrc && thumbNailSrc && < VideoPlayer videoSrc={videoSrc} thumbNailSrc={thumbNailSrc} />} 
       <InformationBlock>
       <FlexBoxRowHolder>
         <SubTitle>{title}</SubTitle>
@@ -38,7 +35,7 @@ const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rat
             <TextBlock>{room}</TextBlock>
         </FlexBoxRowHolder>
         <FlexBoxRowHolder>
-          <RatingHolder>
+          <MargintTop10>
             {
                 typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' &&
                 <StarRatingComponent 
@@ -49,10 +46,10 @@ const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rat
                   rateVideo(_id,value)}}
               />
               }
-              <RatingHolder>
+              <MargintTop10>
                 {nrOfRates} Ratings
-              </RatingHolder>
-          </RatingHolder>
+              </MargintTop10>
+          </MargintTop10>
           </FlexBoxRowHolder>
         </DisplaySpacerTopHolder>
       </FlexBoxColumnHolder>

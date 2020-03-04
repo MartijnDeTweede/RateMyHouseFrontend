@@ -1,5 +1,5 @@
 import React from 'react';
-import SmallVideoBlock from './SmallVideoBlock';
+import SmallVideoBlock from '../blocks/SmallVideoBlock';
 import VideoSmall from '../userInterActionComponents/VideoSmall';
 import UserLink from '../userInterActionComponents/UserLink';
 import { randomAnimation } from '../../helpers/randomhelpers';
