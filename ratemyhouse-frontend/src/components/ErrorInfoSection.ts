@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../helpers/devices';
+import { device } from '../static/devices';
 
 const ErrorInfoSection = styled.section`
 margin: 10px;
@@ -16,8 +16,6 @@ width: 82vw;
   width: auto;
   min-height: 290px;
   max-width: 50vw;
-}
-
-`
+}`
 
 export default ErrorInfoSection;

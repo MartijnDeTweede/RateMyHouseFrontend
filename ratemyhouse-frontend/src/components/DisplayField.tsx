@@ -3,7 +3,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-const StyledLabel = styled.label`
+const Label = styled.label`
 min-width: 130px;
 display: inline-block;
 color: #292929;
@@ -16,7 +16,7 @@ const DisplayField: React.FC<{
 }> = ({label, fieldValue}) => {
   return (
     <div>
-      <StyledLabel>{label}</StyledLabel> <span>{fieldValue}</span>
+      <Label>{label}</Label> <span>{fieldValue}</span>
     </div>
   )
 };

@@ -3,8 +3,8 @@ import { Auth, SignupCredentials } from '../types/auth.types'
 import { signupRequestActionCreator } from '../actions/AuthActionCreator';
 import { connect } from 'react-redux';
 import InputField from '../components/InputField';
-import FlexWrapper from '../components/FlexWrapper';
-import UserInfoSection from '../components/UserInfoSection';
+import FlexBoxRow from '../components/FlexBoxRow';
+import BlockWrapper from '../components/BlockWrapper';
 import FlexBoxColumn from '../components/FlexBoxColumn';
 import ConfirmButton from '../components/ConfirmButton';
 
@@ -19,8 +19,8 @@ const SignupForm: React.FC<{signup: Function}> = ({signup}) => {
   const [password, setPassWord] = useState<string|undefined>(undefined);
   return (
     <div>
-      <FlexWrapper>
-        <UserInfoSection>
+      <FlexBoxRow>
+        <BlockWrapper>
           <FlexBoxColumn>
             <InputField 
               fieldName="email"
@@ -44,8 +44,8 @@ const SignupForm: React.FC<{signup: Function}> = ({signup}) => {
               signup({email, userName, password})}}> Sign up
               </ConfirmButton>
           </FlexBoxColumn>
-        </UserInfoSection>
-      </FlexWrapper>
+        </BlockWrapper>
+      </FlexBoxRow>
   </div>
   )
 }

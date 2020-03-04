@@ -1,5 +1,5 @@
 import React from 'react';
-import FlexWrapper from './FlexWrapper';
+import FlexBoxRow from './FlexBoxRow';
 import FlexBoxColumn from './FlexBoxColumn';
 import ErrorInfoSection from './ErrorInfoSection';
 
@@ -9,13 +9,13 @@ const Message: React.FC<{
   message,
 }) => {
   return(
-    <FlexWrapper>
+    <FlexBoxRow>
     <ErrorInfoSection>
       <FlexBoxColumn>
-      <div>{message}</div>
+      <article>{message}</article>
       </FlexBoxColumn>
     </ErrorInfoSection>      
-  </FlexWrapper>
+  </FlexBoxRow>
   )
 }
 

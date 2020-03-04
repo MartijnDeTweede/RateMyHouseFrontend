@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FlexWrapper = styled.section`
+const FlexBoxRow = styled.section`
 display: flex;
 flex-wrap: ${(props: any) => props.wrap || "wrap"}
 align-content: center;
@@ -9,4 +9,4 @@ flex-direction: row;
 `
 
 
-export default FlexWrapper;
+export default FlexBoxRow;

@@ -5,8 +5,8 @@ import { LoginCredentials } from '../types/auth.types';
 import { Auth } from '../types/auth.types';
 import InputField from '../components/InputField';
 import ConfirmButton from '../components/ConfirmButton';
-import UserInfoSection from '../components/UserInfoSection';
-import FlexWrapper from '../components/FlexWrapper';
+import BlockWrapper from '../components/BlockWrapper';
+import FlexBoxRow from '../components/FlexBoxRow';
 import FlexBoxColumn from '../components/FlexBoxColumn';
 import Message from '../components/Message';
 
@@ -20,8 +20,8 @@ const LoginForm: React.FC<{login: Function}> = ({login}) => {
   const [password, setPassWord] = useState<string|undefined>(undefined);
 
   return(
-    <FlexWrapper>
-      <UserInfoSection>
+    <FlexBoxRow>
+      <BlockWrapper>
         <FlexBoxColumn>
           <div>
           <InputField 
@@ -40,8 +40,8 @@ const LoginForm: React.FC<{login: Function}> = ({login}) => {
         <ConfirmButton type="submit" value="Submit" onClick={() => { 
           login({email, password})}}>Log in</ConfirmButton>
         </FlexBoxColumn>
-      </UserInfoSection>      
-    </FlexWrapper>
+      </BlockWrapper>      
+    </FlexBoxRow>
 
   )
 }
@@ -54,15 +54,15 @@ const LogoutForm: React.FC<{
   logout
 }) => {
   return(
-    <FlexWrapper>
-    <UserInfoSection>
+    <FlexBoxRow>
+    <BlockWrapper>
       <FlexBoxColumn>
         <div> Welkom {userName}</div>
       <ConfirmButton type="submit" value="Submit" onClick={() => { 
         logout()}}>Log out</ConfirmButton>
       </FlexBoxColumn>
-    </UserInfoSection>      
-  </FlexWrapper>
+    </BlockWrapper>      
+  </FlexBoxRow>
   )
 }
 

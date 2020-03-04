@@ -1,6 +1,6 @@
 import React from 'react';
 import { User } from '../types/user.types';
-import UserInfoSection from './UserInfoSection';
+import BlockWrapper from './BlockWrapper';
 import DisplayField from './DisplayField';
 import SubTitle from './SubTitle';
 
@@ -27,7 +27,7 @@ const UserDisplay: React.FC<{
 
 
   return(
-    <UserInfoSection>
+    <BlockWrapper>
         <SubTitle>About this user</SubTitle>
         <DisplayField label="User Name" fieldValue={userName} />
         <DisplayField label="Email" fieldValue={email} />
@@ -38,7 +38,7 @@ const UserDisplay: React.FC<{
         <DisplayField label="House nr." fieldValue={ houseNumberAddition ? `${houseNumber} ${houseNumberAddition}` : `${houseNumber}`} />
         <DisplayField label="Postal code" fieldValue={postalCode} />
         <DisplayField label="For sale" fieldValue={objectForSale ? 'Yes' : 'No'} />
-    </UserInfoSection>
+    </BlockWrapper>
   )
 };
 

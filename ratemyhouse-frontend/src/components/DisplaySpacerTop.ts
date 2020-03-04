@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../helpers/devices';
+import { device } from '../static/devices';
 
 const DisplaySpacerTop = styled.section`
 

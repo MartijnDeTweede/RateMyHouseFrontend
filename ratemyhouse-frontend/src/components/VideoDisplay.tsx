@@ -1,7 +1,7 @@
 import React from 'react';
 import { Video } from '../types/video.types';
-import UserInfoSection from './UserInfoSection';
-import FlexWrapper from './FlexWrapper';
+import BlockWrapper from './BlockWrapper';
+import FlexBoxRow from './FlexBoxRow';
 import VideoFormCart from './VideoFormCart';
 import VideoPlayer from './VideoPlayer';
 import SubTitle from './SubTitle';
@@ -28,16 +28,16 @@ const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rat
       <VideoPlayerWrapper>
         {videoSrc && thumbNailSrc && < VideoPlayer videoSrc={videoSrc} thumbNailSrc={thumbNailSrc} />} 
       </VideoPlayerWrapper>
-      <UserInfoSection>
-      <FlexWrapper>
+      <BlockWrapper>
+      <FlexBoxRow>
         <SubTitle>{title}</SubTitle>
-      </FlexWrapper>
+      </FlexBoxRow>
       <FlexBoxColumn>
         <DisplaySpacerTop>
-          <FlexWrapper>
+          <FlexBoxRow>
             <TextBlock>{room}</TextBlock>
-        </FlexWrapper>
-        <FlexWrapper>
+        </FlexBoxRow>
+        <FlexBoxRow>
           <RatingSection>
             {
                 typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' &&
@@ -53,10 +53,10 @@ const VideoDisplay: React.FC<{video: Video, rateVideo: Function}> = ({video, rat
                 {nrOfRates} Ratings
               </RatingSection>
           </RatingSection>
-          </FlexWrapper>
+          </FlexBoxRow>
         </DisplaySpacerTop>
       </FlexBoxColumn>
-    </UserInfoSection>
+    </BlockWrapper>
   </VideoFormCart>
   )
 }

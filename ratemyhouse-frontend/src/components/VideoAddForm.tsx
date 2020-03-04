@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import InputField from './InputField';
-import UserInfoSection from './UserInfoSection';
+import BlockWrapper from './BlockWrapper';
 import VideoFormCart from './VideoFormCart';
 import ConfirmButton from './ConfirmButton';
 import styled from 'styled-components';
-import FlexWrapper from './FlexWrapper';
+import FlexBoxRow from './FlexBoxRow';
 import SelectField from './SelectField';
-import StyledOption from './Option';
-import StyledLabel from './StyledLabel';
+import Label from './Label';
 import FlexBoxColumn from './FlexBoxColumn';
+import roomOptions from '../static/roomOptions';
 
-const StyledFileInput = styled.input.attrs({ type: 'file' })`
-padding: 10px 15px;
-size: 60px;
-`
-
-const ExtendedStyleslabel = styled(StyledLabel)`
-margin-left: 10px;`
-
+const ExtendedStyleslabel = styled(Label)`
+margin: 10px 0 0 10px;`;
 
 const VideoAddForm: React.FC<{
   userName: string,
@@ -28,24 +22,21 @@ const VideoAddForm: React.FC<{
   }) => {
   const [room, setRoom] = useState<string|undefined>(undefined);
   const [title, setTitle] = useState<string|undefined>(undefined);
-
   const [videoFile, setvideoFile] = useState<File|null>(null);
-
   const [thumbnailFile, setThumbnailFile] = useState<File|null>(null);
-
   return(
     <VideoFormCart>
-      <UserInfoSection>
+      <BlockWrapper>
         <FlexBoxColumn>
           <ExtendedStyleslabel>Upload Video</ExtendedStyleslabel>
-          <StyledFileInput  id="inputFile" name="video" onChange={(event) => event.target.files && setvideoFile(event.target.files[0])}/>
+          <input type="file" id="inputFile_video" name="video" onChange={(event) => event.target.files && setvideoFile(event.target.files[0])}/>
 
           <ExtendedStyleslabel>Upload Thumbnail</ExtendedStyleslabel>
-          <StyledFileInput  id="inputFile" name="video" onChange={(event) => event.target.files && setThumbnailFile(event.target.files[0])} />
+          <input type="file" id="inputFile_thumbail" name="video" onChange={(event) => event.target.files && setThumbnailFile(event.target.files[0])} />
  
         </FlexBoxColumn>
-      </UserInfoSection>
-      <UserInfoSection>
+      </BlockWrapper>
+      <BlockWrapper>
         <SelectField
           fieldName="room"
           labelText="Room"
@@ -53,16 +44,11 @@ const VideoAddForm: React.FC<{
             setRoom(event.target.value);
           } }
         >
-          <StyledOption value="enterance">Enterance</StyledOption>
-          <StyledOption value="kitchen">Kitchen</StyledOption>
-          <StyledOption value="bathroom">Bathroom</StyledOption>
-          <StyledOption value="bedroom">Bedroom</StyledOption>
-          <StyledOption value="livingroom">Livingroom</StyledOption>
-          <StyledOption value="addic">Addic</StyledOption>
-          <StyledOption value="basement">Basement</StyledOption>
-          <StyledOption value="nursery">Nursery</StyledOption>
-          <StyledOption value="garden">Garden</StyledOption>
-          <StyledOption value="Terrace">Terrace</StyledOption>
+          {
+            roomOptions.map(option => (
+              <option value={option.value}>{option.title}</option>
+            ))
+          }
         </SelectField>
         <InputField 
           fieldName="title"
@@ -71,7 +57,7 @@ const VideoAddForm: React.FC<{
           type="text"
           defaultValue={title}
         />
-        <FlexWrapper>
+        <FlexBoxRow>
           <ConfirmButton onClick={() => addVideo({
             userName: userName,
             video: {
@@ -82,8 +68,8 @@ const VideoAddForm: React.FC<{
             videoFile: videoFile,
             thumbnailFile: thumbnailFile,
           })}>Add video</ConfirmButton>       
-        </FlexWrapper>
-    </UserInfoSection>
+        </FlexBoxRow>
+    </BlockWrapper>
     </VideoFormCart>
   )
 };

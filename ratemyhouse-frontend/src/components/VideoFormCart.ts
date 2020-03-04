@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../helpers/devices';
+import { device } from '../static/devices';
 
 const VideoFormCart = styled.section`
 display: flex;
@@ -12,10 +12,6 @@ margin-bottom: 10px;
 
 @media ${device.laptop} {
   margin-left: 140px;
-}
-
-
-`
-
+}`;
 
 export default VideoFormCart;

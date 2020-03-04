@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import { device } from '../helpers/devices';
+import { device } from '../static/devices';
 
 const HeaderLink = styled.a`
 margin-top: 10px;
@@ -18,7 +18,6 @@ color: #32a852;
 
 @media ${device.laptop} {
   margin-left: 50px;
-}
-`;
+}`;
 
 export default HeaderLink;

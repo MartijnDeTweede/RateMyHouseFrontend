@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { User } from '../types/user.types';
 import InputField from './InputField';
-import UserInfoSection from './UserInfoSection';
+import BlockWrapper from './BlockWrapper';
 import ConfirmButton from './ConfirmButton';
-import FlexWrapper from './FlexWrapper';
+import FlexBoxRow from './FlexBoxRow';
 
 const UserEditForm: React.FC<{
   user: User;
@@ -25,7 +25,7 @@ const UserEditForm: React.FC<{
   const [houseNumberAddition, setHouseNumberAddition] = useState<string|undefined>(user.location.houseNumberAddition);
 
   return(
-    <UserInfoSection>
+    <BlockWrapper>
       <InputField 
         fieldName="userName"
         labelText="User name"
@@ -89,7 +89,7 @@ const UserEditForm: React.FC<{
         type="string"
         defaultValue={houseNumberAddition}
       />
-      <FlexWrapper>
+      <FlexBoxRow>
       <ConfirmButton onClick={() => {
         sendForm(
           {
@@ -112,8 +112,8 @@ const UserEditForm: React.FC<{
         )
       }}> Update</ConfirmButton>
 
-      </FlexWrapper>
-    </UserInfoSection>
+      </FlexBoxRow>
+    </BlockWrapper>
   )}
 
 export default UserEditForm;

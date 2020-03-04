@@ -1,18 +1,17 @@
 
 import React from 'react'
-
-import StyledHeader from './StyledHeader';
-import FlexWrapper from './FlexWrapper';
+import FlexBoxRow from './FlexBoxRow';
 import HeaderLink from './HeaderLink';
+import HeaderWrapper from './HeaderWrapper';
 
 const Header: React.FC<{}> = () => (
-<StyledHeader>
-  <FlexWrapper>
+<HeaderWrapper>
+  <FlexBoxRow>
     <HeaderLink href="/">Home</HeaderLink>
     <HeaderLink href="/login">Login</HeaderLink>
     <HeaderLink href="/signup" >Sign-up</HeaderLink>
-  </FlexWrapper>
-</StyledHeader>
+  </FlexBoxRow>
+</HeaderWrapper>
 );
 
 export default Header;

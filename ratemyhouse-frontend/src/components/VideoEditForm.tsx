@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Video } from '../types/video.types';
 import InputField from './InputField';
-import UserInfoSection from './UserInfoSection';
+import BlockWrapper from './BlockWrapper';
 import VideoFormCart from './VideoFormCart';
 import VideoPlayerWrapper from './VideoPlayerWrapper';
 import ConfirmButton from './ConfirmButton';
-import FlexWrapper from './FlexWrapper';
+import FlexBoxRow from './FlexBoxRow';
 import StarRatingComponent from 'react-star-rating-component';
 import FlexBoxColumn from './FlexBoxColumn';
 import VideoPlayer from './VideoPlayer';
 import RatingSection from './RatingSection';
 import SelectField from './SelectField';
-import StyledOption from './Option';
+import roomOptions from '../static/roomOptions';
 
 const VideoEditForm: React.FC<{
   video: Video,
@@ -32,25 +32,19 @@ const VideoEditForm: React.FC<{
       <VideoPlayerWrapper>
       { videoSrc && thumbNailSrc && < VideoPlayer videoSrc={videoSrc} thumbNailSrc={thumbNailSrc} />} 
       </VideoPlayerWrapper>
-        <UserInfoSection>
+        <BlockWrapper>
           <FlexBoxColumn >
-        <SelectField
-          fieldName="room"
-          labelText="Room"
-          onBlur={(event: any) => setRoom(event.target.value)}
-        >
-          <StyledOption value="enterance">Enterance</StyledOption>
-          <StyledOption value="kitchen">Kitchen</StyledOption>
-          <StyledOption value="bathroom">Bathroom</StyledOption>
-          <StyledOption value="bedroom">Bedroom</StyledOption>
-          <StyledOption value="livingroom">Livingroom</StyledOption>
-          <StyledOption value="addic">Addic</StyledOption>
-          <StyledOption value="basement">Basement</StyledOption>
-          <StyledOption value="nursery">Nursery</StyledOption>
-          <StyledOption value="garden">Garden</StyledOption>
-          <StyledOption value="Terrace">Terrace</StyledOption>
-        </SelectField>
-
+            <SelectField
+              fieldName="room"
+              labelText="Room"
+              onBlur={(event: any) => setRoom(event.target.value)}
+            >
+              {
+                roomOptions.map(option => (
+                  <option value={option.value}>{option.title}</option>
+                ))
+              }
+            </SelectField>
             <InputField 
               fieldName="title"
               labelText="Title"
@@ -59,34 +53,31 @@ const VideoEditForm: React.FC<{
               defaultValue={title}
             />            
           </FlexBoxColumn>
-          <FlexWrapper>
+          <FlexBoxRow>
             <RatingSection>
               {
-                  typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' && <StarRatingComponent 
+                typeof ratingPoints !== 'undefined' && typeof nrOfRates !== 'undefined' &&
+                <StarRatingComponent 
                   name={`rate_${title}`}
                   editing={false}
                   starCount={5}
                   value={nrOfRates > 0 ? ratingPoints/nrOfRates : 0}
                 />
-                }
-                <div>
-                  {nrOfRates} Ratings
-                </div>
+              }
+              <article>
+                {nrOfRates} Ratings
+              </article>
             </RatingSection>
-          </FlexWrapper>
-          <FlexWrapper>
+          </FlexBoxRow>
+          <FlexBoxRow>
             <ConfirmButton onClick={() => updateVideo({
               ...video,
               title,
               room,
             })}>Update video</ConfirmButton>
-            
-            <ConfirmButton onClick={() => deleteVideo(video)}
-            >Delete video</ConfirmButton>
-          </FlexWrapper>
-          
-
-      </UserInfoSection>
+            <ConfirmButton onClick={() => deleteVideo(video)}>Delete video</ConfirmButton>
+          </FlexBoxRow>
+      </BlockWrapper>
     </VideoFormCart>
   )
 };

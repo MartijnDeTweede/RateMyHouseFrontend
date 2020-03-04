@@ -4,7 +4,7 @@ import { getUserRequestActionCreator, updateUserRequestActionCreator } from '../
 import { User } from '../types/user.types';
 import UserDisplay from '../components/UserDisplay';
 import UserEditForm from '../components/UserEditForm';
-import FlexWrapper from '../components/FlexWrapper';
+import FlexBoxRow from '../components/FlexBoxRow';
 
 export interface UserState {
   user: User,
@@ -17,7 +17,7 @@ const UserHolder: React.FC<{
     updateUser: Function
   }> = ({user, isOwnPage, updateUser}) => {
   return (
-    <FlexWrapper>
+    <FlexBoxRow>
       {
           isOwnPage && user ? 
             <UserEditForm user={user} sendForm={(updatedUserInfo: User) => {
@@ -25,7 +25,7 @@ const UserHolder: React.FC<{
             }} /> :
             <UserDisplay user={user} />
       }
-    </FlexWrapper>
+    </FlexBoxRow>
   )
 }
 

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const StyledLabel = styled.label`
+const Label = styled.label`
 min-width: 130px;
 display: inline-block;
 color: #32a852;
 `
 
-export default StyledLabel;
+export default Label;

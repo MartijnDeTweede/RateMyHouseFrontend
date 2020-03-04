@@ -1,70 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import { device } from '../helpers/devices';;
+import SmallVideoBlock from './SmallVideoBlock';
+import SmallVideo from './SmallVideo';
+import UserLink from './UserLink';
+import { randomAnimation } from '../helpers/randomhelpers';
 
-const StyledBlock = styled.section`
-margin: 10px 10px;
-padding: 5px};
-border:2px solid #32a852;
-align-self: center;
-border-radius: 5px;
-background-color: white;
-color: #32a852;
-
-transition: 3s ease-in;
-animation: ${(props) => props.animation};
-
-@keyframes Scale-fade-in {
-  from {
-    transform: Scale(1)
-  }
-  to {
-    transform: Scale(1.1)
-  }
-}
-`
-
-const VideoStyled = styled.video`
-width: 90vw;
-height: 50vw;
-border-radius: 5px;
-
-@media ${device.laptop} {
-  width: 280px;
-  height: 160px;
-}
-`
-const UserLink = styled.a`
-text-decoration: none;
-color: #32a852;
-font-size: calc(10px + 2vmin);
-font-weight: bold;
-margin: 5px 0 5px 10px;
-
-&:hover {
-  text-decoration: none;
-}
-
-&.active {
-  text-decoration: none;
-}
-`
-
-const LinkWrapper = styled.section`
-align-content: center;
-`
-
-const  getRandomInt = (max) => {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
-const randomAnimation = (nr) => {
-  const index = getRandomInt(nr);
-  return index === 0 ? "Scale-fade-in 1 0.5s linear" : '';
-}
-
+// TODO: make TypeScript friends with styled components so i can pass props in and dont have to use jsx.
 class HomePageVideoBlock extends React.Component {
-
   render() {
     const {
       video: {
@@ -73,23 +14,19 @@ class HomePageVideoBlock extends React.Component {
         owner,
         thumbNailSrc,
       }
-  
     } = this.props;
 
     const animation = randomAnimation(6);
 
     return(
-      <div>
-      <LinkWrapper>
-        <UserLink href={`/user/${owner}`}>{title}</UserLink>
-      </LinkWrapper>
-
-      <StyledBlock animation={animation}>
-        <VideoStyled controls preload="none" poster={thumbNailSrc}>
+      <section>
+      <UserLink href={`/user/${owner}`}>{title}</UserLink>
+      <SmallVideoBlock animation={animation}>
+        <SmallVideo controls preload="none" poster={thumbNailSrc}>
           <source src={videoSrc} type="video/mp4" />
-        </VideoStyled>
-      </StyledBlock>
-      </div>
+        </SmallVideo>
+      </SmallVideoBlock>
+      </section>
     )
   }
  
