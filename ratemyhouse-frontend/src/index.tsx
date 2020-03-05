@@ -8,10 +8,6 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
 import createSagaMiddleware from 'redux-saga';
-
-
-import AppWrapper from './components/AppWrapper';
-
 import rootSaga from './sagas/rootsaga';
 
 const sagaMiddleware = createSagaMiddleware()
@@ -20,12 +16,8 @@ sagaMiddleware.run(rootSaga)
 
 render(
   <Provider store={store}>
-        <Header>
-      Text
-    </Header>
-    <AppWrapper>
-      <App />
-    </AppWrapper>
+    <Header />
+    <App />
   </Provider>,
   document.getElementById('root')
 )

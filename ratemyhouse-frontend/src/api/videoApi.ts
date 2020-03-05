@@ -1,5 +1,6 @@
 import { baseUrl } from "./apiConfig";
 import { Video } from "../types/video.types";
+import { handleApiResponse } from "../helpers/apihelpers";
 
 export const getVideos = (userName: string) => {
   const url = `${baseUrl}/user/${userName}/getVideos`;
@@ -7,12 +8,9 @@ export const getVideos = (userName: string) => {
     method: 'GET',
     mode: 'cors',
     credentials: 'same-origin',
-})
-.then(response => {
-  return response.json()
-}
-  );
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const getFeaturedVideos = () => {
@@ -21,16 +19,12 @@ export const getFeaturedVideos = () => {
     method: 'GET',
     mode: 'cors',
     credentials: 'same-origin',
-})
-.then(response => {
-  return response.json()
-}
-  );
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const updateVideo = ({video, token} : {video: Video, token: string}) => {
-
   const url = `${baseUrl}/video/${video._id}/updateVideo`;
 
   const result =  fetch(url, {
@@ -46,13 +40,12 @@ export const updateVideo = ({video, token} : {video: Video, token: string}) => {
       'auth-token': `${token}`
     },
     body: JSON.stringify(video)
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const addVideo = ({video, userName, token} : {video: Video, userName: string, token: string}) => {
-  
   const url = `${baseUrl}/user/${userName}/addVideo`;
 
   const result =  fetch(url, {
@@ -68,14 +61,14 @@ export const addVideo = ({video, userName, token} : {video: Video, userName: str
       'auth-token': `${token}`
     },
     body: JSON.stringify({...video})
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const addVideoFile = ({videoFile, token} : {videoFile: File,  token: string}) => {
   const url = `${baseUrl}/video/uploadVideoFile`;
-  let formData = new FormData();
+  const formData = new FormData();
   formData.append('video', videoFile, videoFile.name);
   const result =  fetch(url, {
     method: 'POST',
@@ -89,15 +82,14 @@ export const addVideoFile = ({videoFile, token} : {videoFile: File,  token: stri
       'auth-token': `${token}`
     },
     body: formData
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const addThumbnailFile = ({thumbnailFile, token} : {thumbnailFile: File,  token: string}) => {
-  console.log('thumbnailfile: ', thumbnailFile);
   const url = `${baseUrl}/video/uploadThumbnailFile`;
-  let formData = new FormData();
+  const formData = new FormData();
   formData.append('thumbnail', thumbnailFile, thumbnailFile.name);
   const result =  fetch(url, {
     method: 'POST',
@@ -111,13 +103,12 @@ export const addThumbnailFile = ({thumbnailFile, token} : {thumbnailFile: File, 
       'auth-token': `${token}`
     },
     body: formData
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
-  
   const url = `${baseUrl}/video/${video._id}/deleteVideo`;
 
   const result =  fetch(url, {
@@ -133,9 +124,9 @@ export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
       'auth-token': `${token}`
     },
     body: JSON.stringify({...video})
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const rateVideo = ({videoId, token, rating} : {videoId: String, token: string, rating: number}) => {  
@@ -154,15 +145,7 @@ export const rateVideo = ({videoId, token, rating} : {videoId: String, token: st
       'auth-token': `${token}`
     },
     body: JSON.stringify({rating: rating})
-})
-.then(response => { 
-  
-if(response.status != 200) {
-  throw({});
-}
-  
-  return response.json()
-
-});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }

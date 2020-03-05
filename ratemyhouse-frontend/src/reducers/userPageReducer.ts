@@ -6,31 +6,31 @@ import {
 
 } from '../actions/UserPageActionCreators';
 import { UserPageState } from '../types/userpage.types';
+import { initialUserPageState } from '../static/initialUserPageState';
 
-const initialUserPageState: UserPageState = {
-  isOwnPage: false,
-  isFetching: false,
-};
-
-const userPageReducer = (state=initialUserPageState, action: any) => {
+const userPageReducer = (state: UserPageState =initialUserPageState, action: any) => {
   switch(action.type) {
     case USER_ISOWNPAGE_REQUESTED: {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_ISOWNPAGE_SUCCEEDED: {
       return {
         ...state,
         isOwnPage: action.isOwnPage,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_ISOWNPAGE_FAILED: {
       return {
-        ...state,
-        isFetching: false,
+        ...initialUserPageState,
+        isOwnPage: action.isOwnPage,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     default:

@@ -1,7 +1,6 @@
 import React from 'react';
-import FlexWrapper from './FlexWrapper';
-import FlexBoxColumn from './FlexBoxColumn';
-import ErrorInfoSection from './ErrorInfoSection';
+import FlexBoxColumnHolder from './stylers/FlexBoxColumnHolder';
+import ErrorInfoBlock from './blocks/ErrorInfoBlock';
 
 const Message: React.FC<{
   message: string;
@@ -9,13 +8,9 @@ const Message: React.FC<{
   message,
 }) => {
   return(
-    <FlexWrapper>
-    <ErrorInfoSection>
-      <FlexBoxColumn>
-      <div>{message}</div>
-      </FlexBoxColumn>
-    </ErrorInfoSection>      
-  </FlexWrapper>
+    <ErrorInfoBlock>
+      <article>{message}</article>
+    </ErrorInfoBlock>      
   )
 }
 

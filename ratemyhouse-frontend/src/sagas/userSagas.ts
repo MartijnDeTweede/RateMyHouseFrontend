@@ -7,7 +7,7 @@ import {
   updateUserFailureActionCreator,
   updateUserSuccessActionCreator,
 } from '../actions/UserActionCreators';
-import { getUser, getIsOwnPage, updateUser } from '../api/userApi';
+import { getUser, updateUser } from '../api/userApi';
 import { getToken } from '../helpers/tokenhelpers';
 
 export function* getUserSaga(action: any) : any {
@@ -16,7 +16,7 @@ export function* getUserSaga(action: any) : any {
     const response = yield call(getUser, userName);
     yield put(getUserSuccessActionCreator(response))
   } catch(e) {
-    yield put(getUserFailureActionCreator());
+    yield put(getUserFailureActionCreator(e.message));
   }
 }
 
@@ -31,7 +31,7 @@ export function* updateUserSaga(action: any) : any {
     const response = yield call(updateUser, payload);
     yield put(updateUserSuccessActionCreator(response))
   } catch(e) {
-    yield put(updateUserFailureActionCreator());
+    yield put(updateUserFailureActionCreator(e.message));
   }
 }
 

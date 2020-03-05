@@ -2,43 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { VideoContainerState, Video } from '../types/video.types';
 import { getVideosRequestActionCreator, updateVideoRequestActionCreator, addVideosRequestActionCreator, deleteVideoRequestActionCreator, rateVideoRequestActionCreator } from '../actions/VideoActionCreator';
-import VideoDisplay from '../components/VideoDisplay';
 import VideoEditor from '../components/VideoEditor';
 import VideoDisplayCaroucel from '../components/VideoDisplayCaroucel';
-
-const VideoHolder: React.FC<{
-  isOwnPage: boolean;
-  videos: Video[];
-  updateVideo: Function;
-  addVideo: Function;
-  deleteVideo: Function;
-  rateVideo: Function;
-  userName: string;
-}> = ({
-  isOwnPage,
-  videos,
-  updateVideo,
-  addVideo,
-  deleteVideo,
-  userName,
-  rateVideo,
-}) => {
-  return(
-    <div>
-      {
-        isOwnPage ? 
-        <VideoEditor
-          videos={videos}
-          updateVideo={updateVideo}
-          addVideo={addVideo}
-          deleteVideo={deleteVideo}
-          userName={userName}
-        /> :
-        <VideoDisplayCaroucel videos={videos} rateVideo={rateVideo} />
-      }
-    </div>
-  )
-}
 
 const VideoContainer: React.FC<{
   isFetching: boolean;
@@ -65,18 +30,23 @@ const VideoContainer: React.FC<{
     getVideos(userName);
   }, []);
 
+  if(isFetching) {
+    return(<article>Fetching data</article>)
+  }
+
   return(
-    <div>{isFetching ?
-      <div>Fetching data</div> :
-      <VideoHolder
-        videos={videos}
-        isOwnPage={isOwnPage}
-        updateVideo={updateVideo}
-        addVideo={addVideo}
-        deleteVideo={deleteVideo}
-        userName={userName}
-        rateVideo={rateVideo}
-      />}
+    <div>
+      {
+        isOwnPage ? 
+        <VideoEditor
+          videos={videos}
+          updateVideo={updateVideo}
+          addVideo={addVideo}
+          deleteVideo={deleteVideo}
+          userName={userName}
+        /> :
+        <VideoDisplayCaroucel videos={videos} rateVideo={rateVideo} />
+      }
     </div>
   )
 }

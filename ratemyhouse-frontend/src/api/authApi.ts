@@ -1,4 +1,5 @@
 import { baseUrl } from "./apiConfig";
+import { handleApiResponse } from "../helpers/apihelpers";
 
 export const login = (payload: {email:string, password: string}) => {
   const url = `${baseUrl}/auth/login`;
@@ -16,7 +17,7 @@ export const login = (payload: {email:string, password: string}) => {
     },
     body: JSON.stringify(payload)
 })
-.then(response => { return response.json()});
+.then(response => { return handleApiResponse(response)});
 return result;
 }
 
@@ -34,12 +35,9 @@ export const logout = () => {
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
       'Access-Control-Allow-Headers': 'Content-Type',
     },
-})
-.then(response => {
-  return response.json()
-}
-  );
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const signup = (payload: {email:string, userName: string, password: string}) => {
@@ -58,7 +56,7 @@ export const signup = (payload: {email:string, userName: string, password: strin
     },
     body: JSON.stringify(payload)
 })
-.then(response => { return response.json()});
+.then(response => { return handleApiResponse(response)});
 return result;
 }
 

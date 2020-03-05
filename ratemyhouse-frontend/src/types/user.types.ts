@@ -14,4 +14,10 @@ export interface User {
     houseNumber: number;
     houseNumberAddition: string;
   }
+};
+
+export interface UserState {
+  user: User,
+  isFetching: boolean,
+  message?: string;
 }

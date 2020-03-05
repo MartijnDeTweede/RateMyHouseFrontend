@@ -6,7 +6,8 @@ export const getIsOwnPageRequestActionCreator = (userName) => {
   return {
     type: USER_ISOWNPAGE_REQUESTED,
     userName,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 
@@ -15,12 +16,15 @@ export const getIsOwnPageSuccessActionCreator = (isOwnPage) => {
     type: USER_ISOWNPAGE_SUCCEEDED,
     isOwnPage,
     isFetching: false,
+    message: undefined,
   };
 }
 
-export const getIsOwnPageFailureActionCreator = () => {
+export const getIsOwnPageFailureActionCreator = (message) => {
   return {
     type: USER_ISOWNPAGE_FAILED,
+    isOwnPage: false,
     isFetching: false,
+    message: message,
   };
 }

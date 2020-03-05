@@ -10,7 +10,7 @@ export function* getVideosSaga(action: any) : any {
     const response = yield call(getVideos, userName);
     yield put(getVideosSuccessActionCreator(response))
   } catch(e) {
-    yield put(getVideosFailureActionCreator());
+    yield put(getVideosFailureActionCreator(e.message));
   }
 }
 
@@ -25,17 +25,14 @@ export function* updateVideosSaga(action: any) : any {
     const response = yield call(updateVideo, payload);
     yield put(updateVideoSuccessActionCreator(response))
   } catch(e) {
-    yield put(updateVideoFailureActionCreator());
+    yield put(updateVideoFailureActionCreator(e.message));
   }
 }
 
 export function* addVideosSaga(action: any) : any {
   try {
     const token = getToken();
-
-    console.log('action.payload: ', action.payload);
     const videoFileResponse = yield call(addVideoFile, {videoFile: action.payload.videoFile, token});
-
     const thumbNailFileResponse = yield call(addThumbnailFile, {thumbnailFile: action.payload.thumbnailFile, token});
 
     const videoPayload = {
@@ -52,7 +49,7 @@ export function* addVideosSaga(action: any) : any {
     const response = yield call(addVideo, videoPayload);
     yield put(addVideosSuccessActionCreator(response))
   } catch(e) {
-    yield put(addVideosFailureActionCreator());
+    yield put(addVideosFailureActionCreator(e.message));
   }
 }
 
@@ -66,7 +63,7 @@ export function* deleteVideosSaga(action: any) : any {
     const response = yield call(deleteVideo, payload);
     yield put(deleteVideoSuccessActionCreator(response))
   } catch(e) {
-    yield put(deleteVideoFailureActionCreator());
+    yield put(deleteVideoFailureActionCreator(e.message));
   }
 }
 
@@ -81,17 +78,16 @@ export function* rateVideosSaga(action: any) : any {
     const response = yield call(rateVideo, payload);
     yield put(rateVideoSuccessActionCreator(response))
   } catch(e) {
-    yield put(rateVideoFailureActionCreator());
+    yield put(rateVideoFailureActionCreator(e.message));
   }
 }
 
 export function* getFeaturedVideosSaga(action: any) : any {
   try {
-    const userName = action.userName;
     const response = yield call(getFeaturedVideos);
     yield put(getFeatureVideosSuccessActionCreator(response))
   } catch(e) {
-    yield put(getFeatureVideosFailureActionCreator());
+    yield put(getFeatureVideosFailureActionCreator(e.message));
   }
 }
 

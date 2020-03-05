@@ -3,67 +3,15 @@ import { loginRequestActionCreator, logoutRequestActionCreator } from '../action
 import { connect } from 'react-redux';
 import { LoginCredentials } from '../types/auth.types';
 import { Auth } from '../types/auth.types';
-import InputField from '../components/InputField';
-import ConfirmButton from '../components/ConfirmButton';
-import UserInfoSection from '../components/UserInfoSection';
-import FlexWrapper from '../components/FlexWrapper';
-import FlexBoxColumn from '../components/FlexBoxColumn';
+import InputField from '../components/userInterActionComponents/InputField';
+import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
 import Message from '../components/Message';
+import StandardForm from '../components/forms/StandardForm';
+import { isFilledString } from '../helpers/validationHelpers';
 
 interface LoginContainerState {
   auth: Auth,
   isFetching: boolean,
-}
-
-const LoginForm: React.FC<{login: Function}> = ({login}) => {
-  const [email, setEmail] = useState<string|undefined>(undefined);
-  const [password, setPassWord] = useState<string|undefined>(undefined);
-
-  return(
-    <FlexWrapper>
-      <UserInfoSection>
-        <FlexBoxColumn>
-          <div>
-          <InputField 
-          fieldName="email"
-          labelText="E-mail"
-          onBlur={(event: any) => setEmail(event.target.value)}
-          type="email"
-        />
-        <InputField 
-          fieldName="password"
-          labelText="Password"
-          onBlur={(event: any) => setPassWord(event.target.value)}
-          type="password"
-        />
-          </div>
-        <ConfirmButton type="submit" value="Submit" onClick={() => { 
-          login({email, password})}}>Log in</ConfirmButton>
-        </FlexBoxColumn>
-      </UserInfoSection>      
-    </FlexWrapper>
-
-  )
-}
-
-const LogoutForm: React.FC<{
-  userName: string;
-  logout: Function;
-}> = ({
-  userName,
-  logout
-}) => {
-  return(
-    <FlexWrapper>
-    <UserInfoSection>
-      <FlexBoxColumn>
-        <div> Welkom {userName}</div>
-      <ConfirmButton type="submit" value="Submit" onClick={() => { 
-        logout()}}>Log out</ConfirmButton>
-      </FlexBoxColumn>
-    </UserInfoSection>      
-  </FlexWrapper>
-  )
 }
 
 const LoginContainer: React.FC<{
@@ -79,13 +27,52 @@ const LoginContainer: React.FC<{
   logout,
   message
 }) => {
+  const [email, setEmail] = useState<string|undefined>(undefined);
+  const [password, setPassWord] = useState<string|undefined>(undefined);
+  
+  if(isFetching) {
+    return(<article>Fetching data</article>)
+  }
+
+  const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(password))
+
   return(
-    <div>
-      {isFetching && <div> We zijn je gegevens aan het ophalen</div>}
-      {!isFetching && !auth.isLoggedIn &&  <LoginForm login={login} />}
-      { message && <Message message={message} />}
-      {auth.isLoggedIn && <LogoutForm logout={logout} userName={auth.userName} />}
-    </div>
+    <section>
+      {!auth.isLoggedIn &&  
+      <StandardForm 
+        fields={[
+          <InputField 
+          fieldName="email"
+          labelText="E-mail"
+          onBlur={(event: any) => setEmail(event.target.value)}
+          type="email"
+        />,
+        <InputField 
+          fieldName="password"
+          labelText="Password"
+          onBlur={(event: any) => setPassWord(event.target.value)}
+          type="password"
+        />
+        ]}
+        message={message && <Message message={message} />}
+        submitButton={
+          <ConfirmButton
+            type="submit"
+            value="Submit"
+            disabled={!inputIsValid()}
+            onClick={() => { 
+            login({email, password})}}>Log in</ConfirmButton>
+        }
+      />}
+      {auth.isLoggedIn && 
+      <StandardForm 
+        message={<div> Welkom {auth.userName}</div>}
+        submitButton={
+          <ConfirmButton type="submit" value="Submit" onClick={() => { 
+            logout()}}>Log out</ConfirmButton>
+        } 
+      />}
+    </section>
   )
 }
 

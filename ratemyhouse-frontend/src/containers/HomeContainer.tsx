@@ -4,35 +4,32 @@ import { connect } from 'react-redux';
 import { FeaturedVideosState } from '../types/featuredVideos.types';
 import { getFeatureVideosRequestActionCreator } from '../actions/FeaturedVideosActionCreators';
 import { Video } from '../types/video.types';
-import HomePageVideoBlock from '../components/HomePageVideoBlock';
-import styled from 'styled-components';
-
-
-const Wrapper = styled.section`
-display: flex;
-flex-wrap: wrap ;
-justify-content: center;
-align-items: flex-start;
-align-content: stretch;
-`
+import HomePageVideoHolder from '../components/stylers/HomePageVideoHolder';
+import SmallVideoBlockHolder from '../components/stylers/SmallVideoBlockHolder';
 
 const HomeContainer: React.FC<{
   getFeaturedVideos: Function,
   featuredVideos: Video[],
+  isFetching: boolean,
 }> = ({
   getFeaturedVideos,
   featuredVideos,
+  isFetching,
 }) => {
-
   useEffect(() => {
     getFeaturedVideos();
   }, []);
+
+  if(isFetching) {
+    return(<article>Fetching data</article>)
+  }
+
   return(
-      <Wrapper>
+      <SmallVideoBlockHolder>
         {featuredVideos.map((video) => (
-          <HomePageVideoBlock video={video} />
+          <HomePageVideoHolder video={video} />
         ))}
-      </Wrapper>
+      </SmallVideoBlockHolder>
       )
 } 
 

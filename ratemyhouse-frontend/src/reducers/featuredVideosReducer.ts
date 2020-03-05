@@ -1,34 +1,33 @@
-import { FeaturedVideosState } from "../types/featuredVideos.types"
 import {
   FEATURED_VIDEOS_FETCH_REQUESTED,
   FEATURED_VIDEOS_FETCH_SUCCEEDED,
   FEATURED_VIDEOS_FETCH_FAILED
 } from "../actions/FeaturedVideosActionCreators";
+import { initalHomeState } from "../static/initialHomeState";
+import { FeaturedVideosState } from "../types/featuredVideos.types";
 
-const initalHomeState: FeaturedVideosState = {
-  featuredVideos: [],
-  isFetching: false,
-  }
-
-const featuredVideosReducer = (state=initalHomeState, action: any) => {
+const featuredVideosReducer = (state: FeaturedVideosState =initalHomeState, action: any) => {
   switch(action.type) {
     case FEATURED_VIDEOS_FETCH_REQUESTED: {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case FEATURED_VIDEOS_FETCH_SUCCEEDED: {
       return {
         ...state,
         featuredVideos: action.videos,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case FEATURED_VIDEOS_FETCH_FAILED: {
       return {
-        ...state,
-        isFetching: false,
+        ...initalHomeState,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     default:

@@ -1,5 +1,6 @@
 import { User } from "../types/user.types";
 import { baseUrl } from "./apiConfig";
+import { handleApiResponse } from "../helpers/apihelpers";
 
 
 export const getUser = (userName: string) => {
@@ -9,10 +10,7 @@ export const getUser = (userName: string) => {
     mode: 'cors',
     credentials: 'same-origin',
 })
-.then(response => {
-  return response.json()
-}
-  );
+.then(response => { return handleApiResponse(response)});
 return result;
 }
 
@@ -33,7 +31,7 @@ export const updateUser = ({user, token} : {user: User, token: string}) => {
     },
     body: JSON.stringify(user)
 })
-.then(response => { return response.json()});
+.then(response => { return handleApiResponse(response)});
 return result;
 }
 
@@ -46,9 +44,6 @@ export const getIsOwnPage = ({userName, token}: {userName: string, token: string
     credentials: 'same-origin',
     headers: {'auth-token': `${token}`}
 })
-.then(response => {
-  return response.json()
-}
-  );
+.then(response => { return handleApiResponse(response)});
 return result; 
 }
