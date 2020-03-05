@@ -14,7 +14,8 @@ export const loginRequestActionCreator = (loginCredentials) => {
   return {
     type: LOGIN_REQUESTED,
     loginCredentials,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 
@@ -23,6 +24,7 @@ export const loginSuccessActionCreator = (auth) => {
     type: LOGIN_SUCCEEDED,
     auth,
     isFetching: false,
+    message: undefined,
   };
 }
 
@@ -39,13 +41,20 @@ export const logoutRequestActionCreator = () => {
   return {
     type: LOGOUT_REQUESTED,
     isFetching: true,
+    message: undefined,
   };
 }
 
 export const logoutSuccessActionCreator = () => {
   return {
     type: LOGOUT_SUCCEEDED,
+    auth: {
+      isLoggedIn: false,
+      userName: undefined,
+      token: undefined,
+    },
     isFetching: false,
+    message: undefined,
   };
 }
 
@@ -62,7 +71,8 @@ export const signupRequestActionCreator = (signupCredentials) => {
   return {
     type: SIGNUP_REQUESTED,
     signupCredentials,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 
@@ -71,6 +81,7 @@ export const signupSuccessActionCreator = (auth) => {
     type: SIGNUP_SUCCEEDED,
     auth,
     isFetching: false,
+    message: undefined,
   };
 }
 
@@ -78,7 +89,7 @@ export const signupFailureActionCreator = (message) => {
   return {
     type: SIGNUP_FAILED,
     auth: {},
-    message,
     isFetching: false,
+    message: message,
   };
 }

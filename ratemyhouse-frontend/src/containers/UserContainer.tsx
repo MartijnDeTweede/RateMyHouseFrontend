@@ -1,33 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getUserRequestActionCreator, updateUserRequestActionCreator } from '../actions/UserActionCreators';
-import { User } from '../types/user.types';
+import { User, UserState } from '../types/user.types';
 import UserDisplay from '../components/displayComponents/UserDisplay';
 import UserEditForm from '../components/forms/UserEditForm';
 import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
 
-export interface UserState {
-  user: User,
-  isFetching: boolean,
-}
-
-const UserHolder: React.FC<{
-    user: User;
-    isOwnPage: boolean
-    updateUser: Function
-  }> = ({user, isOwnPage, updateUser}) => {
-  return (
-    <FlexBoxRowHolder>
-      {
-          isOwnPage && user ? 
-            <UserEditForm user={user} sendForm={(updatedUserInfo: User) => {
-              updateUser(updatedUserInfo);
-            }} /> :
-            <UserDisplay user={user} />
-      }
-    </FlexBoxRowHolder>
-  )
-}
 
 const UserContainer: React.FC<{
   user: User,
@@ -49,12 +27,20 @@ const UserContainer: React.FC<{
     getUser(userName);
   }, []);
 
+  if(isFetching) {
+    return(<article>Fetching data</article>)
+  }
+
   return(
-    <div>
+    <FlexBoxRowHolder>
       {
-        isFetching ? <div> fetching data </div> : <UserHolder user={user} isOwnPage={isOwnPage} updateUser={updateUser} />
+          isOwnPage && user ? 
+            <UserEditForm user={user} sendForm={(updatedUserInfo: User) => {
+              updateUser(updatedUserInfo);
+            }} /> :
+            <UserDisplay user={user} />
       }
-    </div>
+    </FlexBoxRowHolder>
   );
 }
 

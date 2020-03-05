@@ -22,7 +22,8 @@ export const getVideosRequestActionCreator = (userName) => {
   return {
     type: VIDEOS_FETCH_REQUESTED,
     userName,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 export const getVideosSuccessActionCreator = (videos) => {
@@ -30,11 +31,13 @@ export const getVideosSuccessActionCreator = (videos) => {
     type: VIDEOS_FETCH_SUCCEEDED,
     videos,
     isFetching: false,
+    message: undefined,
   };
 }
 export const getVideosFailureActionCreator = (message) => {
   return {
     type: VIDEOS_FETCH_FAILED,
+    videos: [],
     isFetching: false,
     message: message,
   };
@@ -43,7 +46,8 @@ export const updateVideoRequestActionCreator = (video) => {
   return {
     type: VIDEOS_UPDATE_REQUESTED,
     video,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 export const updateVideoSuccessActionCreator = (videos) => {
@@ -51,11 +55,13 @@ export const updateVideoSuccessActionCreator = (videos) => {
     type: VIDEOS_UPDATE_SUCCEEDED,
     videos,
     isFetching: false,
+    message: undefined,
   };
 }
 export const updateVideoFailureActionCreator = (message) => {
   return {
     type: VIDEOS_UPDATE_FAILED,
+    videos: [],
     isFetching: false,
     message: message,
   };
@@ -64,7 +70,8 @@ export const addVideosRequestActionCreator = (payload) => {
   return {
     type: VIDEOS_ADD_REQUESTED,
     payload,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 export const addVideosSuccessActionCreator = (videos) => {
@@ -72,11 +79,13 @@ export const addVideosSuccessActionCreator = (videos) => {
     type: VIDEOS_ADD_SUCCEEDED,
     videos,
     isFetching: false,
+    message: undefined,
   };
 }
 export const addVideosFailureActionCreator = (message) => {
   return {
     type: VIDEOS_ADD_FAILED,
+    videos: [],
     isFetching: false,
     message: message,
   };
@@ -85,7 +94,8 @@ export const deleteVideoRequestActionCreator = (video) => {
   return {
     type: VIDEOS_DELETE_REQUESTED,
     video,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 export const deleteVideoSuccessActionCreator = (videos) => {
@@ -93,11 +103,13 @@ export const deleteVideoSuccessActionCreator = (videos) => {
     type: VIDEOS_DELETE_SUCCEEDED,
     videos,
     isFetching: false,
+    message: undefined,
   };
 }
 export const deleteVideoFailureActionCreator = (message) => {
   return {
     type: VIDEOS_DELETE_FAILED,
+    videos: [],
     isFetching: false,
     message: message,
   };
@@ -107,7 +119,8 @@ export const rateVideoRequestActionCreator = (payload) => {
   return {
     type: RATE_VIDEO_REQUESTED,
     payload,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 export const rateVideoSuccessActionCreator = (videos) => {
@@ -115,11 +128,13 @@ export const rateVideoSuccessActionCreator = (videos) => {
     type: RATE_VIDEO_SUCCEEDED,
     videos,
     isFetching: false,
+    message: undefined,
   };
 }
 export const rateVideoFailureActionCreator = (message) => {
   return {
     type: RATE_VIDEO_FAILED,
+    videos: [],
     isFetching: false,
     message: message,
   };

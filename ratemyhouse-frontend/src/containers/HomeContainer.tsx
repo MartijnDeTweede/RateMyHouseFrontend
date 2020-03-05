@@ -10,13 +10,20 @@ import SmallVideoBlockHolder from '../components/stylers/SmallVideoBlockHolder';
 const HomeContainer: React.FC<{
   getFeaturedVideos: Function,
   featuredVideos: Video[],
+  isFetching: boolean,
 }> = ({
   getFeaturedVideos,
   featuredVideos,
+  isFetching,
 }) => {
   useEffect(() => {
     getFeaturedVideos();
   }, []);
+
+  if(isFetching) {
+    return(<article>Fetching data</article>)
+  }
+
   return(
       <SmallVideoBlockHolder>
         {featuredVideos.map((video) => (

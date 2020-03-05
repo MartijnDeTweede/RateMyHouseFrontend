@@ -13,37 +13,45 @@ const userReducer = (state=initialUserState, action: any) => {
     case USER_FETCH_REQUESTED: {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_FETCH_SUCCEEDED: {
       return {
         ...state,
         user: action.user,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_FETCH_FAILED: {
       return {
         ...initialUserState,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_UPDATE_REQUESTED: {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_UPDATE_SUCCEEDED: {
       return {
         ...state,
         user: action.user,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_UPDATE_FAILED: {
       return {
         ...initialUserState,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     default:

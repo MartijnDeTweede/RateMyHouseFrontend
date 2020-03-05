@@ -12,7 +12,8 @@ export const getUserRequestActionCreator = (userName) => {
   return {
     type: USER_FETCH_REQUESTED,
     userName,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 
@@ -21,6 +22,7 @@ export const getUserSuccessActionCreator = (user) => {
     type: USER_FETCH_SUCCEEDED,
     user,
     isFetching: false,
+    message: undefined,
   };
 }
 
@@ -37,7 +39,8 @@ export const updateUserRequestActionCreator = (user) => {
   return {
     type: USER_UPDATE_REQUESTED,
     user,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 
@@ -46,6 +49,7 @@ export const updateUserSuccessActionCreator = (user) => {
     type: USER_UPDATE_SUCCEEDED,
     user,
     isFetching: false,
+    message: undefined,
   };
 }
 

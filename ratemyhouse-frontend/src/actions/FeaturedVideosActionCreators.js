@@ -6,7 +6,8 @@ export const getFeatureVideosRequestActionCreator = (userName) => {
   return {
     type: FEATURED_VIDEOS_FETCH_REQUESTED,
     userName,
-    isFetching: true,
+    isFetching: false,
+    message: undefined,
   };
 }
 export const getFeatureVideosSuccessActionCreator = (videos) => {
@@ -14,6 +15,7 @@ export const getFeatureVideosSuccessActionCreator = (videos) => {
     type: FEATURED_VIDEOS_FETCH_SUCCEEDED,
     videos,
     isFetching: false,
+    message: undefined,
   };
 }
 export const getFeatureVideosFailureActionCreator = (message) => {

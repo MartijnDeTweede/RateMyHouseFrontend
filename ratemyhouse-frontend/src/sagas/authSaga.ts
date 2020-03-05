@@ -16,12 +16,9 @@ import { writeCredentialsToSessionStorage } from '../helpers/localStorageHelpers
 export function* loginSaga(action: any) : any {
   try {
     const response = yield call(login, action.loginCredentials);
-    if(response.message) {
-      yield put(loginFailureActionCreator(response.message))
-    } else{
-      writeCredentialsToSessionStorage(response); 
-      yield put(loginSuccessActionCreator(response))
-    }
+    writeCredentialsToSessionStorage(response); 
+    yield put(loginSuccessActionCreator(response));
+
   } catch(e) {
     yield put(loginFailureActionCreator(e.message));
   }
@@ -29,12 +26,8 @@ export function* loginSaga(action: any) : any {
 
 export function* logoutSaga() : any {
   try {
-    const response = yield call(logout);
-    if(response.message) {
-      yield put(logoutFailureActionCreator(response.message))
-    } else{ 
-      yield put(logoutSuccessActionCreator())
-    }
+    yield call(logout);
+    yield put(logoutSuccessActionCreator());
   } catch(e) {
     yield put(logoutFailureActionCreator(e.message));
   }
@@ -43,12 +36,9 @@ export function* logoutSaga() : any {
 export function* signupSaga(action: any) : any {
   try {
     const response = yield call(signup, action.signupCredentials);
-    if(response.message) {
-      yield put(signupFailureActionCreator(response.message))
-    } else{
-      writeCredentialsToSessionStorage(response);  
-      yield put(signupSuccessActionCreator(response))
-    }
+    writeCredentialsToSessionStorage(response);  
+    yield put(signupSuccessActionCreator(response))
+
   } catch(e) {
     yield put(signupFailureActionCreator(e.message));
   }

@@ -11,19 +11,23 @@ const featuredVideosReducer = (state: FeaturedVideosState =initalHomeState, acti
     case FEATURED_VIDEOS_FETCH_REQUESTED: {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case FEATURED_VIDEOS_FETCH_SUCCEEDED: {
       return {
         ...state,
         featuredVideos: action.videos,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case FEATURED_VIDEOS_FETCH_FAILED: {
       return {
         ...initalHomeState,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     default:

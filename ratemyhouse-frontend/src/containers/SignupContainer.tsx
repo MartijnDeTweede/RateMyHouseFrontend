@@ -3,51 +3,14 @@ import { Auth, SignupCredentials } from '../types/auth.types'
 import { signupRequestActionCreator } from '../actions/AuthActionCreator';
 import { connect } from 'react-redux';
 import InputField from '../components/userInterActionComponents/InputField';
-import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
-import InformationBlock from '../components/blocks/InformationBlock';
-import FlexBoxColumnHolder from '../components/stylers/FlexBoxColumnHolder';
 import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
+import StandardForm from '../components/forms/StandardForm';
+import Message from '../components/Message';
 
 interface signupContainerState {
   auth: Auth,
   isFetching: boolean,
-}
-
-const SignupForm: React.FC<{signup: Function}> = ({signup}) => {
-  const [email, setEmail] = useState<string|undefined>(undefined);
-  const [userName, setUserName] = useState<string|undefined>(undefined);
-  const [password, setPassWord] = useState<string|undefined>(undefined);
-  return (
-    <div>
-      <FlexBoxRowHolder>
-        <InformationBlock>
-          <FlexBoxColumnHolder>
-            <InputField 
-              fieldName="email"
-              labelText="E-mail"
-              onBlur={(event: any) => setEmail(event.target.value)}
-              type="email"
-            />
-            <InputField 
-              fieldName="username"
-              labelText="Username"
-              onBlur={(event: any) => setUserName(event.target.value)}
-              type="text"
-            />
-            <InputField 
-              fieldName="password"
-              labelText="Password"
-              onBlur={(event: any) => setPassWord(event.target.value)}
-              type="password"
-            />
-            <ConfirmButton type="submit" value="Submit" onClick={() => { 
-              signup({email, userName, password})}}> Sign up
-              </ConfirmButton>
-          </FlexBoxColumnHolder>
-        </InformationBlock>
-      </FlexBoxRowHolder>
-  </div>
-  )
+  message?: string;
 }
 
 const SignupContainer: React.FC<{
@@ -61,18 +24,59 @@ const SignupContainer: React.FC<{
   signup,
   message
 }) => {
+  const [email, setEmail] = useState<string|undefined>(undefined);
+  const [userName, setUserName] = useState<string|undefined>(undefined);
+  const [password, setPassWord] = useState<string|undefined>(undefined);
+
+  if(isFetching) {
+    return(<article>Fetching data</article>)
+  }
+
   return(
-    <div>
-    {isFetching && <div> We zijn je gegevens aan het ophalen</div>}
-    {!isFetching && !auth.isLoggedIn &&  <SignupForm signup={signup} />}
-    { message && <div>{message}</div>}
-    { auth.isLoggedIn  && <div>Bedankt voor het aanmelden</div>}
-  </div>
+    <section>
+    {!auth.isLoggedIn &&  
+      <StandardForm 
+        fields={[
+          <InputField 
+          fieldName="email"
+          labelText="E-mail"
+          onBlur={(event: any) => setEmail(event.target.value)}
+          type="email"
+        />,
+        <InputField 
+          fieldName="username"
+          labelText="Username"
+          onBlur={(event: any) => setUserName(event.target.value)}
+          type="text"
+        />,
+        <InputField 
+          fieldName="password"
+          labelText="Password"
+          onBlur={(event: any) => setPassWord(event.target.value)}
+          type="password"
+        />
+        ]}
+        message={message && <Message message={message} />}
+        submitButton={
+          <ConfirmButton type="submit" value="Submit" onClick={() => { 
+            signup({email, userName, password})}}> Sign up
+          </ConfirmButton>
+        }
+      />}
+      {auth.isLoggedIn && 
+      <StandardForm 
+        message={<div> Bedankt voor het aanmelden. Upload nu je eerste video.</div>}
+        submitButton={
+          <ConfirmButton type="button" value="button" onClick={() => { 
+            window.location.href= `/user/${auth.userName}`}}>Naar mijn pagina.</ConfirmButton>
+        } 
+      />}
+  </section>
   )
 }
 
 const mapStateToProps = (state: signupContainerState) => {
-  return {...state.auth}
+  return {...state.auth};
 }
 
 const mapDispatchToProps = (dispatch: any) => ({

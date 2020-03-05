@@ -15,4 +15,5 @@ export interface Video {
 export interface VideoContainerState {
   videos: Video [],
   isFetching: boolean;
+  message?: string;
 }

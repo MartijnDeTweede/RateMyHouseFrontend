@@ -16,98 +16,118 @@ import {
   RATE_VIDEO_SUCCEEDED,
   RATE_VIDEO_REQUESTED,
 } from "../actions/VideoActionCreator";
-import { intialVideosstate } from "../static/initalVideoState";
+import { intialVideosstate } from "../static/initialVideoState";
 
 const videoReducer = (state: VideoContainerState =intialVideosstate, action: any) => {
   switch(action.type) {
     case VIDEOS_FETCH_REQUESTED : {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_FETCH_SUCCEEDED: {
       return {
         ...state,
         videos: action.videos,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_FETCH_FAILED: {
       return {
         ...intialVideosstate,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_UPDATE_REQUESTED : {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_UPDATE_SUCCEEDED: {
       return {
         ...state,
         videos: action.videos,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_UPDATE_FAILED: {
       return {
         ...intialVideosstate,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_ADD_REQUESTED : {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_ADD_SUCCEEDED: {
       return {
         ...state,
         videos: action.videos,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_ADD_FAILED: {
       return {
         ...intialVideosstate,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_DELETE_REQUESTED : {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_DELETE_SUCCEEDED: {
       return {
         ...state,
         videos: action.videos,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case VIDEOS_DELETE_FAILED: {
       return {
         ...intialVideosstate,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case RATE_VIDEO_REQUESTED : {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case RATE_VIDEO_SUCCEEDED: {
       return {
         ...state,
         videos: action.videos,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case RATE_VIDEO_FAILED: {
       return {
         ...intialVideosstate,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     default:

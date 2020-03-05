@@ -1,4 +1,4 @@
-import { UserState } from "../containers/UserContainer";
+import { UserState } from "../types/user.types";
 
 export const initialUserState: UserState = {
   user: {
@@ -19,4 +19,5 @@ export const initialUserState: UserState = {
     }
   },
   isFetching: false,
+  message: undefined,
 };

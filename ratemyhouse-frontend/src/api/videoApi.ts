@@ -1,5 +1,6 @@
 import { baseUrl } from "./apiConfig";
 import { Video } from "../types/video.types";
+import { handleApiResponse } from "../helpers/apihelpers";
 
 export const getVideos = (userName: string) => {
   const url = `${baseUrl}/user/${userName}/getVideos`;
@@ -7,12 +8,9 @@ export const getVideos = (userName: string) => {
     method: 'GET',
     mode: 'cors',
     credentials: 'same-origin',
-})
-.then(response => {
-  return response.json()
-}
-  );
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const getFeaturedVideos = () => {
@@ -21,12 +19,9 @@ export const getFeaturedVideos = () => {
     method: 'GET',
     mode: 'cors',
     credentials: 'same-origin',
-})
-.then(response => {
-  return response.json()
-}
-  );
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const updateVideo = ({video, token} : {video: Video, token: string}) => {
@@ -45,9 +40,9 @@ export const updateVideo = ({video, token} : {video: Video, token: string}) => {
       'auth-token': `${token}`
     },
     body: JSON.stringify(video)
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const addVideo = ({video, userName, token} : {video: Video, userName: string, token: string}) => {
@@ -66,9 +61,9 @@ export const addVideo = ({video, userName, token} : {video: Video, userName: str
       'auth-token': `${token}`
     },
     body: JSON.stringify({...video})
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const addVideoFile = ({videoFile, token} : {videoFile: File,  token: string}) => {
@@ -87,9 +82,9 @@ export const addVideoFile = ({videoFile, token} : {videoFile: File,  token: stri
       'auth-token': `${token}`
     },
     body: formData
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const addThumbnailFile = ({thumbnailFile, token} : {thumbnailFile: File,  token: string}) => {
@@ -108,9 +103,9 @@ export const addThumbnailFile = ({thumbnailFile, token} : {thumbnailFile: File, 
       'auth-token': `${token}`
     },
     body: formData
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
@@ -129,9 +124,9 @@ export const deleteVideo = ({video, token} : {video: Video, token: string}) => {
       'auth-token': `${token}`
     },
     body: JSON.stringify({...video})
-})
-.then(response => { return response.json()});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }
 
 export const rateVideo = ({videoId, token, rating} : {videoId: String, token: string, rating: number}) => {  
@@ -150,16 +145,7 @@ export const rateVideo = ({videoId, token, rating} : {videoId: String, token: st
       'auth-token': `${token}`
     },
     body: JSON.stringify({rating: rating})
-})
-.then(response => { 
-  
-if(response.status !== 200) {
-  const parsedContent = response.json();
-  throw({ message: parsedContent});
-}
-  
-  return response.json();
-
-});
-return result;
+  })
+  .then(response => { return handleApiResponse(response)});
+  return result;
 }

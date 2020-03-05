@@ -16,7 +16,7 @@ const authReducer = (state=initialAuthState, action: any) => {
     case LOGIN_REQUESTED: {
       return {
         ...state,
-        message: undefined,
+        message: action.message,
         isFetching: action.isFetching,
       };
     }
@@ -30,35 +30,38 @@ const authReducer = (state=initialAuthState, action: any) => {
     case LOGIN_FAILED: {
       return {
         ...initialAuthState,
+        auth: action.auth,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case LOGOUT_REQUESTED: {
       return {
         ...state,
-        message: undefined,
+        message: action.message,
         isFetching: action.isFetching,
       };
     }
     case LOGOUT_SUCCEEDED: {
       return {
         ...state,
-        auth: {
-          isLoggedIn: false,
-          userName: undefined,
-          token: undefined,
-        },
+        auth: action.auth,
         isFetching: action.isFetching,
+        message: action.message,
       };
     }
     case LOGOUT_FAILED: {
       return {
         ...initialAuthState,
+        auth: action.auth,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case SIGNUP_REQUESTED: {
       return {
         ...state,
-        message: undefined,
+        message: action.message,
         isFetching: action.isFetching,
       };
     }
@@ -72,6 +75,9 @@ const authReducer = (state=initialAuthState, action: any) => {
     case SIGNUP_FAILED: {
       return {
         ...initialAuthState,
+        auth: action.auth,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     default:

@@ -9,9 +9,7 @@ const Message: React.FC<{
 }) => {
   return(
     <ErrorInfoBlock>
-      <FlexBoxColumnHolder>
       <article>{message}</article>
-      </FlexBoxColumnHolder>
     </ErrorInfoBlock>      
   )
 }

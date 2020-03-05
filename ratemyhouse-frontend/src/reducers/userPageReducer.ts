@@ -13,19 +13,24 @@ const userPageReducer = (state: UserPageState =initialUserPageState, action: any
     case USER_ISOWNPAGE_REQUESTED: {
       return {
         ...state,
-        isFetching: true,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_ISOWNPAGE_SUCCEEDED: {
       return {
         ...state,
         isOwnPage: action.isOwnPage,
-        isFetching: false,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     case USER_ISOWNPAGE_FAILED: {
       return {
         ...initialUserPageState,
+        isOwnPage: action.isOwnPage,
+        message: action.message,
+        isFetching: action.isFetching,
       };
     }
     default:
