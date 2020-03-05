@@ -9,7 +9,7 @@ margin: 10px;`;
 const VideoPlayer: React.FC<{videoSrc: string, thumbNailSrc: string}> = ({videoSrc, thumbNailSrc}) => (
   <VideoPlayerHolder>
     <VideoLarge width="568" height="320" controls preload="none" poster={thumbNailSrc}>
-      <source src={videoSrc} type="video/mp4" />
+      <source  src={`${videoSrc}#t=1`}  type="video/mp4" />
     </VideoLarge>
   </VideoPlayerHolder>
 );

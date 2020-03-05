@@ -23,7 +23,7 @@ class HomePageVideoHolder extends React.Component {
         <UserLink href={`/user/${owner}`}>{title}</UserLink>
         <SmallVideoBlock animation={animation}>
           <VideoSmall controls preload="none" poster={thumbNailSrc}>
-            <source src={videoSrc} type="video/mp4" />
+            <source src={`${videoSrc}#t=1`} type="video/mp4" />
           </VideoSmall>
         </SmallVideoBlock>
       </section>
