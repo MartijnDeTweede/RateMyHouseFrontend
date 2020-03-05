@@ -6,6 +6,7 @@ import InputField from '../components/userInterActionComponents/InputField';
 import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
 import StandardForm from '../components/forms/StandardForm';
 import Message from '../components/Message';
+import { isFilledString } from '../helpers/validationHelpers';
 
 interface signupContainerState {
   auth: Auth,
@@ -31,6 +32,8 @@ const SignupContainer: React.FC<{
   if(isFetching) {
     return(<article>Fetching data</article>)
   }
+
+  const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(userName) && isFilledString(password));
 
   return(
     <section>
@@ -67,7 +70,11 @@ const SignupContainer: React.FC<{
       <StandardForm 
         message={<div> Bedankt voor het aanmelden. Upload nu je eerste video.</div>}
         submitButton={
-          <ConfirmButton type="button" value="button" onClick={() => { 
+          <ConfirmButton
+          type="button"
+          value="button"
+          disabled={!inputIsValid()}
+          onClick={() => { 
             window.location.href= `/user/${auth.userName}`}}>Naar mijn pagina.</ConfirmButton>
         } 
       />}

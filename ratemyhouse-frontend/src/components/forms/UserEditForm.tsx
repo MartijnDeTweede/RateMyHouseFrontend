@@ -4,6 +4,7 @@ import InputField from '../userInterActionComponents/InputField';
 import InformationBlock from '../blocks/InformationBlock';
 import ConfirmButton from '../userInterActionComponents/ConfirmButton';
 import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
+import { isFilledString } from '../../helpers/validationHelpers';
 
 const UserEditForm: React.FC<{
   user: User;
@@ -23,6 +24,8 @@ const UserEditForm: React.FC<{
   const [postalCode, setPostalCode] = useState<string|undefined>(user.location.postalCode);
   const [houseNumber, setHouseNumber] = useState<number|undefined>(user.location.houseNumber);
   const [houseNumberAddition, setHouseNumberAddition] = useState<string|undefined>(user.location.houseNumberAddition);
+
+  const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(userName));
 
   return(
     <InformationBlock>
@@ -90,7 +93,9 @@ const UserEditForm: React.FC<{
         defaultValue={houseNumberAddition}
       />
       <FlexBoxRowHolder>
-      <ConfirmButton onClick={() => {
+      <ConfirmButton
+        disabled={!inputIsValid()}
+        onClick={() => {
         sendForm(
           {
             userName,

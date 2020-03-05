@@ -7,6 +7,7 @@ import InputField from '../components/userInterActionComponents/InputField';
 import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
 import Message from '../components/Message';
 import StandardForm from '../components/forms/StandardForm';
+import { isFilledString } from '../helpers/validationHelpers';
 
 interface LoginContainerState {
   auth: Auth,
@@ -33,6 +34,8 @@ const LoginContainer: React.FC<{
     return(<article>Fetching data</article>)
   }
 
+  const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(password))
+
   return(
     <section>
       {!auth.isLoggedIn &&  
@@ -53,7 +56,11 @@ const LoginContainer: React.FC<{
         ]}
         message={message && <Message message={message} />}
         submitButton={
-          <ConfirmButton type="submit" value="Submit" onClick={() => { 
+          <ConfirmButton
+            type="submit"
+            value="Submit"
+            disabled={!inputIsValid()}
+            onClick={() => { 
             login({email, password})}}>Log in</ConfirmButton>
         }
       />}

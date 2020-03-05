@@ -11,6 +11,7 @@ import VideoPlayer from '../VideoPlayer';
 import MargintTop10 from '../stylers/MargintTop10';
 import SelectField from '../userInterActionComponents/SelectField';
 import roomOptions from '../../static/roomOptions';
+import { isFilledString } from '../../helpers/validationHelpers';
 
 const VideoEditForm: React.FC<{
   video: Video,
@@ -24,7 +25,9 @@ const VideoEditForm: React.FC<{
   const [room, setRoom] = useState<string|undefined>(video.room);
   const [title, setTitle] = useState<string|undefined>(video.title);
 
-    const { videoSrc, ratingPoints, nrOfRates, thumbNailSrc } = video;
+  const { videoSrc, ratingPoints, nrOfRates, thumbNailSrc } = video;
+  
+  const inputIsValid = (): boolean => (isFilledString(room) && isFilledString(title))
 
   return(
     <VideoFormHolder>
@@ -67,7 +70,9 @@ const VideoEditForm: React.FC<{
             </MargintTop10>
           </FlexBoxRowHolder>
           <FlexBoxRowHolder>
-            <ConfirmButton onClick={() => updateVideo({
+            <ConfirmButton
+            disabled={!inputIsValid()}
+            onClick={() => updateVideo({
               ...video,
               title,
               room,

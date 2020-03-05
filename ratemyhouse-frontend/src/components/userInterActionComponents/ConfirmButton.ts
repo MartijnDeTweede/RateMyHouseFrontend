@@ -9,9 +9,14 @@ border: 2px solid #32a852;
 
 color: #32a852;
 
-&:hover {
+&:hover:enabled {
   color: white;
   background-color: #32a852;
+}
+
+&:disabled  {
+  color: #476b6b;
+  border: 2px solid #476b6b;
 }
 `
 

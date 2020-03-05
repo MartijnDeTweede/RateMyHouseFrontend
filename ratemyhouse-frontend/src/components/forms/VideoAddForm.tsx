@@ -9,6 +9,7 @@ import SelectField from '../userInterActionComponents/SelectField';
 import Label from '../displayComponents/Label';
 import FlexBoxColumnHolder from '../stylers/FlexBoxColumnHolder';
 import roomOptions from '../../static/roomOptions';
+import { isFilledString } from '../../helpers/validationHelpers';
 
 const ExtendedStyleslabel = styled(Label)`
 margin: 10px 0 0 10px;`;
@@ -24,6 +25,10 @@ const VideoAddForm: React.FC<{
   const [title, setTitle] = useState<string|undefined>(undefined);
   const [videoFile, setvideoFile] = useState<File|null>(null);
   const [thumbnailFile, setThumbnailFile] = useState<File|null>(null);
+
+  const inputIsValid = (): boolean => (isFilledString(room) && isFilledString(title) &&
+   videoFile != null && thumbnailFile != null);
+
   return(
     <VideoFormHolder>
       <InformationBlock>
@@ -58,7 +63,9 @@ const VideoAddForm: React.FC<{
           defaultValue={title}
         />
         <FlexBoxRowHolder>
-          <ConfirmButton onClick={() => addVideo({
+          <ConfirmButton
+          disabled={!inputIsValid()}
+          onClick={() => addVideo({
             userName: userName,
             video: {
               owner: userName,
