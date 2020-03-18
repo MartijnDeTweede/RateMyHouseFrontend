@@ -21,7 +21,7 @@ const VideoAddForm: React.FC<{
     userName,
     addVideo,
   }) => {
-  const [room, setRoom] = useState<string|undefined>(undefined);
+  const [room, setRoom] = useState<string|undefined>("enterance");
   const [title, setTitle] = useState<string|undefined>(undefined);
   const [videoFile, setvideoFile] = useState<File|null>(null);
   const [thumbnailFile, setThumbnailFile] = useState<File|null>(null);

@@ -41,7 +41,7 @@ const VideoEditForm: React.FC<{
             >
               {
                 roomOptions.map(option => (
-                  <option value={option.value}>{option.title}</option>
+                <option value={option.value} selected={option.value === room}>{option.title}</option>
                 ))
               }
             </SelectField>
