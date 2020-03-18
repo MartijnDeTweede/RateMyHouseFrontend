@@ -18,8 +18,8 @@ color: #292929;
   width: auto;
   padding:15px 5px 15px 15px;
   min-height: 290px;
-  min-width: 200px;
-  max-width: 50vw;
+  min-width: 190px;
+  max-width: min(50vw, 250px);
 }`;
 
 export default InformationBlock;
