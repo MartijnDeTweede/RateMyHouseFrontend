@@ -7,7 +7,7 @@ height: 50vw;
 border-radius: 5px;
 
 @media ${device.laptop} {
-  width: 568px;
+  width: 420px;
   height: 320px;
 }`;
 

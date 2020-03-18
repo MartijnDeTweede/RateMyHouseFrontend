@@ -4,11 +4,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Label = styled.label`
-min-width: 130px;
+min-width: 80px;
 display: inline-block;
 color: #292929;
+margin-top: 5px;
 font-weight: bold;
-margin-top: 5px;`
+font-size: 10px;
+`;
+
+const Value = styled.article`
+font-size: 10px;
+`;
 
 const DisplayField: React.FC<{
   label: string;
@@ -16,7 +22,7 @@ const DisplayField: React.FC<{
 }> = ({label, fieldValue}) => {
   return (
     <div>
-      <Label>{label}</Label> <span>{fieldValue}</span>
+      <Label>{label}</Label> <Value>{fieldValue}</Value>
     </div>
   )
 };

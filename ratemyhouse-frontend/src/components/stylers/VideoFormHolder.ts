@@ -11,7 +11,7 @@ margin-bottom: 10px;
 }
 
 @media ${device.laptop} {
-  margin-left: 140px;
+  margin-left: 20px;
 }`;
 
 export default VideoFormHolder;
