@@ -46,7 +46,7 @@ const VideoContainer: React.FC<{
           deleteVideo={deleteVideo}
           userName={userName}
         /> :
-        <VideoDisplayCaroucel videos={videos} rateVideo={rateVideo} />
+        <VideoDisplayCaroucel videos={videos} rateVideo={(videoId: string, rating: string) => rateVideo(videoId, rating, userName)} />
       }
     </div>
   )
@@ -59,7 +59,11 @@ const mapDispatchToProps = (dispatch : any) => ({
   updateVideo: (video: Video) => dispatch(updateVideoRequestActionCreator(video)),
   addVideo: ({video, userName, videoFile, thumbnailFile}: {video: Video, userName: string, videoFile: File, thumbnailFile: File}) => dispatch(addVideosRequestActionCreator({video, userName, videoFile, thumbnailFile})),
   deleteVideo: (video: Video) => dispatch(deleteVideoRequestActionCreator(video)),
-  rateVideo:(videoId: string, rating: number) => dispatch(rateVideoRequestActionCreator({ videoId, rating })),
+  rateVideo:(videoId: string, rating: number, userName: string) => dispatch(rateVideoRequestActionCreator({
+    videoId,
+    rating,
+    getNewVideos: () => dispatch(getVideosRequestActionCreator(userName)),
+  })),
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(VideoContainer);

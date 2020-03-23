@@ -75,8 +75,13 @@ export function* rateVideosSaga(action: any) : any {
       rating: action.payload.rating,
       token,
     };
-    const response = yield call(rateVideo, payload);
-    yield put(rateVideoSuccessActionCreator(response))
+    yield call(rateVideo, payload);
+
+    if (action.payload.getNewVideos) {
+      action.payload.getNewVideos();
+    }
+
+    yield put(rateVideoSuccessActionCreator())
   } catch(e) {
     yield put(rateVideoFailureActionCreator(e.message));
   }

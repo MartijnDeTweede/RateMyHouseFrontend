@@ -7,15 +7,18 @@ import { Video } from '../types/video.types';
 import HomePageVideoHolder from '../components/stylers/HomePageVideoHolder';
 import SmallVideoBlockHolder from '../components/stylers/SmallVideoBlockHolder';
 import Loader from '../components/Loader';
+import { rateVideoRequestActionCreator } from '../actions/VideoActionCreator';
 
 const HomeContainer: React.FC<{
-  getFeaturedVideos: Function,
-  featuredVideos: Video[],
-  isFetching: boolean,
+  getFeaturedVideos: Function;
+  featuredVideos: Video[];
+  isFetching: boolean;
+  rateVideo: Function;
 }> = ({
   getFeaturedVideos,
   featuredVideos,
   isFetching,
+  rateVideo,
 }) => {
   useEffect(() => {
     getFeaturedVideos();
@@ -28,7 +31,7 @@ const HomeContainer: React.FC<{
   return(
       <SmallVideoBlockHolder>
         {featuredVideos.map((video) => (
-          <HomePageVideoHolder video={video} />
+          <HomePageVideoHolder video={video} rateVideo={rateVideo} />
         ))}
       </SmallVideoBlockHolder>
       )
@@ -39,6 +42,14 @@ const mapStateToProps = (state: FeaturedVideosState) => (
 )
 
 const mapDispatchToProps = (dispatch: any) => ({
+  rateVideo:(
+    videoId: string,
+    rating: number,
+    ) => dispatch(rateVideoRequestActionCreator({
+      videoId,
+      rating,
+      getNewVideos: () => dispatch(getFeatureVideosRequestActionCreator()), 
+    })),
   getFeaturedVideos: () => dispatch(getFeatureVideosRequestActionCreator()),
 })
 

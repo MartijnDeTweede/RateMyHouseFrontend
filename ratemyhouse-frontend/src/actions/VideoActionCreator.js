@@ -123,10 +123,9 @@ export const rateVideoRequestActionCreator = (payload) => {
     message: undefined,
   };
 }
-export const rateVideoSuccessActionCreator = (videos) => {
+export const rateVideoSuccessActionCreator = () => {
   return {
     type: RATE_VIDEO_SUCCEEDED,
-    videos,
     isFetching: false,
     message: undefined,
   };
