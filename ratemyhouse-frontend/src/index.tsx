@@ -2,7 +2,7 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 import React from 'react'
-import Header from './components/Header';
+import Header from './components/displayComponents/Header';
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'

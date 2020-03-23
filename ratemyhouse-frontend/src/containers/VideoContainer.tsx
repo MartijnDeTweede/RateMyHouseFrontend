@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { VideoContainerState, Video } from '../types/video.types';
 import { getVideosRequestActionCreator, updateVideoRequestActionCreator, addVideosRequestActionCreator, deleteVideoRequestActionCreator, rateVideoRequestActionCreator } from '../actions/VideoActionCreator';
-import VideoEditor from '../components/VideoEditor';
-import VideoDisplayCaroucel from '../components/VideoDisplayCaroucel';
-import Loader from '../components/Loader';
+import VideoEditor from '../components/userInterActionComponents/VideoEditor';
+import VideoDisplayCaroucel from '../components/userInterActionComponents/VideoDisplayCaroucel';
+import Loader from '../components/displayComponents/Loader';
 
 const VideoContainer: React.FC<{
   isFetching: boolean;

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { FeaturedVideosState } from '../types/featuredVideos.types';
 import { getFeatureVideosRequestActionCreator } from '../actions/FeaturedVideosActionCreators';
 import { Video } from '../types/video.types';
-import HomePageVideoHolder from '../components/stylers/HomePageVideoHolder';
+import HomePageVideoHolder from '../components/userInterActionComponents/HomePageVideoHolder';
 import SmallVideoBlockHolder from '../components/stylers/SmallVideoBlockHolder';
-import Loader from '../components/Loader';
+import Loader from '../components/displayComponents/Loader';
 import { rateVideoRequestActionCreator } from '../actions/VideoActionCreator';
 
 const HomeContainer: React.FC<{

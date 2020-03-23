@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import InputField from '../components/userInterActionComponents/InputField';
 import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
 import StandardForm from '../components/forms/StandardForm';
-import Message from '../components/Message';
+import Message from '../components/displayComponents/Message';
 import { isFilledString } from '../helpers/validationHelpers';
-import Loader from '../components/Loader';
+import Loader from '../components/displayComponents/Loader';
 
 interface signupContainerState {
   auth: Auth,

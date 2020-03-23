@@ -3,7 +3,7 @@ import { Video } from '../../types/video.types';
 import InformationBlock from '../blocks/InformationBlock';
 import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
 import VideoFormHolder from '../stylers/VideoFormHolder';
-import VideoPlayer from '../VideoPlayer';
+import VideoPlayer from '../userInterActionComponents/VideoPlayer';
 import SubTitle from './SubTitle';
 import TextBlock from './Text';
 import MargintTop10 from '../stylers/MargintTop10';

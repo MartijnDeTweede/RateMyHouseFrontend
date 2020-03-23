@@ -5,8 +5,7 @@ import { User, UserState } from '../types/user.types';
 import UserDisplay from '../components/displayComponents/UserDisplay';
 import UserEditForm from '../components/forms/UserEditForm';
 import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
-import Loader from '../components/Loader';
-
+import Loader from '../components/displayComponents/Loader';
 
 const UserContainer: React.FC<{
   user: User,

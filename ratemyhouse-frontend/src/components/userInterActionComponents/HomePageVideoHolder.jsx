@@ -1,7 +1,7 @@
 import React from 'react';
 import SmallVideoBlock from '../blocks/SmallVideoBlock';
-import VideoSmall from '../userInterActionComponents/VideoSmall';
-import UserLink from '../userInterActionComponents/UserLink';
+import VideoSmall from './VideoSmall';
+import UserLink from './UserLink';
 import { randomAnimation } from '../../helpers/randomhelpers';
 import StarRatingComponent from 'react-star-rating-component';
 

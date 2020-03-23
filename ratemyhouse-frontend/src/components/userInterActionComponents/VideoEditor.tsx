@@ -1,10 +1,10 @@
 import React  from 'react';
-import { Video } from '../types/video.types';
-import VideoAddForm from './forms/VideoAddForm';
-import VideoEditForm from './forms/VideoEditForm';
+import { Video } from '../../types/video.types';
+import VideoAddForm from '../forms/VideoAddForm';
+import VideoEditForm from '../forms/VideoEditForm';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import caroucelConfig from '../static/caroucelConfig';
+import caroucelConfig from '../../static/caroucelConfig';
 
 const VideoEditor: React.FC<{
   videos: Video[];

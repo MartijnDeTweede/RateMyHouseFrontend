@@ -5,10 +5,10 @@ import { LoginCredentials } from '../types/auth.types';
 import { Auth } from '../types/auth.types';
 import InputField from '../components/userInterActionComponents/InputField';
 import ConfirmButton from '../components/userInterActionComponents/ConfirmButton';
-import Message from '../components/Message';
+import Message from '../components/displayComponents/Message';
 import StandardForm from '../components/forms/StandardForm';
 import { isFilledString } from '../helpers/validationHelpers';
-import Loader from '../components/Loader';
+import Loader from '../components/displayComponents/Loader';
 
 interface LoginContainerState {
   auth: Auth,

@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoLarge from './userInterActionComponents/VideoLarge';
+import VideoLarge from './VideoLarge';
 import styled from 'styled-components';
 
 const VideoPlayerHolder = styled.section`

@@ -1,7 +1,7 @@
 
 import React from 'react'
-import FlexBoxRowHolder from './stylers/FlexBoxRowHolder';
-import HeaderLink from './userInterActionComponents/HeaderLink';
+import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
+import HeaderLink from '../userInterActionComponents/HeaderLink';
 
 import styled from 'styled-components';
 

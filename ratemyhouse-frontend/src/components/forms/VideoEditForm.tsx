@@ -7,7 +7,7 @@ import ConfirmButton from '../userInterActionComponents/ConfirmButton';
 import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
 import StarRatingComponent from 'react-star-rating-component';
 import FlexBoxColumnHolder from '../stylers/FlexBoxColumnHolder';
-import VideoPlayer from '../VideoPlayer';
+import VideoPlayer from '../userInterActionComponents/VideoPlayer';
 import MargintTop10 from '../stylers/MargintTop10';
 import SelectField from '../userInterActionComponents/SelectField';
 import roomOptions from '../../static/roomOptions';
