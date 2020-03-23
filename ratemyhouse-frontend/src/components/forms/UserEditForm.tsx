@@ -5,6 +5,8 @@ import InformationBlock from '../blocks/InformationBlock';
 import ConfirmButton from '../userInterActionComponents/ConfirmButton';
 import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
 import { isFilledString } from '../../helpers/validationHelpers';
+import SelectField from '../userInterActionComponents/SelectField';
+import objectStatusOptions from '../../static/objectStatusOptions';
 
 const UserEditForm: React.FC<{
   user: User;
@@ -14,7 +16,6 @@ const UserEditForm: React.FC<{
   sendForm
 }) => {
   const [userName, setUserName] = useState<string|undefined>(user.userName);
-  const [objectForSale, setOjectForSale] = useState<boolean>(user.objectForSale);
 
   const [email, setEmail] = useState<string|undefined>(user.contactInfo.email);
   const [phoneNumber, setPhoneNumber] = useState<string|undefined>(user.contactInfo.phoneNumber);
@@ -24,6 +25,8 @@ const UserEditForm: React.FC<{
   const [postalCode, setPostalCode] = useState<string|undefined>(user.location.postalCode);
   const [houseNumber, setHouseNumber] = useState<number|undefined>(user.location.houseNumber);
   const [houseNumberAddition, setHouseNumberAddition] = useState<string|undefined>(user.location.houseNumberAddition);
+
+  const [objectStatus, setObjectStatus]  = useState<string>(user.objectStatus);
 
   const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(userName));
 
@@ -92,6 +95,17 @@ const UserEditForm: React.FC<{
         type="string"
         defaultValue={houseNumberAddition}
       />
+      <SelectField
+        fieldName="objectSatus"
+        labelText="Object Status"
+        onBlur={(event: any) => setObjectStatus(event.target.value)}
+      >
+        {
+          objectStatusOptions.map(option => (
+          <option value={option.value} selected={option.value === objectStatus}>{option.title}</option>
+          ))
+        }
+      </SelectField>
       <FlexBoxRowHolder>
       <ConfirmButton
         disabled={!inputIsValid()}
@@ -99,7 +113,7 @@ const UserEditForm: React.FC<{
         sendForm(
           {
             userName,
-            objectForSale,
+            objectStatus,
             contactInfo: {
               email,
               phoneNumber,

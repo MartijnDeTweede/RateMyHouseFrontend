@@ -1,9 +1,10 @@
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import FlexBoxRowHolder from '../stylers/FlexBoxRowHolder';
 import HeaderLink from '../userInterActionComponents/HeaderLink';
 
 import styled from 'styled-components';
+import { getToken } from '../../helpers/tokenhelpers';
 
 const HeaderHolder = styled.header`
 width: 100%;
@@ -26,14 +27,24 @@ animation: Header-fade-in 1 0.5s linear;
   }
 }`;
 
-const Header: React.FC<{}> = () => (
-<HeaderHolder>
-  <FlexBoxRowHolder>
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/login">Login</HeaderLink>
-    <HeaderLink href="/signup" >Sign-up</HeaderLink>
-  </FlexBoxRowHolder>
-</HeaderHolder>
-);
+const Header: React.FC<{}> = () => {
+  
+  const [token, setToken] = useState<string| undefined>(undefined);
+
+  useEffect(() => {
+    const storedToken = getToken();
+    setToken(storedToken);
+  }, [token]);
+
+  return(
+  <HeaderHolder>
+    <FlexBoxRowHolder>
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/login">{token ? "Logout" : "Login"}</HeaderLink>
+      <HeaderLink href="/signup" >Sign-up</HeaderLink>
+    </FlexBoxRowHolder>
+  </HeaderHolder>
+  )
+};
 
 export default Header;

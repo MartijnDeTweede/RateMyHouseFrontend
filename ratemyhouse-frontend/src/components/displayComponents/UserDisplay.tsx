@@ -10,7 +10,7 @@ const UserDisplay: React.FC<{
 ({ user}) => {
   const {
     userName,
-    objectForSale,
+    objectStatus,
     contactInfo: {
       email,
       phoneNumber,
@@ -37,7 +37,7 @@ const UserDisplay: React.FC<{
         <DisplayField label="Street" fieldValue={street} />
         <DisplayField label="House nr." fieldValue={ houseNumberAddition ? `${houseNumber} ${houseNumberAddition}` : `${houseNumber}`} />
         <DisplayField label="Postal code" fieldValue={postalCode} />
-        <DisplayField label="For sale" fieldValue={objectForSale ? 'Yes' : 'No'} />
+        <DisplayField label="Object status" fieldValue={objectStatus} />
     </InformationBlock>
   )
 };

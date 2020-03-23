@@ -30,49 +30,57 @@ const LoginContainer: React.FC<{
 }) => {
   const [email, setEmail] = useState<string|undefined>(undefined);
   const [password, setPassWord] = useState<string|undefined>(undefined);
-  
+  const [token, setToken] = useState<string| undefined>(undefined);
+
+  useEffect(() => {
+    const storedToken = getToken();
+    setToken(storedToken);
+  }, [token]);
+
   if(isFetching) {
     return(<Loader />)
   }
 
-  const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(password))
+  const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(password));
 
   return(
     <section>
-      {!auth.isLoggedIn &&  
+      {(auth.isLoggedIn && token) ?
       <StandardForm 
-        fields={[
-          <InputField 
-          fieldName="email"
-          labelText="E-mail"
-          onBlur={(event: any) => setEmail(event.target.value)}
-          type="email"
-        />,
+      message={<div> Welkom {auth.userName}</div>}
+      submitButton={
+        <ConfirmButton type="submit" value="Submit" onClick={() => { 
+          logout()}}>Log out</ConfirmButton>
+      } 
+    /> 
+      :
+    <StandardForm 
+      fields={[
         <InputField 
-          fieldName="password"
-          labelText="Password"
-          onBlur={(event: any) => setPassWord(event.target.value)}
-          type="password"
-        />
-        ]}
-        message={message && <Message message={message} />}
-        submitButton={
-          <ConfirmButton
-            type="submit"
-            value="Submit"
-            disabled={!inputIsValid()}
-            onClick={() => { 
-            login({email, password})}}>Log in</ConfirmButton>
-        }
-      />}
-      {auth.isLoggedIn && 
-      <StandardForm 
-        message={<div> Welkom {auth.userName}</div>}
-        submitButton={
-          <ConfirmButton type="submit" value="Submit" onClick={() => { 
-            logout()}}>Log out</ConfirmButton>
-        } 
-      />}
+        fieldName="email"
+        labelText="E-mail"
+        onBlur={(event: any) => setEmail(event.target.value)}
+        type="email"
+      />,
+      <InputField 
+        fieldName="password"
+        labelText="Password"
+        onBlur={(event: any) => setPassWord(event.target.value)}
+        type="password"
+      />
+      ]}
+      message={message && <Message message={message} />}
+      submitButton={
+        <ConfirmButton
+          type="submit"
+          value="Submit"
+          disabled={!inputIsValid()}
+          onClick={() => { 
+          login({email, password})}}>Log in</ConfirmButton>
+      }
+      />
+
+      }
     </section>
   )
 }
