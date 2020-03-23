@@ -32,11 +32,6 @@ const LoginContainer: React.FC<{
   const [password, setPassWord] = useState<string|undefined>(undefined);
   const [token, setToken] = useState<string| undefined>(undefined);
 
-  useEffect(() => {
-    const storedToken = getToken();
-    setToken(storedToken);
-  }, [token]);
-
   if(isFetching) {
     return(<Loader />)
   }
