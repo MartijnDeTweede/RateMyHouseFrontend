@@ -5,6 +5,7 @@ import { User, UserState } from '../types/user.types';
 import UserDisplay from '../components/displayComponents/UserDisplay';
 import UserEditForm from '../components/forms/UserEditForm';
 import FlexBoxRowHolder from '../components/stylers/FlexBoxRowHolder';
+import Loader from '../components/Loader';
 
 
 const UserContainer: React.FC<{
@@ -28,7 +29,7 @@ const UserContainer: React.FC<{
   }, []);
 
   if(isFetching) {
-    return(<article>Fetching data</article>)
+    return(<Loader />)
   }
 
   return(

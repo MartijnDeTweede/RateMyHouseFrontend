@@ -6,6 +6,7 @@ import { getFeatureVideosRequestActionCreator } from '../actions/FeaturedVideosA
 import { Video } from '../types/video.types';
 import HomePageVideoHolder from '../components/stylers/HomePageVideoHolder';
 import SmallVideoBlockHolder from '../components/stylers/SmallVideoBlockHolder';
+import Loader from '../components/Loader';
 
 const HomeContainer: React.FC<{
   getFeaturedVideos: Function,
@@ -21,7 +22,7 @@ const HomeContainer: React.FC<{
   }, []);
 
   if(isFetching) {
-    return(<article>Fetching data</article>)
+    return(<Loader />)
   }
 
   return(

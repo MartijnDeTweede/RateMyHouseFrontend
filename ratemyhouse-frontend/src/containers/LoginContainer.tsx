@@ -8,6 +8,7 @@ import ConfirmButton from '../components/userInterActionComponents/ConfirmButton
 import Message from '../components/Message';
 import StandardForm from '../components/forms/StandardForm';
 import { isFilledString } from '../helpers/validationHelpers';
+import Loader from '../components/Loader';
 
 interface LoginContainerState {
   auth: Auth,
@@ -31,7 +32,7 @@ const LoginContainer: React.FC<{
   const [password, setPassWord] = useState<string|undefined>(undefined);
   
   if(isFetching) {
-    return(<article>Fetching data</article>)
+    return(<Loader />)
   }
 
   const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(password))

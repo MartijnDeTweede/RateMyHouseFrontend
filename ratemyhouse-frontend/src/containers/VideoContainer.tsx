@@ -4,6 +4,7 @@ import { VideoContainerState, Video } from '../types/video.types';
 import { getVideosRequestActionCreator, updateVideoRequestActionCreator, addVideosRequestActionCreator, deleteVideoRequestActionCreator, rateVideoRequestActionCreator } from '../actions/VideoActionCreator';
 import VideoEditor from '../components/VideoEditor';
 import VideoDisplayCaroucel from '../components/VideoDisplayCaroucel';
+import Loader from '../components/Loader';
 
 const VideoContainer: React.FC<{
   isFetching: boolean;
@@ -31,7 +32,7 @@ const VideoContainer: React.FC<{
   }, []);
 
   if(isFetching) {
-    return(<article>Fetching data</article>)
+    return(<Loader />)
   }
 
   return(

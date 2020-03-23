@@ -7,6 +7,7 @@ import ConfirmButton from '../components/userInterActionComponents/ConfirmButton
 import StandardForm from '../components/forms/StandardForm';
 import Message from '../components/Message';
 import { isFilledString } from '../helpers/validationHelpers';
+import Loader from '../components/Loader';
 
 interface signupContainerState {
   auth: Auth,
@@ -29,8 +30,9 @@ const SignupContainer: React.FC<{
   const [userName, setUserName] = useState<string|undefined>(undefined);
   const [password, setPassWord] = useState<string|undefined>(undefined);
 
+  
   if(isFetching) {
-    return(<article>Fetching data</article>)
+    return(<Loader />)
   }
 
   const inputIsValid = (): boolean => (isFilledString(email) && isFilledString(userName) && isFilledString(password));
